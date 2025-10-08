@@ -8,8 +8,6 @@ import {
   Alert,
   ScrollView,
   Image,
-  PermissionsAndroid,
-  Platform,
 } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {useCameraPermission} from 'react-native-vision-camera';
@@ -36,8 +34,12 @@ import {MessageType} from '../../utils/types';
 import {L10nContext, UserContext} from '../../utils';
 
 import {SendButton, StopButton, Menu} from '..';
-import {startRecording, stopRecording} from '../../services/audio/Recorder';
-import {getWhisperContext} from '../../services/whisper';
+import {
+  initializeSherpaStt,
+  requestSherpaMicPermission,
+  startPushToTalk,
+  stopPushToTalk,
+} from '../../services/stt/sherpa';
 
 export interface ChatInputTopLevelProps {
   /** Whether the AI is currently streaming tokens */
@@ -330,37 +332,22 @@ export const ChatInput = observer(
       ? onSurfaceColor
       : onSurfaceColorVariant;
 
-    const requestMicPermission = async (): Promise<boolean> => {
-      if (Platform.OS === 'android') {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
-        );
-        return granted === PermissionsAndroid.RESULTS.GRANTED;
-      }
-      return true;
-    };
-
     const handleMicPressIn = async () => {
-      const ok = await requestMicPermission();
-      if (!ok) {
-        return;
+      try {
+        const ok = await requestSherpaMicPermission();
+        if (!ok) {
+          return;
+        }
+        await initializeSherpaStt();
+        await startPushToTalk();
+      } catch (error) {
+        console.warn('Failed to start speech recognition', error);
       }
-      await startRecording(30000);
     };
 
     const handleMicPressOut = async () => {
       try {
-        const {pcmPath, wavPath} = await stopRecording();
-        const audioPath = wavPath || pcmPath; // Prefer WAV if available
-        // Transcribe using whisper.rn
-        const whisperContext = await getWhisperContext();
-        const {promise} = whisperContext.transcribe(audioPath, {
-          language: 'en',
-        });
-        const result = await promise;
-        console.log('Whisper transcription:', result.result);
-        // Feed into chat as if user typed it
-        const text = result.result.trim();
+        const text = await stopPushToTalk();
         if (text) {
           onSendPress({text, type: 'text'});
         }

@@ -11,8 +11,8 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
+import com.pocketpal.TTSManagerPackage
 import com.pocketpal.download.DownloadPackage
-// import com.sherpaonnxofflinetts.TTSManagerPackage
 
 class MainApplication : Application(), ReactApplication {
 
@@ -25,7 +25,7 @@ class MainApplication : Application(), ReactApplication {
               add(DeviceInfoPackage())
               add(KeepAwakePackage())
               add(DownloadPackage())
-              // TTSManagerPackage is autolinked; do not add manually to avoid duplicate module error
+              add(TTSManagerPackage())
               // In debug builds, remove Firebase App Check package to avoid requiring google-services.json
               if (BuildConfig.DEBUG) {
                 removeAll { pkg ->

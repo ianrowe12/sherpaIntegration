@@ -10112,11 +10112,6 @@ react-native-animatable@1.4.0:
   dependencies:
     prop-types "^15.8.1"
 
-react-native-audio-record@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/react-native-audio-record/-/react-native-audio-record-0.2.2.tgz#9cbb0ddd3cbdd18f5edfabae812c0bc9c680e928"
-  integrity sha512-+JEY3AWz21xylePbXZ81DLHcqU5oJYztn3Uel3ay53P3ZrvJlwfmOmyOuoavA9boPV1O0dLLQIu9gC7xbKwNvQ==
-
 react-native-config@^1.5.1:
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.5.5.tgz#5977db58ff20b6fe9dd6fb28c815a9ba43d018d2"
@@ -12998,13 +12993,6 @@ which@^4.0.0:
   integrity sha512-GlaYyEb07DPxYCKhKzplCWBJtvxZcZMrL+4UkrTSJHHPyZU4mYYTv3qaOe77H7EODLSSopAUFAc6W8U4yqvscg==
   dependencies:
     isexe "^3.1.1"
-
-whisper.rn@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/whisper.rn/-/whisper.rn-0.5.0.tgz#b491a5657aef446241e5c203dece26062e75ff00"
-  integrity sha512-8Miw4KTnDdif4PT+9oT7lzn+reNwwbJT1rsz+lPdCGSJFGkqdC6Ci4zaHv0dgdtpUFxtkdR+9NDaG0l73xnWaw==
-  dependencies:
-    safe-buffer "^5.2.1"
 
 widest-line@^4.0.1:
   version "4.0.1"

@@ -36,7 +36,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>PocketPal uses your camera to capture images and video for local AI analysis only. All processing happens on your device and no images are transmitted to external servers.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>PocketPal uses your microphone to capture audio for local, on-device transcription with Whisper.</string>
+        <string>PocketPal uses your microphone to capture audio for local, on-device transcription with Sherpa.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>PocketPal accesses your photo library to select images for local AI analysis only. Selected images are processed entirely on your device and are never transmitted to external servers.</string>
 	<key>UIAppFonts</key>
