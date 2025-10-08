@@ -22,7 +22,7 @@ import {l10n} from './src/utils/l10n';
 import {initLocale} from './src/utils';
 import {L10nContext} from './src/utils';
 import {ROUTES} from './src/utils/navigationConstants';
-import {initDefaultWhisper} from './src/services/whisper';
+import {initializeSherpaStt} from './src/services/stt/sherpa';
 import {
   tryInitializeTTSFromFolder,
   ensureTTSAssets,
@@ -69,9 +69,8 @@ const App = observer(() => {
   React.useEffect(() => {
     initLocale(uiStore.language);
     initializeLookiePal();
-    // Initialize Whisper with a default tiny.en model (download if missing)
-    initDefaultWhisper().catch(err => {
-      console.warn('Whisper initialization failed:', err);
+    initializeSherpaStt().catch(err => {
+      console.warn('Sherpa STT initialization failed:', err);
     });
     // Initialize Sherpa-ONNX TTS. If assets are missing, download and initialize.
     const subRef: {current: any} = {current: null};

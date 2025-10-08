@@ -20,4 +20,3 @@ declare module '*.svg' {
   export default content;
 }
 
-// whisper.rn declarations live in src/types/whisper-rn.d.ts
