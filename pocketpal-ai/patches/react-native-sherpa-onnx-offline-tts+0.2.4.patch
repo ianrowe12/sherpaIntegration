@@ -1,0 +1,119 @@
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
+index 4e3d5a1..4e3d5a1 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
+@@
+ const enforcePlayback = () => {
+   if (TTSManager.enforcePlayback) {
+     TTSManager.enforcePlayback();
+   }
+ };
+
+ const addVolumeListener = (callback: any) => {
+@@
+ export default {
+   initialize,
+   generateAndPlay,
+   deinitialize,
+   enforcePlayback,
+   addVolumeListener,
+ };
++
+// Added stop export if native module provides it
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
+@@
+ const enforcePlayback = () => {
+   if (TTSManager.enforcePlayback) {
+     TTSManager.enforcePlayback();
+   }
+ };
+
+ const stop = () => {
+   if (TTSManager.stop) {
+     TTSManager.stop();
+   }
+ };
+
+ const addVolumeListener = (callback: any) => {
+@@
+ export default {
+   initialize,
+   generateAndPlay,
+   deinitialize,
+   enforcePlayback,
+   addVolumeListener,
+   stop,
+ };
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt
+index 6c22d4a..1d3f0f4 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt
+@@
+     fun enqueueAudioData(samples: FloatArray, sr: Int) {
+         if (sr != sampleRate) throw IllegalArgumentException("Sample rate mismatch")
+         sentCompletion = false                              // ← reset
+         audioQueue.offer(samples)
+     }
+
++    fun resumePlayback() {
++        audioTrack?.play()
++        if (!isRunning) {
++            start()
++        }
++    }
+
+    fun resetQueue() {
+        synchronized(this) {
+            accumulationBuffer.clear()
+            // drain audioQueue
+            while (!audioQueue.isEmpty()) {
+                audioQueue.poll()
+            }
+        }
+    }
+
+     private fun computePeak(data: FloatArray): Float {
+         var maxVal = 0f
+         for (sample in data) {
+             val absVal = abs(sample)
+             if (absVal > maxVal) maxVal = absVal
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
+index c995a65..9a4bf3d 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
+@@
+     @ReactMethod
+     fun deinitialize() {
+         realTimeAudioPlayer?.stopPlayer()
+         realTimeAudioPlayer = null
+         tts?.release()
+         tts = null
+     }
+
+     @ReactMethod
+     fun enforcePlayback() {
+-        realTimeAudioPlayer?.start()
++        realTimeAudioPlayer?.resumePlayback()
+     }
+
+    @ReactMethod
+    fun stop() {
+        // Gracefully stop and clear current queue, then be ready for next playback
+        realTimeAudioPlayer?.stopPlayer()
+        // Recreate a fresh AudioPlayer so subsequent generate calls work without reinitializeTTS
+        // Note: We keep the same sample rate/channels; they are fixed by initializeTTS
+        // If not initialized yet, this is a no-op
+        // Safe-guard: If tts was initialized, we need a new player instance started
+        if (tts != null) {
+            // The original initializeTTS sets up and starts the player; here we rebuild a minimal player
+            // with the same parameters (22050, 1) used by JS initialize().
+            realTimeAudioPlayer = AudioPlayer(22050, 1, object : AudioPlayerDelegate {
+                override fun didUpdateVolume(volume: Float) { sendVolumeUpdate(volume) }
+            })
+            realTimeAudioPlayer?.start()
+        }
+    }
+
+
