@@ -2480,7 +2480,7 @@ SPEC CHECKSUMS:
   react-native-keyboard-controller: 88b01041519d5e3193091d728a75a56f81b2e237
   react-native-render-html: 5afc4751f1a98621b3009432ef84c47019dcb2bd
   react-native-safe-area-context: 758e894ca5a9bd1868d2a9cfbca7326a2b6bf9dc
-  react-native-sherpa-onnx-offline-tts: e7c202df908a44cefcf4ab1c82d71622ffb4ba38
+  react-native-sherpa-onnx-offline-tts: 218445a05550ee4fca1787e5eb719ff056855f7d
   react-native-slider: 0b7c66d7408aa7c279b783f6a017c31870184c99
   React-nativeconfig: aeed6e2a8ac02b2df54476afcc7c663416c12bf7
   React-NativeModulesApple: c0783e5e21c71aa2764ac33120abc96208466fa6

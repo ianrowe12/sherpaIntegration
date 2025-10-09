@@ -37,7 +37,6 @@ import {L10nContext, UserContext} from '../../utils';
 
 import {SendButton, StopButton, Menu} from '..';
 import {startRecording, stopRecording} from '../../services/audio/Recorder';
-import {getWhisperContext} from '../../services/whisper';
 
 export interface ChatInputTopLevelProps {
   /** Whether the AI is currently streaming tokens */
@@ -341,31 +340,34 @@ export const ChatInput = observer(
     };
 
     const handleMicPressIn = async () => {
+      console.log('[ChatInput] mic press in');
       const ok = await requestMicPermission();
       if (!ok) {
+        console.warn('[ChatInput] microphone permission denied');
+        await stopRecording().catch(() => {});
         return;
       }
-      await startRecording(30000);
+      try {
+        await startRecording(30000);
+      } catch (error) {
+        console.warn('Sherpa startRecording failed', error);
+        await stopRecording().catch(() => {});
+      }
     };
 
     const handleMicPressOut = async () => {
+      console.log('[ChatInput] mic press out');
       try {
-        const {pcmPath, wavPath} = await stopRecording();
-        const audioPath = wavPath || pcmPath; // Prefer WAV if available
-        // Transcribe using whisper.rn
-        const whisperContext = await getWhisperContext();
-        const {promise} = whisperContext.transcribe(audioPath, {
-          language: 'en',
-        });
-        const result = await promise;
-        console.log('Whisper transcription:', result.result);
-        // Feed into chat as if user typed it
-        const text = result.result.trim();
-        if (text) {
-          onSendPress({text, type: 'text'});
+        const text = await stopRecording();
+        const trimmed = text.trim();
+        if (trimmed.length > 0) {
+          console.log('[ChatInput] transcription result', trimmed);
+          onSendPress({text: trimmed, type: 'text'});
+        } else {
+          console.log('[ChatInput] transcription empty');
         }
       } catch (e) {
-        console.warn('Transcription failed', e);
+        console.warn('Sherpa transcription failed', e);
       }
     };
 

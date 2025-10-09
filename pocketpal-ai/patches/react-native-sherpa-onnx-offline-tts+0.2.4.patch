@@ -1,119 +1,730 @@
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
-index 4e3d5a1..4e3d5a1 100644
---- a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
-+++ b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
-@@
- const enforcePlayback = () => {
-   if (TTSManager.enforcePlayback) {
-     TTSManager.enforcePlayback();
-   }
- };
-
- const addVolumeListener = (callback: any) => {
-@@
- export default {
-   initialize,
-   generateAndPlay,
-   deinitialize,
-   enforcePlayback,
-   addVolumeListener,
- };
-+
-// Added stop export if native module provides it
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
---- a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
-+++ b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
-@@
- const enforcePlayback = () => {
-   if (TTSManager.enforcePlayback) {
-     TTSManager.enforcePlayback();
-   }
- };
-
- const stop = () => {
-   if (TTSManager.stop) {
-     TTSManager.stop();
-   }
- };
-
- const addVolumeListener = (callback: any) => {
-@@
- export default {
-   initialize,
-   generateAndPlay,
-   deinitialize,
-   enforcePlayback,
-   addVolumeListener,
-   stop,
- };
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt
-index 6c22d4a..1d3f0f4 100644
---- a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt
-+++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt
-@@
-     fun enqueueAudioData(samples: FloatArray, sr: Int) {
-         if (sr != sampleRate) throw IllegalArgumentException("Sample rate mismatch")
-         sentCompletion = false                              // ← reset
-         audioQueue.offer(samples)
-     }
-
-+    fun resumePlayback() {
-+        audioTrack?.play()
-+        if (!isRunning) {
-+            start()
-+        }
-+    }
-
-    fun resetQueue() {
-        synchronized(this) {
-            accumulationBuffer.clear()
-            // drain audioQueue
-            while (!audioQueue.isEmpty()) {
-                audioQueue.poll()
-            }
-        }
-    }
-
-     private fun computePeak(data: FloatArray): Float {
-         var maxVal = 0f
-         for (sample in data) {
-             val absVal = abs(sample)
-             if (absVal > maxVal) maxVal = absVal
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
-index c995a65..9a4bf3d 100644
+index f5bdfca..33c47ea 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
-@@
+@@ -1,8 +1,28 @@
+ package com.sherpaonnxofflinetts
+ 
+-import com.facebook.react.bridge.*
++import android.media.AudioFormat
++import android.media.AudioRecord
++import android.media.MediaRecorder
++import android.util.Base64
++import android.util.Log
++import com.facebook.react.bridge.Arguments
++import com.facebook.react.bridge.Promise
++import com.facebook.react.bridge.ReactApplicationContext
++import com.facebook.react.bridge.ReactContextBaseJavaModule
++import com.facebook.react.bridge.ReactMethod
+ import com.facebook.react.modules.core.DeviceEventManagerModule
+-import com.k2fsa.sherpa.onnx.*
++import com.k2fsa.sherpa.onnx.AudioPlayer
++import com.k2fsa.sherpa.onnx.AudioPlayerDelegate
++import com.k2fsa.sherpa.onnx.FeatureConfig
++import com.k2fsa.sherpa.onnx.OfflineModelConfig
++import com.k2fsa.sherpa.onnx.OfflineRecognizer
++import com.k2fsa.sherpa.onnx.OfflineRecognizerConfig
++import com.k2fsa.sherpa.onnx.OfflineStream
++import com.k2fsa.sherpa.onnx.OfflineTransducerModelConfig
++import com.k2fsa.sherpa.onnx.OfflineTts
++import com.k2fsa.sherpa.onnx.OfflineTtsConfig
++import com.k2fsa.sherpa.onnx.OfflineTtsModelConfig
++import com.k2fsa.sherpa.onnx.OfflineTtsVitsModelConfig
+ import android.content.res.AssetManager
+ import kotlin.concurrent.thread
+ import android.content.Context
+@@ -10,6 +30,8 @@ import java.io.File
+ import java.io.FileOutputStream
+ import java.io.IOException
+ import org.json.JSONObject
++import java.nio.ByteBuffer
++import java.nio.ByteOrder
+ 
+ class ModelLoader(private val context: Context) {
+ 
+@@ -81,8 +103,15 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
+     private var tts: OfflineTts? = null
+     private var realTimeAudioPlayer: AudioPlayer? = null
+     private val modelLoader = ModelLoader(reactContext)
++    private var recognizer: OfflineRecognizer? = null
++    private var sttStream: OfflineStream? = null
++    private var sttSampleRate: Int = 16000
++    private var audioRecorder: AudioRecord? = null
++    private var recordingThread: Thread? = null
++    @Volatile private var isRecording: Boolean = false
+ 
+     override fun getName(): String {
++        Log.i("SherpaTTS", "TTSManagerModule initialized")
+         return "TTSManager"
+     }
+ 
+@@ -130,6 +159,123 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
+         realTimeAudioPlayer?.start()
+     }
+ 
++    @ReactMethod
++    fun initializeSTT(modelId: String) {
++        Log.i("SherpaTTS", "initializeSTT called with config: $modelId")
++        val jsonObject = JSONObject(modelId)
++        val encoder = jsonObject.getString("encoder")
++        val decoder = jsonObject.getString("decoder")
++        val joiner = jsonObject.getString("joiner")
++        val tokens = jsonObject.getString("tokens")
++        sttSampleRate = jsonObject.optInt("sampleRate", 16000)
++        Log.i("SherpaTTS", "Config -> encoder: $encoder, decoder: $decoder, joiner: $joiner, tokens: $tokens, sampleRate: $sttSampleRate")
++
++        val modelConfig = OfflineModelConfig(
++            transducer = OfflineTransducerModelConfig(
++                encoder = encoder,
++                decoder = decoder,
++                joiner = joiner,
++            ),
++            tokens = tokens,
++            numThreads = 1,
++            debug = true,
++            provider = "cpu",
++        )
++        val feat = FeatureConfig(sttSampleRate, 80)
++        val cfg = OfflineRecognizerConfig(
++            featConfig = feat,
++            modelConfig = modelConfig,
++            decodingMethod = "greedy_search",
++            maxActivePaths = 4,
++            hotwordsFile = "",
++            hotwordsScore = 1.5f,
++            ruleFsts = "",
++            ruleFars = "",
++            blankPenalty = 0.0f,
++        )
++        recognizer = OfflineRecognizer(reactContext.assets, cfg)
++        Log.i("SherpaTTS", "initializeSTT completed")
++    }
++
++    @ReactMethod
++    fun startRecognition() {
++        Log.i("SherpaTTS", "startRecognition called")
++        sttStream = recognizer?.createStream()
++        val minBuf = AudioRecord.getMinBufferSize(
++            sttSampleRate,
++            AudioFormat.CHANNEL_IN_MONO,
++            AudioFormat.ENCODING_PCM_16BIT,
++        )
++        audioRecorder = AudioRecord(
++            MediaRecorder.AudioSource.MIC,
++            sttSampleRate,
++            AudioFormat.CHANNEL_IN_MONO,
++            AudioFormat.ENCODING_PCM_16BIT,
++            minBuf,
++        )
++        audioRecorder?.startRecording()
++        isRecording = true
++        recordingThread = thread(start = true) {
++            Log.i("SherpaTTS", "recording thread started on ${Thread.currentThread().name}")
++            val buffer = ShortArray(1024)
++            while (isRecording) {
++                val read = audioRecorder?.read(buffer, 0, buffer.size) ?: 0
++                if (read > 0) {
++                    val floatSamples = FloatArray(read)
++                    for (i in 0 until read) {
++                        floatSamples[i] = buffer[i] / 32768.0f
++                    }
++                    sttStream?.acceptWaveform(floatSamples, sttSampleRate)
++                }
++            }
++            Log.i("SherpaTTS", "recording thread exiting")
++        }
++    }
++
++    @ReactMethod
++    fun stopRecognition(promise: Promise) {
++        Log.i("SherpaTTS", "stopRecognition called")
++        isRecording = false
++        recordingThread?.join()
++        recordingThread = null
++        audioRecorder?.stop()
++        audioRecorder?.release()
++        audioRecorder = null
++
++        val stream = sttStream
++        val rec = recognizer
++        if (stream == null || rec == null) {
++            Log.w("SherpaTTS", "stopRecognition: recognizer not ready")
++            promise.reject("NOT_READY", "Recognizer not ready")
++            return
++        }
++        try {
++            rec.decode(stream)
++            val result = rec.getResult(stream)
++            stream.release()
++            sttStream = null
++            Log.i("SherpaTTS", "stopRecognition result: ${result.text}")
++            promise.resolve(result.text)
++        } catch (error: Throwable) {
++            Log.e("SherpaTTS", "Error during stopRecognition", error)
++            promise.reject("STOP_ERROR", error)
++        }
++    }
++
++    @ReactMethod
++    fun deinitializeSTT() {
++        Log.i("SherpaTTS", "deinitializeSTT called")
++        isRecording = false
++        recordingThread?.join()
++        recordingThread = null
++        audioRecorder?.stop()
++        audioRecorder?.release()
++        audioRecorder = null
++        recognizer?.release()
++        recognizer = null
++        sttStream = null
++    }
++
+     // Generate and Play method exposed to React Native
      @ReactMethod
-     fun deinitialize() {
-         realTimeAudioPlayer?.stopPlayer()
+     fun generateAndPlay(text: String, sid: Int, speed: Double, promise: Promise) {
+@@ -159,6 +305,7 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
          realTimeAudioPlayer = null
          tts?.release()
          tts = null
++        deinitializeSTT()
      }
-
-     @ReactMethod
-     fun enforcePlayback() {
--        realTimeAudioPlayer?.start()
-+        realTimeAudioPlayer?.resumePlayback()
+ 
+     // Helper: split text into manageable chunks similar to iOS logic
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnx.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnx.swift
+index a2921b8..5882987 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnx.swift
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnx.swift
+@@ -530,7 +530,17 @@ class SherpaOnnxOfflineRecognizer {
+   func decode(samples: [Float], sampleRate: Int = 16000) -> SherpaOnnxOfflineRecongitionResult {
+     let stream: OpaquePointer! = SherpaOnnxCreateOfflineStream(recognizer)
+ 
+-    SherpaOnnxAcceptWaveformOffline(stream, Int32(sampleRate), samples, Int32(samples.count))
++    var paddedSamples = samples
++    if paddedSamples.isEmpty {
++      paddedSamples = Array(repeating: 0.0, count: sampleRate / 10)
++    }
++    let frameShift = max(1, sampleRate / 100)
++    let minSamples = 39 * frameShift
++    if paddedSamples.count < minSamples {
++      paddedSamples.append(contentsOf: Array(repeating: 0.0, count: minSamples - paddedSamples.count))
++    }
++
++    SherpaOnnxAcceptWaveformOffline(stream, Int32(sampleRate), paddedSamples, Int32(paddedSamples.count))
+ 
+     SherpaOnnxDecodeOfflineStream(recognizer, stream)
+ 
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
+index ae8e644..4ada895 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
+@@ -12,6 +12,15 @@ @interface RCT_EXTERN_MODULE(TTSManager, NSObject)
+                   resolver:(RCTPromiseResolveBlock)resolver 
+                   rejecter:(RCTPromiseRejectBlock)rejecter)
+ 
++RCT_EXTERN_METHOD(initializeSTT:(NSString *)modelId)
++
++RCT_EXTERN_METHOD(startRecognition)
++
++RCT_EXTERN_METHOD(stopRecognition:(RCTPromiseResolveBlock)resolver
++                  rejecter:(RCTPromiseRejectBlock)rejecter)
++
++RCT_EXTERN_METHOD(deinitializeSTT)
++
+ // Deinitialize method exposed to React Native
+ RCT_EXTERN_METHOD(deinitialize)
+ 
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
+index 4072cc9..ac2d36e 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
+@@ -13,10 +13,23 @@ protocol AudioPlayerDelegate: AnyObject {
+ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+     private var tts: SherpaOnnxOfflineTtsWrapper?
+     private var realTimeAudioPlayer: AudioPlayer?
++    private var recognizer: SherpaOnnxOfflineRecognizer?
++    private var sttSampleRate: Int = 16000
++    private var audioEngine: AVAudioEngine?
++    private var sttSamplesBuffer: [Float] = []
+     
+     override init() {
+         super.init()
+-        // Optionally, initialize AudioPlayer here if needed
++        let exposedMethods = [
++            "initializeTTS",
++            "generateAndPlay",
++            "deinitialize",
++            "initializeSTT",
++            "startRecognition",
++            "stopRecognition",
++            "deinitializeSTT"
++        ]
++        print("[SherpaTTS][iOS] Module loaded. Methods exposed: \(exposedMethods)")
      }
-
-    @ReactMethod
-    fun stop() {
-        // Gracefully stop and clear current queue, then be ready for next playback
-        realTimeAudioPlayer?.stopPlayer()
-        // Recreate a fresh AudioPlayer so subsequent generate calls work without reinitializeTTS
-        // Note: We keep the same sample rate/channels; they are fixed by initializeTTS
-        // If not initialized yet, this is a no-op
-        // Safe-guard: If tts was initialized, we need a new player instance started
-        if (tts != null) {
-            // The original initializeTTS sets up and starts the player; here we rebuild a minimal player
-            // with the same parameters (22050, 1) used by JS initialize().
-            realTimeAudioPlayer = AudioPlayer(22050, 1, object : AudioPlayerDelegate {
-                override fun didUpdateVolume(volume: Float) { sendVolumeUpdate(volume) }
-            })
-            realTimeAudioPlayer?.start()
-        }
-    }
-
-
+     
+     // Required for RCTEventEmitter
+@@ -24,6 +37,161 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+         return true
+     }
+     
++    @objc(initializeSTT:)
++    func initializeSTT(_ modelId: String) {
++        print("[SherpaTTS][iOS] initializeSTT called with config: \(modelId)")
++        guard
++            let data = modelId.data(using: .utf8),
++            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
++        else {
++            print("[SherpaTTS][iOS] failed to parse config JSON")
++            return
++        }
++
++        let encoder = json["encoder"] as? String ?? ""
++        let decoder = json["decoder"] as? String ?? ""
++        let joiner = json["joiner"] as? String ?? ""
++        let tokens = json["tokens"] as? String ?? ""
++        sttSampleRate = json["sampleRate"] as? Int ?? 16000
++        sttSamplesBuffer.removeAll(keepingCapacity: true)
++
++        var model = sherpaOnnxOfflineModelConfig(
++            tokens: tokens,
++            transducer: sherpaOnnxOfflineTransducerModelConfig(
++                encoder: encoder,
++                decoder: decoder,
++                joiner: joiner
++            ),
++            numThreads: 1,
++            provider: "cpu",
++            debug: 1
++        )
++
++        let feat = sherpaOnnxFeatureConfig(sampleRate: sttSampleRate)
++        var cfg = sherpaOnnxOfflineRecognizerConfig(
++            featConfig: feat,
++            modelConfig: model,
++            decodingMethod: "greedy_search"
++        )
++
++        recognizer = SherpaOnnxOfflineRecognizer(config: &cfg)
++        print("[SherpaTTS][iOS] initializeSTT completed")
++    }
++
++    @objc func startRecognition() {
++        print("[SherpaTTS][iOS] startRecognition called")
++        if Thread.isMainThread {
++            startRecognitionOnMain()
++        } else {
++            DispatchQueue.main.sync {
++                startRecognitionOnMain()
++            }
++        }
++    }
++
++    private func startRecognitionOnMain() {
++        audioEngine = AVAudioEngine()
++        
++        guard let engine = audioEngine else { return }
++        guard recognizer != nil else { return }
++        sttSamplesBuffer.removeAll()
++        let input = engine.inputNode
++        let format = input.outputFormat(forBus: 0)
++        let desiredFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: Double(sttSampleRate), channels: 1, interleaved: false)
++        let converter = AVAudioConverter(from: format, to: desiredFormat!)
++
++        input.installTap(onBus: 0, bufferSize: 1024, format: format) { [weak self] buffer, _ in
++            guard let self = self else { return }
++            guard let desired = desiredFormat, let converter = converter else { return }
++            let converted = AVAudioPCMBuffer(pcmFormat: desired, frameCapacity: buffer.frameCapacity)!
++            var error: NSError?
++            converter.convert(to: converted, error: &error) { _, outStatus in
++                outStatus.pointee = .haveData
++                return buffer
++            }
++            if error != nil { return }
++            guard let channelData = converted.floatChannelData?[0] else { return }
++            let frames = Int(converted.frameLength)
++            let samples = Array(UnsafeBufferPointer(start: channelData, count: frames))
++            self.sttSamplesBuffer.append(contentsOf: samples)
++        }
++        engine.prepare()
++        try? engine.start()
++    }
++
++    @objc func stopRecognition(
++        _ resolver: @escaping RCTPromiseResolveBlock,
++        rejecter: @escaping RCTPromiseRejectBlock
++    ) {
++        print("[SherpaTTS][iOS] stopRecognition called")
++        if Thread.isMainThread {
++            stopRecognitionOnMain(resolver: resolver, rejecter: rejecter)
++        } else {
++            DispatchQueue.main.sync {
++                stopRecognitionOnMain(resolver: resolver, rejecter: rejecter)
++            }
++        }
++    }
++
++    private func stopRecognitionOnMain(
++        resolver: @escaping RCTPromiseResolveBlock,
++        rejecter: @escaping RCTPromiseRejectBlock
++    ) {
++        audioEngine?.inputNode.removeTap(onBus: 0)
++        audioEngine?.stop()
++        audioEngine = nil
++        
++        let session = AVAudioSession.sharedInstance()
++        try? session.setActive(false, options: [.notifyOthersOnDeactivation])
++
++
++        guard let rec = recognizer else {
++            print("[SherpaTTS][iOS] recognizer not ready in stopRecognition")
++            rejecter("NOT_READY", "Recognizer not ready", nil)
++            return
++        }
++        
++        if sttSamplesBuffer.isEmpty {
++            print("[SherpaTTS][iOS] No audio samples captured; returning empty string")
++            resolver("")
++            return
++        }
++
++        let frameShift = max(1, sttSampleRate / 100)
++        let minSamples = 39 * frameShift
++        var samples = sttSamplesBuffer
++        if samples.count < minSamples {
++            let padCount = minSamples - samples.count
++            print("[SherpaTTS][iOS] padding samples with \(padCount) zeros to satisfy minimum length")
++            samples.append(contentsOf: Array(repeating: 0.0 as Float, count: padCount))
++        }
++
++        print("[SherpaTTS][iOS] decoding with sampleCount=\(samples.count)")
++        let result = rec.decode(samples: samples, sampleRate: sttSampleRate)
++        sttSamplesBuffer.removeAll(keepingCapacity: true)
++        print("[SherpaTTS][iOS] stopRecognition returning text: \(result.text)")
++        resolver(result.text)
++    }
++
++    @objc func deinitializeSTT() {
++        print("[SherpaTTS][iOS] deinitializeSTT called")
++        if Thread.isMainThread {
++            deinitializeSTTOnMain()
++        } else {
++            DispatchQueue.main.sync {
++                deinitializeSTTOnMain()
++            }
++        }
++    }
++
++    private func deinitializeSTTOnMain() {
++        audioEngine?.stop()
++        audioEngine = nil
++        let session = AVAudioSession.sharedInstance()
++        try? session.setActive(false, options: [.notifyOthersOnDeactivation])
++        recognizer = nil
++    }
++    
+     // Specify the events that can be emitted
+     override func supportedEvents() -> [String]! {
+         return ["VolumeUpdate"]
+@@ -115,8 +283,17 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+     
+     // Clean up resources
+     @objc func deinitialize() {
++        print("[SherpaTTS][iOS] deinitialize called")
++        DispatchQueue.main.async {
++            self.deinitializeOnMain()
++        }
++    }
++
++    private func deinitializeOnMain() {
+         self.realTimeAudioPlayer?.stop()
+         self.realTimeAudioPlayer = nil
++        self.tts = nil
++        deinitializeSTT()
+     }
+     
+     // MARK: - AudioPlayerDelegate Method
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js b/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js
+index cb69b16..4ee6adc 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js
+@@ -7,9 +7,18 @@ exports.default = void 0;
+ var _reactNative = require("react-native");
+ // TTSManager.js
+ 
++const moduleRef = _reactNative.NativeModules;
+ const {
+   TTSManager
+-} = _reactNative.NativeModules;
++} = moduleRef;
++console.log('[SherpaJS] Native module keys', Object.keys(TTSManager !== null && TTSManager !== void 0 ? TTSManager : {}));
++if (TTSManager) {
++  ['initializeSTT', 'startRecognition', 'stopRecognition', 'deinitializeSTT'].forEach(fn => {
++    var _TTSManager$fn;
++
++    console.log(`[SherpaJS] ${fn} available?`, typeof ((_TTSManager$fn = TTSManager[fn]) !== null && _TTSManager$fn !== void 0 ? _TTSManager$fn : undefined));
++  });
++}
+ const ttsManagerEmitter = new _reactNative.NativeEventEmitter(TTSManager);
+ const initialize = modelId => {
+   TTSManager.initializeTTS(22050, 1, modelId);
+@@ -25,6 +34,16 @@ const generateAndPlay = async (text, sid, speed) => {
+ const deinitialize = () => {
+   TTSManager.deinitialize();
+ };
++const enforcePlayback = () => {
++  var _TTSManager$enforcePla;
++
++  (_TTSManager$enforcePla = TTSManager.enforcePlayback) === null || _TTSManager$enforcePla === void 0 ? void 0 : _TTSManager$enforcePla.call(TTSManager);
++};
++const stop = () => {
++  var _TTSManager$stop;
++
++  (_TTSManager$stop = TTSManager.stop) === null || _TTSManager$stop === void 0 ? void 0 : _TTSManager$stop.call(TTSManager);
++};
+ const addVolumeListener = callback => {
+   const subscription = ttsManagerEmitter.addListener('VolumeUpdate', event => {
+     const {
+@@ -34,10 +53,53 @@ const addVolumeListener = callback => {
+   });
+   return subscription;
+ };
++const initializeSTT = config => {
++  var _TTSManager$initializ;
++
++  console.log('[SherpaJS] initializeSTT invoked');
++  if (!(TTSManager !== null && TTSManager !== void 0 && TTSManager.initializeSTT)) {
++    console.warn('[SherpaJS] initializeSTT unavailable');
++    return;
++  }
++  (_TTSManager$initializ = TTSManager.initializeSTT) === null || _TTSManager$initializ === void 0 ? void 0 : _TTSManager$initializ.call(TTSManager, config);
++};
++const startRecognition = () => {
++  var _TTSManager$startReco;
++
++  console.log('[SherpaJS] startRecognition invoked');
++  (_TTSManager$startReco = TTSManager.startRecognition) === null || _TTSManager$startReco === void 0 ? void 0 : _TTSManager$startReco.call(TTSManager);
++};
++const stopRecognition = async () => {
++  console.log('[SherpaJS] stopRecognition invoked');
++  if (!TTSManager.stopRecognition) {
++    console.warn('[SherpaJS] stopRecognition unavailable');
++    return '';
++  }
++  try {
++    const text = await TTSManager.stopRecognition();
++    console.log('[SherpaJS] stopRecognition result', text);
++    return text !== null && text !== void 0 ? text : '';
++  } catch (err) {
++    console.error('Sherpa stopRecognition failed', err);
++    throw err;
++  }
++};
++const deinitializeSTT = () => {
++  var _TTSManager$deinitial;
++
++  console.log('[SherpaJS] deinitializeSTT invoked');
++  (_TTSManager$deinitial = TTSManager.deinitializeSTT) === null || _TTSManager$deinitial === void 0 ? void 0 : _TTSManager$deinitial.call(TTSManager);
++};
+ var _default = exports.default = {
+   initialize,
+   generateAndPlay,
+   deinitialize,
+-  addVolumeListener
++  enforcePlayback,
++  addVolumeListener,
++  stop,
++  initializeSTT,
++  startRecognition,
++  stopRecognition,
++  deinitializeSTT
+ };
+ //# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/lib/module/index.js b/node_modules/react-native-sherpa-onnx-offline-tts/lib/module/index.js
+index 02cc578..3cc1e0d 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/lib/module/index.js
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/lib/module/index.js
+@@ -3,9 +3,16 @@
+ // TTSManager.js
+ 
+ import { NativeModules, NativeEventEmitter } from 'react-native';
++const moduleRef = NativeModules;
+ const {
+   TTSManager
+-} = NativeModules;
++} = moduleRef;
++console.log('[SherpaJS] Native module keys', Object.keys(TTSManager ?? {}));
++if (TTSManager) {
++  ['initializeSTT', 'startRecognition', 'stopRecognition', 'deinitializeSTT'].forEach(fn => {
++    console.log(`[SherpaJS] ${fn} available?`, typeof TTSManager[fn]);
++  });
++}
+ const ttsManagerEmitter = new NativeEventEmitter(TTSManager);
+ const initialize = modelId => {
+   TTSManager.initializeTTS(22050, 1, modelId);
+@@ -21,6 +28,12 @@ const generateAndPlay = async (text, sid, speed) => {
+ const deinitialize = () => {
+   TTSManager.deinitialize();
+ };
++const enforcePlayback = () => {
++  TTSManager.enforcePlayback?.();
++};
++const stop = () => {
++  TTSManager.stop?.();
++};
+ const addVolumeListener = callback => {
+   const subscription = ttsManagerEmitter.addListener('VolumeUpdate', event => {
+     const {
+@@ -30,10 +43,47 @@ const addVolumeListener = callback => {
+   });
+   return subscription;
+ };
++const initializeSTT = config => {
++  console.log('[SherpaJS] initializeSTT invoked');
++  if (!TTSManager?.initializeSTT) {
++    console.warn('[SherpaJS] initializeSTT unavailable');
++    return;
++  }
++  TTSManager.initializeSTT(config);
++};
++const startRecognition = () => {
++  console.log('[SherpaJS] startRecognition invoked');
++  TTSManager.startRecognition?.();
++};
++const stopRecognition = async () => {
++  console.log('[SherpaJS] stopRecognition invoked');
++  if (!TTSManager.stopRecognition) {
++    console.warn('[SherpaJS] stopRecognition unavailable');
++    return '';
++  }
++  try {
++    const text = await TTSManager.stopRecognition();
++    console.log('[SherpaJS] stopRecognition result', text);
++    return text ?? '';
++  } catch (err) {
++    console.error('Sherpa stopRecognition failed', err);
++    throw err;
++  }
++};
++const deinitializeSTT = () => {
++  console.log('[SherpaJS] deinitializeSTT invoked');
++  TTSManager.deinitializeSTT?.();
++};
+ export default {
+   initialize,
+   generateAndPlay,
+   deinitialize,
+-  addVolumeListener
++  enforcePlayback,
++  addVolumeListener,
++  stop,
++  initializeSTT,
++  startRecognition,
++  stopRecognition,
++  deinitializeSTT
+ };
+ //# sourceMappingURL=index.js.map
+\ No newline at end of file
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/react-native-sherpa-onnx-offline-tts.podspec b/node_modules/react-native-sherpa-onnx-offline-tts/react-native-sherpa-onnx-offline-tts.podspec
+index 98297ed..3a52370 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/react-native-sherpa-onnx-offline-tts.podspec
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/react-native-sherpa-onnx-offline-tts.podspec
+@@ -23,6 +23,11 @@ Pod::Spec.new do |s|
+     'build-ios/sherpa-onnx.xcframework'
+   ]
+ 
++  # Ensure static library inside XCFramework is linked
++  s.vendored_libraries = [
++    'build-ios/sherpa-onnx.xcframework/ios-arm64/sherpa-onnx.a'
++  ]
++
+   # Include header search paths if needed for the framework headers
+   s.xcconfig = {
+     'HEADER_SEARCH_PATHS' => '$(PODS_TARGET_SRCROOT)/build-ios/sherpa-onnx.xcframework/Headers'
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
+index ee4f666..cc66d4f 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
+@@ -2,7 +2,16 @@
+ 
+ import { NativeModules, NativeEventEmitter } from 'react-native';
+ 
+-const { TTSManager } = NativeModules;
++const moduleRef = NativeModules as { TTSManager: any };
++const { TTSManager } = moduleRef;
++
++console.log('[SherpaJS] Native module keys', Object.keys(TTSManager ?? {}));
++if (TTSManager) {
++  ['initializeSTT', 'startRecognition', 'stopRecognition', 'deinitializeSTT'].forEach(fn => {
++    console.log(`[SherpaJS] ${fn} available?`, typeof TTSManager[fn]);
++  });
++}
++
+ const ttsManagerEmitter = new NativeEventEmitter(TTSManager);
+ 
+ const initialize = (modelId: string) => {
+@@ -22,6 +31,14 @@ const deinitialize = () => {
+   TTSManager.deinitialize();
+ };
+ 
++const enforcePlayback = () => {
++  TTSManager.enforcePlayback?.();
++};
++
++const stop = () => {
++  TTSManager.stop?.();
++};
++
+ const addVolumeListener = (callback: any) => {
+   const subscription = ttsManagerEmitter.addListener(
+     'VolumeUpdate',
+@@ -33,9 +50,50 @@ const addVolumeListener = (callback: any) => {
+   return subscription;
+ };
+ 
++const initializeSTT = (config: string) => {
++  console.log('[SherpaJS] initializeSTT invoked');
++  if (!TTSManager?.initializeSTT) {
++    console.warn('[SherpaJS] initializeSTT unavailable');
++    return;
++  }
++  TTSManager.initializeSTT(config);
++};
++
++const startRecognition = () => {
++  console.log('[SherpaJS] startRecognition invoked');
++  TTSManager.startRecognition?.();
++};
++
++const stopRecognition = async () => {
++  console.log('[SherpaJS] stopRecognition invoked');
++  if (!TTSManager.stopRecognition) {
++    console.warn('[SherpaJS] stopRecognition unavailable');
++    return '';
++  }
++  try {
++    const text = await TTSManager.stopRecognition();
++    console.log('[SherpaJS] stopRecognition result', text);
++    return text ?? '';
++  } catch (err) {
++    console.error('Sherpa stopRecognition failed', err);
++    throw err;
++  }
++};
++
++const deinitializeSTT = () => {
++  console.log('[SherpaJS] deinitializeSTT invoked');
++  TTSManager.deinitializeSTT?.();
++};
++
+ export default {
+   initialize,
+   generateAndPlay,
+   deinitialize,
++  enforcePlayback,
+   addVolumeListener,
++  stop,
++  initializeSTT,
++  startRecognition,
++  stopRecognition,
++  deinitializeSTT,
+ };

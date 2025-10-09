@@ -1,59 +1,125 @@
-import AudioRecord from 'react-native-audio-record';
-import * as RNFS from '@dr.pogodin/react-native-fs';
+import SherpaSTT from 'react-native-sherpa-onnx-offline-tts';
 
-const SAMPLE_RATE = 16000;
-const CHANNELS = 1;
+import {ensureSherpaModelConfig} from '../stt/sherpa';
 
-let currentWavFileName: string | null = null;
+const TAG = '[SherpaRecorder]';
 
-export type RecordingResult = {
-  pcmPath: string;
-  wavPath?: string;
+export type StreamingSession = {
+  stop: () => Promise<string>;
+  cancel: () => void;
 };
 
-export async function setupRecorder(): Promise<void> {
-  // Create a unique wav filename; library saves into Documents with this name
-  const fileName = `rec_${Date.now()}.wav`;
-  currentWavFileName = fileName;
-  AudioRecord.init({
-    sampleRate: SAMPLE_RATE,
-    channels: CHANNELS,
-    bitsPerSample: 16,
-    wavFile: fileName,
-  });
-}
+let currentTimeout: ReturnType<typeof setTimeout> | null = null;
+let inFlightSession: StreamingSession | null = null;
 
-export async function startRecording(maxMs = 30000): Promise<void> {
-  await setupRecorder();
-  // attach a data listener to avoid warning logs (no-op)
-  AudioRecord.on('data', () => {});
-  await AudioRecord.start();
-  // Safety stop after maxMs
-  setTimeout(() => {
-    stopRecording().catch(() => {});
-  }, maxMs);
-}
-
-export async function stopRecording(): Promise<RecordingResult> {
-  const audioBuffer = await AudioRecord.stop(); // returns base64 PCM data
-  const dir = `${RNFS.DocumentDirectoryPath}/recordings`;
-  await RNFS.mkdir(dir);
-  const pcmPath = `${dir}/rec_${Date.now()}.pcm`;
-  await RNFS.writeFile(pcmPath, audioBuffer, 'base64');
-  // Try to resolve the wav file saved by native lib
-  const wavPathCandidate = currentWavFileName
-    ? `${RNFS.DocumentDirectoryPath}/${currentWavFileName}`
-    : undefined;
-  currentWavFileName = null;
-  if (wavPathCandidate) {
-    try {
-      const exists = await RNFS.exists(wavPathCandidate);
-      if (exists) {
-        return {pcmPath, wavPath: wavPathCandidate};
-      }
-    } catch {}
+const stopCurrent = () => {
+  if (currentTimeout) {
+    console.log(`${TAG} clearing timeout`);
+    clearTimeout(currentTimeout);
+    currentTimeout = null;
   }
-  return {pcmPath};
+};
+
+const ensureNativeApi = () => {
+  if (!SherpaSTT) {
+    throw new Error('Sherpa native module not available');
+  }
+  console.log(`${TAG} native module keys`, Object.keys(SherpaSTT));
+  const requiredFns: Array<keyof typeof SherpaSTT> = [
+    'initializeSTT',
+    'startRecognition',
+    'stopRecognition',
+    'deinitializeSTT',
+  ];
+  const missing = requiredFns.filter(
+    fnName => typeof (SherpaSTT as any)[fnName] !== 'function',
+  );
+  if (missing.length) {
+    console.warn(`${TAG} missing native functions`, missing);
+    throw new Error(`Missing Sherpa native functions: ${missing.join(', ')}`);
+  }
+};
+
+export async function startRecording(maxMs = 30000): Promise<StreamingSession> {
+  console.log(`${TAG} start invoked (maxMs=${maxMs})`);
+  if (inFlightSession) {
+    console.log(`${TAG} cancelling existing session before starting new`);
+    inFlightSession.cancel();
+    inFlightSession = null;
+  }
+
+  ensureNativeApi();
+
+  let config: string;
+  try {
+    console.log(`${TAG} building Sherpa model config`);
+    config = await ensureSherpaModelConfig();
+    console.log(`${TAG} config ready`);
+  } catch (error) {
+    console.warn(`${TAG} failed to build config`, error);
+    throw error;
+  }
+
+  try {
+    console.log(`${TAG} calling initializeSTT`);
+    SherpaSTT.initializeSTT?.(config);
+    console.log(`${TAG} calling startRecognition`);
+    SherpaSTT.startRecognition?.();
+  } catch (error) {
+    console.warn(`${TAG} initialize/start failed`, error);
+    SherpaSTT.deinitializeSTT?.();
+    throw error;
+  }
+
+  stopCurrent();
+  currentTimeout = setTimeout(() => {
+    console.log(`${TAG} timeout reached, auto-stopping`);
+    void stopRecording().catch(err =>
+      console.warn(`${TAG} auto-stop encountered error`, err),
+    );
+  }, maxMs);
+
+  inFlightSession = {
+    stop: async () => {
+      console.log(`${TAG} stop requested`);
+      stopCurrent();
+      try {
+        const text = await SherpaSTT.stopRecognition?.();
+        console.log(`${TAG} stopRecognition resolved`, text);
+        return text ?? '';
+      } finally {
+        SherpaSTT.deinitializeSTT?.();
+        inFlightSession = null;
+      }
+    },
+    cancel: () => {
+      console.log(`${TAG} cancel requested`);
+      stopCurrent();
+      SherpaSTT.deinitializeSTT?.();
+      inFlightSession = null;
+    },
+  };
+
+  return inFlightSession;
+}
+
+export async function stopRecording(): Promise<string> {
+  console.log(`${TAG} stopRecording called`);
+  stopCurrent();
+  if (!inFlightSession) {
+    console.log(`${TAG} no active session, just deinitializing`);
+    SherpaSTT.deinitializeSTT?.();
+    return '';
+  }
+  try {
+    return await inFlightSession.stop();
+  } catch (error) {
+    console.warn(`${TAG} stopRecording failed`, error);
+    SherpaSTT.deinitializeSTT?.();
+    return '';
+  } finally {
+    inFlightSession = null;
+  }
 }
 
 

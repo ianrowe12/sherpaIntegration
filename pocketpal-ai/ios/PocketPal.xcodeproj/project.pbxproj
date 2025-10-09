@@ -12,6 +12,10 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1C5077855E738169D7580281 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 56D1BD968C32BD43D7C02874 /* PrivacyInfo.xcprivacy */; };
+		79CB9A442E973CB700A0D2E8 /* decoder-epoch-99-avg-1.onnx in Resources */ = {isa = PBXBuildFile; fileRef = 79CB9A402E973CB700A0D2E8 /* decoder-epoch-99-avg-1.onnx */; };
+		79CB9A452E973CB700A0D2E8 /* encoder-epoch-99-avg-1.int8.onnx in Resources */ = {isa = PBXBuildFile; fileRef = 79CB9A412E973CB700A0D2E8 /* encoder-epoch-99-avg-1.int8.onnx */; };
+		79CB9A462E973CB700A0D2E8 /* joiner-epoch-99-avg-1.int8.onnx in Resources */ = {isa = PBXBuildFile; fileRef = 79CB9A422E973CB700A0D2E8 /* joiner-epoch-99-avg-1.int8.onnx */; };
+		79CB9A472E973CB700A0D2E8 /* tokens.txt in Resources */ = {isa = PBXBuildFile; fileRef = 79CB9A432E973CB700A0D2E8 /* tokens.txt */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A85081982D6255F000BDE4BC /* KeepAwakeModule.h in Sources */ = {isa = PBXBuildFile; fileRef = A85081962D6255F000BDE4BC /* KeepAwakeModule.h */; };
 		A85081992D6255F000BDE4BC /* KeepAwakeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A85081972D6255F000BDE4BC /* KeepAwakeModule.m */; };
@@ -47,12 +51,20 @@
 		56D1BD968C32BD43D7C02874 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = PocketPal/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		5E01428B4E51E39CBC5D2180 /* Pods-PocketPal-PocketPalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PocketPal-PocketPalTests.debug.xcconfig"; path = "Target Support Files/Pods-PocketPal-PocketPalTests/Pods-PocketPal-PocketPalTests.debug.xcconfig"; sourceTree = "<group>"; };
 		79A3B9EA89EFE88FA274FD1C /* libPods-PocketPal-PocketPalTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PocketPal-PocketPalTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		79CB9A402E973CB700A0D2E8 /* decoder-epoch-99-avg-1.onnx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "decoder-epoch-99-avg-1.onnx"; sourceTree = "<group>"; };
+		79CB9A412E973CB700A0D2E8 /* encoder-epoch-99-avg-1.int8.onnx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "encoder-epoch-99-avg-1.int8.onnx"; sourceTree = "<group>"; };
+		79CB9A422E973CB700A0D2E8 /* joiner-epoch-99-avg-1.int8.onnx */ = {isa = PBXFileReference; lastKnownFileType = text; path = "joiner-epoch-99-avg-1.int8.onnx"; sourceTree = "<group>"; };
+		79CB9A432E973CB700A0D2E8 /* tokens.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = tokens.txt; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PocketPal/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A85081962D6255F000BDE4BC /* KeepAwakeModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KeepAwakeModule.h; path = PocketPal/KeepAwakeModule.h; sourceTree = "<group>"; };
 		A85081972D6255F000BDE4BC /* KeepAwakeModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KeepAwakeModule.m; path = PocketPal/KeepAwakeModule.m; sourceTree = "<group>"; };
 		A8894CE12D0E02AF00FA6CAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A88DF87D2D0B6F7400239E77 /* DeviceInfoModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DeviceInfoModule.h; path = PocketPal/DeviceInfoModule.h; sourceTree = "<group>"; };
 		A88DF87E2D0B6F7400239E77 /* DeviceInfoModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DeviceInfoModule.m; path = PocketPal/DeviceInfoModule.m; sourceTree = "<group>"; };
+		AAB3CDF02A8F1A9D00F7597C /* encoder-epoch-99-avg-1.int8.onnx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "encoder-epoch-99-avg-1.int8.onnx"; path = "../SherpaSTT/encoder-epoch-99-avg-1.int8.onnx"; sourceTree = "<group>"; };
+		AAB3CDF12A8F1A9D00F7597C /* decoder-epoch-99-avg-1.onnx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "decoder-epoch-99-avg-1.onnx"; path = "../SherpaSTT/decoder-epoch-99-avg-1.onnx"; sourceTree = "<group>"; };
+		AAB3CDF22A8F1A9D00F7597C /* joiner-epoch-99-avg-1.int8.onnx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "joiner-epoch-99-avg-1.int8.onnx"; path = "../SherpaSTT/joiner-epoch-99-avg-1.int8.onnx"; sourceTree = "<group>"; };
+		AAB3CDF32A8F1A9D00F7597C /* tokens.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = tokens.txt; path = ../SherpaSTT/tokens.txt; sourceTree = "<group>"; };
 		B2B1B50A483B5EBA13F9E622 /* libPods-PocketPal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PocketPal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4FD69AC6EA2DCF5F09D426E /* Pods-PocketPal-PocketPalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PocketPal-PocketPalTests.release.xcconfig"; path = "Target Support Files/Pods-PocketPal-PocketPalTests/Pods-PocketPal-PocketPalTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -101,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				F6FDF0F52BF10159004D619B /* Fonts */,
+				AAB3CDEF2A8F1A5C00F7597C /* SherpaSTT */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -135,6 +148,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				79CB9A402E973CB700A0D2E8 /* decoder-epoch-99-avg-1.onnx */,
+				79CB9A412E973CB700A0D2E8 /* encoder-epoch-99-avg-1.int8.onnx */,
+				79CB9A422E973CB700A0D2E8 /* joiner-epoch-99-avg-1.int8.onnx */,
+				79CB9A432E973CB700A0D2E8 /* tokens.txt */,
 				A85081962D6255F000BDE4BC /* KeepAwakeModule.h */,
 				A85081972D6255F000BDE4BC /* KeepAwakeModule.m */,
 				13B07FAE1A68108700A75B9A /* PocketPal */,
@@ -156,6 +173,17 @@
 				00E356EE1AD99517003FC87E /* PocketPalTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AAB3CDEF2A8F1A5C00F7597C /* SherpaSTT */ = {
+			isa = PBXGroup;
+			children = (
+				AAB3CDF02A8F1A9D00F7597C /* encoder-epoch-99-avg-1.int8.onnx */,
+				AAB3CDF12A8F1A9D00F7597C /* decoder-epoch-99-avg-1.onnx */,
+				AAB3CDF22A8F1A9D00F7597C /* joiner-epoch-99-avg-1.int8.onnx */,
+				AAB3CDF32A8F1A9D00F7597C /* tokens.txt */,
+			);
+			name = SherpaSTT;
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -273,6 +301,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				79CB9A442E973CB700A0D2E8 /* decoder-epoch-99-avg-1.onnx in Resources */,
+				79CB9A452E973CB700A0D2E8 /* encoder-epoch-99-avg-1.int8.onnx in Resources */,
+				79CB9A462E973CB700A0D2E8 /* joiner-epoch-99-avg-1.int8.onnx in Resources */,
+				79CB9A472E973CB700A0D2E8 /* tokens.txt in Resources */,
 				A8894CE22D0E02AF00FA6CAC /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				1C5077855E738169D7580281 /* PrivacyInfo.xcprivacy in Resources */,
