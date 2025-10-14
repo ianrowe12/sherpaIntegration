@@ -52,24 +52,25 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
         let tokens = json["tokens"] as? String ?? ""
         sttSampleRate = json["sampleRate"] as? Int ?? 16000
 
-        var model = sherpaOnnxOfflineModelConfig(
+        var model = sherpaOnnxOnlineModelConfig(
             tokens: tokens,
-            transducer: sherpaOnnxOfflineTransducerModelConfig(
+            transducer: sherpaOnnxOnlineTransducerModelConfig(
                 encoder: encoder,
                 decoder: decoder,
                 joiner: joiner
             ),
             numThreads: 1,
             provider: "cpu",
-            debug: 1
+            debug: 1,
+            modelType: "zipformer"
         )
-        let feat = sherpaOnnxFeatureConfig(sampleRate: sttSampleRate)
-        var cfg = sherpaOnnxOfflineRecognizerConfig(
+        let feat = sherpaOnnxFeatureConfig(sampleRate: sttSampleRate, featureDim: 80)
+        var cfg = sherpaOnnxOnlineRecognizerConfig(
             featConfig: feat,
             modelConfig: model,
             decodingMethod: "greedy_search"
         )
-        recognizer = SherpaOnnxOfflineRecognizer(config: &cfg)
+        recognizer = SherpaOnnxOnlineRecognizer(config: &cfg)
     }
 
     @objc func startRecognition() {
