@@ -339,35 +339,39 @@ export const ChatInput = observer(
       return true;
     };
 
-    const handleMicPressIn = async () => {
-      console.log('[ChatInput] mic press in');
-      const ok = await requestMicPermission();
-      if (!ok) {
-        console.warn('[ChatInput] microphone permission denied');
-        await stopRecording().catch(() => {});
-        return;
-      }
-      try {
-        await startRecording(30000);
-      } catch (error) {
-        console.warn('Sherpa startRecording failed', error);
-        await stopRecording().catch(() => {});
-      }
-    };
+    const [isRecording, setIsRecording] = React.useState(false);
 
-    const handleMicPressOut = async () => {
-      console.log('[ChatInput] mic press out');
-      try {
-        const text = await stopRecording();
-        const trimmed = text.trim();
-        if (trimmed.length > 0) {
-          console.log('[ChatInput] transcription result', trimmed);
-          onSendPress({text: trimmed, type: 'text'});
-        } else {
-          console.log('[ChatInput] transcription empty');
+    const handleMicToggle = async () => {
+      if (!isRecording) {
+        console.log('[ChatInput] mic start');
+        const ok = await requestMicPermission();
+        if (!ok) {
+          console.warn('[ChatInput] microphone permission denied');
+          await stopRecording().catch(() => {});
+          return;
         }
-      } catch (e) {
-        console.warn('Sherpa transcription failed', e);
+        try {
+          await startRecording();
+          setIsRecording(true);
+        } catch (error) {
+          console.warn('Sherpa startRecording failed', error);
+          await stopRecording().catch(() => {});
+        }
+      } else {
+        console.log('[ChatInput] mic stop');
+        try {
+          const text = await stopRecording();
+          setIsRecording(false);
+          const trimmed = text.trim();
+          if (trimmed.length > 0) {
+            console.log('[ChatInput] transcription result', trimmed);
+            onSendPress({text: trimmed, type: 'text'});
+          } else {
+            console.log('[ChatInput] transcription empty');
+          }
+        } catch (e) {
+          console.warn('Sherpa transcription failed', e);
+        }
       }
     };
 
@@ -605,18 +609,19 @@ export const ChatInput = observer(
 
             {/* Right Controls */}
             <View style={styles.rightControls}>
-              {/* Mic (hold-to-record) */}
+              {/* Mic (tap-to-toggle) */}
               {palType !== PalType.VIDEO && !isStreaming && (
                 <TouchableOpacity
-                  onPressIn={handleMicPressIn}
-                  onPressOut={handleMicPressOut}
-                  accessibilityLabel="Hold to record"
+                  onPress={handleMicToggle}
+                  accessibilityLabel={
+                    isRecording ? 'Tap to stop' : 'Tap to record'
+                  }
                   accessibilityRole="button"
                   style={{marginRight: 8}}>
                   <IconButton
-                    icon="microphone"
+                    icon={isRecording ? 'stop-circle' : 'microphone'}
                     size={22}
-                    iconColor={onSurfaceColor}
+                    iconColor={isRecording ? '#E53935' : onSurfaceColor}
                   />
                 </TouchableOpacity>
               )}

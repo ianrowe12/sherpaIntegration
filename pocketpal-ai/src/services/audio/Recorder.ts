@@ -40,7 +40,7 @@ const ensureNativeApi = () => {
   }
 };
 
-export async function startRecording(maxMs = 30000): Promise<StreamingSession> {
+export async function startRecording(maxMs?: number): Promise<StreamingSession> {
   console.log(`${TAG} start invoked (maxMs=${maxMs})`);
   if (inFlightSession) {
     console.log(`${TAG} cancelling existing session before starting new`);
@@ -72,12 +72,14 @@ export async function startRecording(maxMs = 30000): Promise<StreamingSession> {
   }
 
   stopCurrent();
-  currentTimeout = setTimeout(() => {
-    console.log(`${TAG} timeout reached, auto-stopping`);
-    void stopRecording().catch(err =>
-      console.warn(`${TAG} auto-stop encountered error`, err),
-    );
-  }, maxMs);
+  if (typeof maxMs === 'number' && maxMs > 0) {
+    currentTimeout = setTimeout(() => {
+      console.log(`${TAG} timeout reached, auto-stopping`);
+      void stopRecording().catch(err =>
+        console.warn(`${TAG} auto-stop encountered error`, err),
+      );
+    }, maxMs);
+  }
 
   inFlightSession = {
     stop: async () => {
@@ -88,14 +90,14 @@ export async function startRecording(maxMs = 30000): Promise<StreamingSession> {
         console.log(`${TAG} stopRecognition resolved`, text);
         return text ?? '';
       } finally {
-        SherpaSTT.deinitializeSTT?.();
+        // Keep recognizer warm between sessions; do not deinitialize here
         inFlightSession = null;
       }
     },
     cancel: () => {
       console.log(`${TAG} cancel requested`);
       stopCurrent();
-      SherpaSTT.deinitializeSTT?.();
+      // Keep recognizer warm; do not deinitialize here
       inFlightSession = null;
     },
   };
@@ -108,14 +110,14 @@ export async function stopRecording(): Promise<string> {
   stopCurrent();
   if (!inFlightSession) {
     console.log(`${TAG} no active session, just deinitializing`);
-    SherpaSTT.deinitializeSTT?.();
+    // Keep recognizer alive; do not deinitialize if no session
     return '';
   }
   try {
     return await inFlightSession.stop();
   } catch (error) {
     console.warn(`${TAG} stopRecording failed`, error);
-    SherpaSTT.deinitializeSTT?.();
+    // Keep recognizer alive even on failure
     return '';
   } finally {
     inFlightSession = null;

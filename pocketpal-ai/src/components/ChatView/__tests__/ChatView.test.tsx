@@ -15,6 +15,14 @@ import {ChatEmptyPlaceholder} from '../../ChatEmptyPlaceholder';
 
 jest.useFakeTimers();
 
+// Mock Recorder used by ChatInput for mic interactions
+jest.mock('../../../services/audio/Recorder', () => ({
+  startRecording: jest.fn(async () => ({})),
+  stopRecording: jest.fn(async () => ''),
+}));
+
+import * as Recorder from '../../../services/audio/Recorder';
+
 // Mock ChatEmptyPlaceholder component
 jest.mock('../../ChatEmptyPlaceholder', () => ({
   ChatEmptyPlaceholder: jest.fn(() => null),
@@ -190,5 +198,28 @@ describe('chat', () => {
     );
 
     expect(ChatEmptyPlaceholder).toHaveBeenCalled();
+  });
+
+  it('tap-to-toggle mic starts, stops and sends transcript', async () => {
+    expect.assertions(3);
+    (Recorder.startRecording as jest.Mock).mockResolvedValueOnce({});
+    (Recorder.stopRecording as jest.Mock).mockResolvedValueOnce('hello world');
+
+    const messages = [] as any[];
+    const onSendPress = jest.fn();
+    const {getByLabelText, findByLabelText} = render(
+      <ChatView messages={messages} onSendPress={onSendPress} user={user} />,
+      {withNavigation: true},
+    );
+
+    const startButton = getByLabelText('Tap to record');
+    fireEvent.press(startButton);
+    expect(Recorder.startRecording).toHaveBeenCalled();
+
+    const stopButton = await findByLabelText('Tap to stop');
+    fireEvent.press(stopButton);
+    expect(Recorder.stopRecording).toHaveBeenCalled();
+
+    expect(onSendPress).toHaveBeenCalledWith({text: 'hello world', type: 'text'});
   });
 });

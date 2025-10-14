@@ -29,6 +29,7 @@ import {
   speakText,
 } from './src/services/tts';
 import SherpaTTS from 'react-native-sherpa-onnx-offline-tts';
+import {ensureSherpaModelConfig} from './src/services/stt/sherpa';
 // Polyfill Buffer for libraries that rely on Node's Buffer in React Native
 import {Buffer as NodeBuffer} from 'buffer';
 (global as any).Buffer = (global as any).Buffer || NodeBuffer;
@@ -103,6 +104,27 @@ const App = observer(() => {
       .catch(err => {
         console.warn('TTS initialization failed:', err);
       });
+
+    // Preload Sherpa STT at app startup to avoid first-press latency
+    (async () => {
+      try {
+        console.log('[STT] preload: resolving model config');
+        const cfg = await ensureSherpaModelConfig();
+        console.log('[STT] preload: initializeSTT');
+        await (SherpaTTS as any)?.initializeSTT?.(cfg);
+      } catch (e) {
+        console.warn('[STT] preload failed, retrying shortly...', e);
+        setTimeout(async () => {
+          try {
+            const cfg2 = await ensureSherpaModelConfig();
+            await (SherpaTTS as any)?.initializeSTT?.(cfg2);
+            console.log('[STT] preload retry succeeded');
+          } catch (e2) {
+            console.error('[STT] preload retry failed', e2);
+          }
+        }, 300);
+      }
+    })();
 
     return () => {
       try {
