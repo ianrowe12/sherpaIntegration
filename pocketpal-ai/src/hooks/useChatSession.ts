@@ -175,6 +175,17 @@ export const useChatSession = (
   const batchTimer = useRef<NodeJS.Timeout | null>(null);
   const batchTimeout = 100; // Process batch every 100ms
 
+  // Inactivity watchdog: auto-stop if no tokens arrive for a period
+  const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const resetIdleTimer = useCallback((ctx: any) => {
+    if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+    idleTimerRef.current = setTimeout(() => {
+      try {
+        ctx?.stopCompletion?.();
+      } catch {}
+    }, 8000);
+  }, []);
+
   // Process all accumulated tokens in a batch
   const processTokenBatch = useCallback(async () => {
     if (isProcessingTokens.current || tokenQueue.current.length === 0) {
@@ -221,7 +232,7 @@ export const useChatSession = (
               if (lastEnd >= 0) {
                 const toSpeak = newBuffer.slice(0, lastEnd + 1).trim();
                 if (toSpeak) {
-                  try { await speakText(toSpeak); } catch {}
+                  speakText(toSpeak).catch(() => {});
                 }
                 pendingSpeechRef.current[id] = newBuffer.slice(lastEnd + 1);
               } else {
@@ -448,6 +459,9 @@ export const useChatSession = (
       const completionStartTime = Date.now();
       let timeToFirstToken: number | null = null;
 
+      // Start inactivity watchdog
+      resetIdleTimer(context);
+
       const result = await context.completion(cleanCompletionParams, data => {
         if (data.token && currentMessageInfo.current) {
           // Capture time to first token on the first token received
@@ -458,6 +472,9 @@ export const useChatSession = (
           if (!modelStore.isStreaming) {
             modelStore.setIsStreaming(true);
           }
+
+          // Reset inactivity watchdog on each token
+          resetIdleTimer(context);
 
           // Queue each token individually for processing
           queueToken(
@@ -478,8 +495,10 @@ export const useChatSession = (
       }
 
       // No need to flush remaining tokens as each token is processed individually
-      // Just wait for the queue to finish processing
+      // Just wait briefly for the queue to finish processing (bounded)
+      const drainStart = Date.now();
       while (tokenQueue.current.length > 0 || isProcessingTokens.current) {
+        if (Date.now() - drainStart > 3000) break;
         await new Promise(resolve => setTimeout(resolve, 50));
       }
 
@@ -489,7 +508,7 @@ export const useChatSession = (
         if (msgId) {
           const remaining = (pendingSpeechRef.current[msgId] ?? '').trim();
           if (remaining) {
-            try { await speakText(remaining); } catch {}
+            speakText(remaining).catch(() => {});
           }
           pendingSpeechRef.current[msgId] = '';
         }
@@ -527,6 +546,11 @@ export const useChatSession = (
         await addSystemMessage(`${l10n.chat.completionFailed}${errorMessage}`);
       }
     } finally {
+      // Clear inactivity watchdog
+      if (idleTimerRef.current) {
+        clearTimeout(idleTimerRef.current);
+        idleTimerRef.current = null;
+      }
       // Always try to deactivate keep awake in finally block
       try {
         deactivateKeepAwake();
@@ -548,17 +572,12 @@ export const useChatSession = (
     }
     // Stop any ongoing TTS playback immediately
     try { stopSpeaking(); } catch {}
-    // Wait for any queued tokens to finish processing
-    if (tokenQueue.current.length > 0 || isProcessingTokens.current) {
-      try {
-        // Wait for the queue to finish processing
-        while (tokenQueue.current.length > 0 || isProcessingTokens.current) {
-          await new Promise(resolve => setTimeout(resolve, 50));
-        }
-      } catch (error) {
-        console.error('Error when stopping completion:', error);
-      }
-    }
+
+    // Immediately clear pending work to avoid deadlocks
+    tokenQueue.current = [];
+    isProcessingTokens.current = false;
+    pendingSpeechRef.current = {};
+
     modelStore.setInferencing(false);
     modelStore.setIsStreaming(false);
     // Deactivate keep awake when stopping completion
