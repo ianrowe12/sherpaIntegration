@@ -36,7 +36,12 @@ import {MessageType} from '../../utils/types';
 import {L10nContext, UserContext} from '../../utils';
 
 import {SendButton, StopButton, Menu} from '..';
-import {startRecording, stopRecording} from '../../services/audio/Recorder';
+import {
+  startVadContinuous,
+  stopVadContinuous,
+  setAsrSegmentHandler,
+  clearAsrSegmentHandler,
+} from '../../services/audio/Recorder';
 
 export interface ChatInputTopLevelProps {
   /** Whether the AI is currently streaming tokens */
@@ -347,30 +352,32 @@ export const ChatInput = observer(
         const ok = await requestMicPermission();
         if (!ok) {
           console.warn('[ChatInput] microphone permission denied');
-          await stopRecording().catch(() => {});
+          await stopVadContinuous().catch(() => {});
           return;
         }
         try {
-          await startRecording();
+          // Set segment handler to send messages automatically when VAD finalizes
+          setAsrSegmentHandler(seg => {
+            const trimmed = seg.trim();
+            if (trimmed.length > 0) {
+              console.log('[ChatInput] VAD segment -> send', trimmed);
+              onSendPress({text: trimmed, type: 'text'});
+            }
+          });
+          await startVadContinuous();
           setIsRecording(true);
         } catch (error) {
-          console.warn('Sherpa startRecording failed', error);
-          await stopRecording().catch(() => {});
+          console.warn('Sherpa startVadContinuous failed', error);
+          await stopVadContinuous().catch(() => {});
         }
       } else {
         console.log('[ChatInput] mic stop');
         try {
-          const text = await stopRecording();
+          await stopVadContinuous();
           setIsRecording(false);
-          const trimmed = text.trim();
-          if (trimmed.length > 0) {
-            console.log('[ChatInput] transcription result', trimmed);
-            onSendPress({text: trimmed, type: 'text'});
-          } else {
-            console.log('[ChatInput] transcription empty');
-          }
+          clearAsrSegmentHandler();
         } catch (e) {
-          console.warn('Sherpa transcription failed', e);
+          console.warn('Sherpa stopVadContinuous failed', e);
         }
       }
     };

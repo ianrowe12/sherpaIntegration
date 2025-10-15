@@ -30,6 +30,9 @@ const ensureNativeApi = () => {
     'startRecognition',
     'stopRecognition',
     'deinitializeSTT',
+    // VAD continuous
+    'startVadRecognition',
+    'stopVadRecognition',
   ];
   const missing = requiredFns.filter(
     fnName => typeof (SherpaSTT as any)[fnName] !== 'function',
@@ -122,6 +125,59 @@ export async function stopRecording(): Promise<string> {
   } finally {
     inFlightSession = null;
   }
+}
+
+// Continuous VAD-driven ASR
+let vadSubscription: { remove?: () => void } | null = null;
+let asrSegmentHandler: ((text: string) => void) | null = null;
+
+export function setAsrSegmentHandler(handler: (text: string) => void) {
+  asrSegmentHandler = handler;
+}
+
+export function clearAsrSegmentHandler() {
+  asrSegmentHandler = null;
+}
+
+export async function startVadContinuous(): Promise<void> {
+  console.log(`${TAG} startVadContinuous`);
+  ensureNativeApi();
+  // Ensure initialized (preload should have done this). If not, build config and init.
+  try {
+    const cfg = await ensureSherpaModelConfig();
+    (SherpaSTT as any)?.initializeSTT?.(cfg);
+  } catch {}
+
+  // Listen for finalized segments from native
+  try {
+    const { NativeEventEmitter, NativeModules } = require('react-native');
+    const emitter = new NativeEventEmitter(NativeModules.TTSManager);
+    vadSubscription?.remove?.();
+    vadSubscription = emitter.addListener('ASRSegment', (e: { text?: string }) => {
+      const text = e?.text?.trim?.() ?? '';
+      if (text) {
+        console.log(`${TAG} VAD segment`, text);
+        try {
+          asrSegmentHandler?.(text);
+        } catch (err) {
+          console.warn(`${TAG} segment handler error`, err);
+        }
+      }
+    });
+  } catch (err) {
+    console.warn(`${TAG} failed to attach ASRSegment listener`, err);
+  }
+
+  (SherpaSTT as any)?.startVadRecognition?.();
+}
+
+export async function stopVadContinuous(): Promise<void> {
+  console.log(`${TAG} stopVadContinuous`);
+  (SherpaSTT as any)?.stopVadRecognition?.();
+  try {
+    vadSubscription?.remove?.();
+  } catch {}
+  vadSubscription = null;
 }
 
 

@@ -1,3 +1,87 @@
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build.gradle b/node_modules/react-native-sherpa-onnx-offline-tts/android/build.gradle
+index f2fd70a..b74c897 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/android/build.gradle
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build.gradle
+@@ -84,11 +84,9 @@ android {
+ }
+ 
+ repositories {
++  maven { url uri("${rootProject.rootDir}/local-maven") }
+   mavenCentral()
+   google()
+-  flatDir {
+-        dirs 'libs' // Specifies the 'libs' directory for local AARs
+-    }
+ }
+ 
+ def kotlin_version = getExtOrDefault("kotlinVersion")
+@@ -101,7 +99,7 @@ dependencies {
+   //noinspection GradleDynamicVersion
+   implementation "com.facebook.react:react-native:0.75.3"
+   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+-  implementation files('libs/sherpa-onnx-1.10.35.aar')
++  compileOnly "com.k2fsa.sherpa-onnx:sherpa-onnx:${rootProject.ext.sherpaOnnxVersion}"
+   // compileOnly files('libs/sherpa-onnx-1.10.35.aar')
+   // implementation "com.k2fsa:sherpa-onnx:+"
+   // implementation(name:'sherpa-onnx-1.10.35.aar', ext:'aar')
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/results.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/results.bin
+new file mode 100644
+index 0000000..0d259dd
+--- /dev/null
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/results.bin
+@@ -0,0 +1 @@
++o/classes
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/transformed/classes/classes_dex/classes.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/transformed/classes/classes_dex/classes.dex
+new file mode 100644
+index 0000000..cb3e43e
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/transformed/classes/classes_dex/classes.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/results.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/results.bin
+new file mode 100644
+index 0000000..7ed749e
+--- /dev/null
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/results.bin
+@@ -0,0 +1 @@
++o/bundleLibRuntimeToDirDebug
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.dex
+new file mode 100644
+index 0000000..fbe0cfe
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex
+new file mode 100644
+index 0000000..62c06a1
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex
+new file mode 100644
+index 0000000..9ac5c32
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/BuildConfig.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/BuildConfig.dex
+new file mode 100644
+index 0000000..595929e
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/BuildConfig.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex
+new file mode 100644
+index 0000000..bc71158
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex
+new file mode 100644
+index 0000000..6a17ec1
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex
+new file mode 100644
+index 0000000..ac1ebd8
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex
+new file mode 100644
+index 0000000..daf7109
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex
+new file mode 100644
+index 0000000..6545195
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin
+new file mode 100644
+index 0000000..601f245
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/generated/source/buildConfig/debug/com/sherpaonnxofflinetts/BuildConfig.java b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/generated/source/buildConfig/debug/com/sherpaonnxofflinetts/BuildConfig.java
 new file mode 100644
 index 0000000..97de03c
@@ -53,6 +137,10 @@ index 0000000..095075b
 +  "elementType": "File"
 +}
 \ No newline at end of file
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/aar_main_jar/debug/syncDebugLibJars/classes.jar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/aar_main_jar/debug/syncDebugLibJars/classes.jar
+new file mode 100644
+index 0000000..eed66ce
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/aar_main_jar/debug/syncDebugLibJars/classes.jar differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties
 new file mode 100644
 index 0000000..1211b1e
@@ -73,6 +161,13 @@ index 0000000..9e26dfe
 @@ -0,0 +1 @@
 +{}
 \ No newline at end of file
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/annotations_typedef_file/debug/extractDebugAnnotations/typedefs.txt b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/annotations_typedef_file/debug/extractDebugAnnotations/typedefs.txt
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar
+new file mode 100644
+index 0000000..e5ea7de
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar
 new file mode 100644
 index 0000000..4bc6b09
@@ -80,13 +175,17 @@ Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/a
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_symbol_list/debug/generateDebugRFile/R.txt b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_symbol_list/debug/generateDebugRFile/R.txt
 new file mode 100644
 index 0000000..e69de29
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug-mergeJavaRes/merge-state b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug-mergeJavaRes/merge-state
+new file mode 100644
+index 0000000..d659f9c
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug-mergeJavaRes/merge-state differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
 new file mode 100644
-index 0000000..d99457a
+index 0000000..dcf6f41
 --- /dev/null
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
 @@ -0,0 +1 @@
-+#Thu Oct 09 18:38:05 EDT 2025
++#Tue Oct 14 18:17:53 EDT 2025
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
 new file mode 100644
 index 0000000..0eec429
@@ -96,6 +195,41 @@ index 0000000..0eec429
 +<?xml version="1.0" encoding="utf-8"?>
 +<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/generated/res/resValues/debug"/></dataSet><mergedItems/></merger>
 \ No newline at end of file
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+new file mode 100644
+index 0000000..17bbafd
+--- /dev/null
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/jniLibs"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/debug/jniLibs"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/mergeDebugShaders/merger.xml b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+new file mode 100644
+index 0000000..1050e36
+--- /dev/null
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/mergeDebugShaders/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/debug/shaders"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/packageDebugAssets/merger.xml b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+new file mode 100644
+index 0000000..70483be
+--- /dev/null
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/packageDebugAssets/merger.xml
+@@ -0,0 +1,2 @@
++<?xml version="1.0" encoding="utf-8"?>
++<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/assets"/><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/ios/Resources"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/debug/assets"/></dataSet><dataSet config="generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/shader_assets/debug/compileDebugShaders/out"/></dataSet></merger>
+\ No newline at end of file
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/java_res/debug/processDebugJavaRes/out/META-INF/react-native-sherpa-onnx-offline-tts_debug.kotlin_module b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/java_res/debug/processDebugJavaRes/out/META-INF/react-native-sherpa-onnx-offline-tts_debug.kotlin_module
+new file mode 100644
+index 0000000..1e9f2ca
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/java_res/debug/processDebugJavaRes/out/META-INF/react-native-sherpa-onnx-offline-tts_debug.kotlin_module differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sherpaonnxofflinetts/BuildConfig.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sherpaonnxofflinetts/BuildConfig.class
+new file mode 100644
+index 0000000..17c4a44
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/sherpaonnxofflinetts/BuildConfig.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/local_only_symbol_list/debug/parseDebugLocalResources/R-def.txt
 new file mode 100644
 index 0000000..78ac5b8
@@ -117,6 +251,10 @@ index 0000000..099a89b
 +5    <uses-sdk android:minSdkVersion="24" />
 +6
 +7</manifest>
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/merged_java_res/debug/mergeDebugJavaResource/feature-react-native-sherpa-onnx-offline-tts.jar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/merged_java_res/debug/mergeDebugJavaResource/feature-react-native-sherpa-onnx-offline-tts.jar
+new file mode 100644
+index 0000000..1f2f0aa
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/merged_java_res/debug/mergeDebugJavaResource/feature-react-native-sherpa-onnx-offline-tts.jar differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml
 new file mode 100644
 index 0000000..b9c2b3e
@@ -147,6 +285,50 @@ index 0000000..08f4ebe
 @@ -0,0 +1 @@
 +0 Warning/Error
 \ No newline at end of file
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/META-INF/react-native-sherpa-onnx-offline-tts_debug.kotlin_module b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/META-INF/react-native-sherpa-onnx-offline-tts_debug.kotlin_module
+new file mode 100644
+index 0000000..1e9f2ca
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/META-INF/react-native-sherpa-onnx-offline-tts_debug.kotlin_module differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.class
+new file mode 100644
+index 0000000..5538059
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayer.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayer.class
+new file mode 100644
+index 0000000..0636bb9
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayer.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class
+new file mode 100644
+index 0000000..f8ba8f1
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/BuildConfig.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/BuildConfig.class
+new file mode 100644
+index 0000000..17c4a44
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/BuildConfig.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/ModelLoader.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/ModelLoader.class
+new file mode 100644
+index 0000000..a221cbd
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/ModelLoader.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class
+new file mode 100644
+index 0000000..7d57273
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class
+new file mode 100644
+index 0000000..9b88abd
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule.class
+new file mode 100644
+index 0000000..ad60b79
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerPackage.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerPackage.class
+new file mode 100644
+index 0000000..64e6044
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerPackage.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar
+new file mode 100644
+index 0000000..edcd78a
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt
 new file mode 100644
 index 0000000..42caf81
@@ -154,48 +336,406 @@ index 0000000..42caf81
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt
 @@ -0,0 +1 @@
 +com.sherpaonnxofflinetts
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/dirty-sources.txt b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/dirty-sources.txt
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab
 new file mode 100644
-index 0000000..c636213
+index 0000000..76a8222
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream
+new file mode 100644
+index 0000000..547ba91
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len
+new file mode 100644
+index 0000000..a3e4d23
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len
+new file mode 100644
+index 0000000..93a595b
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at
+new file mode 100644
+index 0000000..7171be9
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i
+new file mode 100644
+index 0000000..46a7934
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab
+new file mode 100644
+index 0000000..4fc96c1
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream
+new file mode 100644
+index 0000000..9c7ec43
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len
+new file mode 100644
+index 0000000..21d4c2e
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len
+new file mode 100644
+index 0000000..ec8f944
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at
+new file mode 100644
+index 0000000..3737e13
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i
+new file mode 100644
+index 0000000..1daaa23
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab
+new file mode 100644
+index 0000000..d814dd2
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream
+new file mode 100644
+index 0000000..9c7ec43
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len
+new file mode 100644
+index 0000000..21d4c2e
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len
+new file mode 100644
+index 0000000..ec8f944
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at
+new file mode 100644
+index 0000000..baf9964
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i
+new file mode 100644
+index 0000000..1daaa23
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab
+new file mode 100644
+index 0000000..5fadcce
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream
+new file mode 100644
+index 0000000..f80363d
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len
+new file mode 100644
+index 0000000..a11dcdc
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len
+new file mode 100644
+index 0000000..fa606b6
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at
+new file mode 100644
+index 0000000..87423e8
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i
+new file mode 100644
+index 0000000..aec691d
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab
+new file mode 100644
+index 0000000..d57690d
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream
+new file mode 100644
+index 0000000..2bfb60a
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len
+new file mode 100644
+index 0000000..8a8cdf9
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len
+new file mode 100644
+index 0000000..9e27f73
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at
+new file mode 100644
+index 0000000..ec4c705
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i
+new file mode 100644
+index 0000000..742eea4
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab
+new file mode 100644
+index 0000000..56afee2
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream
+new file mode 100644
+index 0000000..4bb3e20
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len
+new file mode 100644
+index 0000000..a3e4d23
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len
+new file mode 100644
+index 0000000..93a595b
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at
+new file mode 100644
+index 0000000..c65ae85
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i
+new file mode 100644
+index 0000000..631ce72
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab
+new file mode 100644
+index 0000000..8cf7f84
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream
+new file mode 100644
+index 0000000..b425921
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len
+new file mode 100644
+index 0000000..1cf91b4
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.len
+new file mode 100644
+index 0000000..01bdaa1
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at
+new file mode 100644
+index 0000000..87c5a13
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i
+new file mode 100644
+index 0000000..13aca7b
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab
+new file mode 100644
+index 0000000..e5e7544
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream
+new file mode 100644
+index 0000000..fd63ca8
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len
+new file mode 100644
+index 0000000..1cf91b4
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.len
+new file mode 100644
+index 0000000..01bdaa1
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at
+new file mode 100644
+index 0000000..fdc18fe
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i
+new file mode 100644
+index 0000000..a868bb5
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab
+new file mode 100644
+index 0000000..26d3b09
 --- /dev/null
-+++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/dirty-sources.txt
-@@ -0,0 +1,4 @@
-+/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
-+/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerPackage.kt
-+/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt
-+/Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayerDelegate.kt
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab
+@@ -0,0 +1,2 @@
++4
++0
 \ No newline at end of file
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab
+new file mode 100644
+index 0000000..eaf35eb
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream
+new file mode 100644
+index 0000000..4bb3e20
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len
+new file mode 100644
+index 0000000..a3e4d23
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len
+new file mode 100644
+index 0000000..93a595b
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at
+new file mode 100644
+index 0000000..3e23c2a
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i
+new file mode 100644
+index 0000000..631ce72
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab
+new file mode 100644
+index 0000000..0b20771
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream
+new file mode 100644
+index 0000000..6e7a926
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len
+new file mode 100644
+index 0000000..eb52963
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len
+new file mode 100644
+index 0000000..93a595b
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at
+new file mode 100644
+index 0000000..67c6add
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i
+new file mode 100644
+index 0000000..6936967
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab
+new file mode 100644
+index 0000000..26266a1
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream
+new file mode 100644
+index 0000000..e49a57c
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len
+new file mode 100644
+index 0000000..95a0f45
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len
+new file mode 100644
+index 0000000..4f62c3c
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at
+new file mode 100644
+index 0000000..bc3322a
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i
+new file mode 100644
+index 0000000..f88a444
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len
+new file mode 100644
+index 0000000..131e265
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin
+new file mode 100644
+index 0000000..276e344
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin
+new file mode 100644
+index 0000000..bb5bb87
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin
 new file mode 100644
-index 0000000..9f00f3e
+index 0000000..f432e60
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/aar/react-native-sherpa-onnx-offline-tts-debug.aar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/aar/react-native-sherpa-onnx-offline-tts-debug.aar
+new file mode 100644
+index 0000000..89f23ec
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/aar/react-native-sherpa-onnx-offline-tts-debug.aar differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/logs/manifest-merger-debug-report.txt b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/logs/manifest-merger-debug-report.txt
 new file mode 100644
-index 0000000..16a3434
+index 0000000..345c8ca
 --- /dev/null
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/logs/manifest-merger-debug-report.txt
 @@ -0,0 +1,16 @@
 +-- Merging decision tree log ---
 +manifest
-+ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest578961502773474407.xml:2:13-83
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest578961502773474407.xml:2:13-83
++ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml:2:13-83
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml:2:13-83
 +	package
-+		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest578961502773474407.xml
++		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml
 +	xmlns:android
-+		ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest578961502773474407.xml:2:23-81
++		ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml:2:23-81
 +uses-sdk
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest578961502773474407.xml reason: use-sdk injection requested
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest578961502773474407.xml
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest578961502773474407.xml
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml reason: use-sdk injection requested
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml
 +	android:targetSdkVersion
-+		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest578961502773474407.xml
++		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml
 +	android:minSdkVersion
-+		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest578961502773474407.xml
++		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin
+new file mode 100644
+index 0000000..701c381
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/META-INF/react-native-sherpa-onnx-offline-tts_debug.kotlin_module b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/META-INF/react-native-sherpa-onnx-offline-tts_debug.kotlin_module
+new file mode 100644
+index 0000000..1e9f2ca
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/META-INF/react-native-sherpa-onnx-offline-tts_debug.kotlin_module differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.class
+new file mode 100644
+index 0000000..5538059
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayer.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayer.class
+new file mode 100644
+index 0000000..0636bb9
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayer.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class
+new file mode 100644
+index 0000000..f8ba8f1
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/ModelLoader.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/ModelLoader.class
+new file mode 100644
+index 0000000..a221cbd
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/ModelLoader.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class
+new file mode 100644
+index 0000000..7d57273
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class
+new file mode 100644
+index 0000000..9b88abd
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule.class
+new file mode 100644
+index 0000000..ad60b79
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerPackage.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerPackage.class
+new file mode 100644
+index 0000000..64e6044
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerPackage.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
-index f5bdfca..33c47ea 100644
+index f5bdfca..ec8e960 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
-@@ -1,8 +1,28 @@
+@@ -1,8 +1,26 @@
  package com.sherpaonnxofflinetts
  
 -import com.facebook.react.bridge.*
@@ -211,8 +751,6 @@ index f5bdfca..33c47ea 100644
 +import com.facebook.react.bridge.ReactMethod
  import com.facebook.react.modules.core.DeviceEventManagerModule
 -import com.k2fsa.sherpa.onnx.*
-+import com.k2fsa.sherpa.onnx.AudioPlayer
-+import com.k2fsa.sherpa.onnx.AudioPlayerDelegate
 +import com.k2fsa.sherpa.onnx.FeatureConfig
 +import com.k2fsa.sherpa.onnx.OfflineModelConfig
 +import com.k2fsa.sherpa.onnx.OfflineRecognizer
@@ -226,7 +764,7 @@ index f5bdfca..33c47ea 100644
  import android.content.res.AssetManager
  import kotlin.concurrent.thread
  import android.content.Context
-@@ -10,6 +30,8 @@ import java.io.File
+@@ -10,6 +28,8 @@ import java.io.File
  import java.io.FileOutputStream
  import java.io.IOException
  import org.json.JSONObject
@@ -235,7 +773,7 @@ index f5bdfca..33c47ea 100644
  
  class ModelLoader(private val context: Context) {
  
-@@ -81,8 +103,15 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
+@@ -81,8 +101,15 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
      private var tts: OfflineTts? = null
      private var realTimeAudioPlayer: AudioPlayer? = null
      private val modelLoader = ModelLoader(reactContext)
@@ -251,7 +789,7 @@ index f5bdfca..33c47ea 100644
          return "TTSManager"
      }
  
-@@ -130,6 +159,123 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
+@@ -130,6 +157,123 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
          realTimeAudioPlayer?.start()
      }
  
@@ -375,7 +913,7 @@ index f5bdfca..33c47ea 100644
      // Generate and Play method exposed to React Native
      @ReactMethod
      fun generateAndPlay(text: String, sid: Int, speed: Double, promise: Promise) {
-@@ -159,6 +305,7 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
+@@ -159,6 +303,7 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
          realTimeAudioPlayer = null
          tts?.release()
          tts = null
@@ -384,10 +922,10 @@ index f5bdfca..33c47ea 100644
  
      // Helper: split text into manageable chunks similar to iOS logic
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
-index ae8e644..4ada895 100644
+index ae8e644..d744aed 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
-@@ -12,6 +12,15 @@ @interface RCT_EXTERN_MODULE(TTSManager, NSObject)
+@@ -12,6 +12,19 @@ @interface RCT_EXTERN_MODULE(TTSManager, NSObject)
                    resolver:(RCTPromiseResolveBlock)resolver 
                    rejecter:(RCTPromiseRejectBlock)rejecter)
  
@@ -398,16 +936,20 @@ index ae8e644..4ada895 100644
 +RCT_EXTERN_METHOD(stopRecognition:(RCTPromiseResolveBlock)resolver
 +                  rejecter:(RCTPromiseRejectBlock)rejecter)
 +
++RCT_EXTERN_METHOD(startVadRecognition)
++
++RCT_EXTERN_METHOD(stopVadRecognition)
++
 +RCT_EXTERN_METHOD(deinitializeSTT)
 +
  // Deinitialize method exposed to React Native
  RCT_EXTERN_METHOD(deinitialize)
  
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-index 4072cc9..6ede48d 100644
+index 4072cc9..7650189 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-@@ -13,10 +13,29 @@ protocol AudioPlayerDelegate: AnyObject {
+@@ -13,10 +13,37 @@ protocol AudioPlayerDelegate: AnyObject {
  class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
      private var tts: SherpaOnnxOfflineTtsWrapper?
      private var realTimeAudioPlayer: AudioPlayer?
@@ -421,6 +963,14 @@ index 4072cc9..6ede48d 100644
 +    private var firstPartialTime: Date?
 +    private var hasLoggedFirstTap: Bool = false
 +    private var hasLoggedFirstPartial: Bool = false
++    // VAD
++    private var vad: SherpaOnnxVoiceActivityDetectorWrapper?
++    private var vadModelPath: String? = nil
++    private var vadThreshold: Float = 0.5
++    private var vadMinSilence: Float = 0.25
++    private var vadMinSpeech: Float = 0.5
++    private var vadBufferSeconds: Float = 5.0
++    private var wasInSpeech: Bool = false
      
      override init() {
          super.init()
@@ -438,7 +988,7 @@ index 4072cc9..6ede48d 100644
      }
      
      // Required for RCTEventEmitter
-@@ -24,6 +43,262 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -24,9 +51,360 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
          return true
      }
      
@@ -458,6 +1008,12 @@ index 4072cc9..6ede48d 100644
 +        let joiner = json["joiner"] as? String ?? ""
 +        let tokens = json["tokens"] as? String ?? ""
 +        sttSampleRate = json["sampleRate"] as? Int ?? 16000
++        // Optional VAD params
++        vadModelPath = json["vadModel"] as? String ?? Bundle.main.path(forResource: "silero_vad", ofType: "onnx")
++        if let thr = json["vadThreshold"] as? NSNumber { vadThreshold = thr.floatValue }
++        if let msil = json["minSilence"] as? NSNumber { vadMinSilence = msil.floatValue }
++        if let msp = json["minSpeech"] as? NSNumber { vadMinSpeech = msp.floatValue }
++        if let buf = json["bufferSeconds"] as? NSNumber { vadBufferSeconds = buf.floatValue }
 +        let feat = sherpaOnnxFeatureConfig(sampleRate: sttSampleRate, featureDim: 80)
 +        var model = sherpaOnnxOnlineModelConfig(
 +            tokens: tokens,
@@ -484,6 +1040,14 @@ index 4072cc9..6ede48d 100644
 +        recognizer = SherpaOnnxRecognizer(config: &cfg)
 +        print("[SherpaTTS][iOS] initializeSTT completed")
 +
++        // Warm-up ~100ms of silence so ONNX runtime builds caches before first press
++        let warmup = [Float](repeating: 0, count: max(1, sttSampleRate / 10))
++        if let rec = recognizer {
++            rec.acceptWaveform(samples: warmup, sampleRate: sttSampleRate)
++            while rec.isReady() { rec.decode() }
++            rec.reset()
++        }
++
 +        // Pre-warm audio session to reduce cold-start latency
 +        let session = AVAudioSession.sharedInstance()
 +        do {
@@ -507,6 +1071,35 @@ index 4072cc9..6ede48d 100644
 +                startRecognitionOnMain()
 +            }
 +        }
++    }
++
++    @objc func startVadRecognition() {
++        print("[SherpaTTS][iOS] startVadRecognition called")
++        // Ensure VAD exists
++        if vad == nil {
++            guard let modelPath = vadModelPath else {
++                print("[SherpaTTS][iOS] VAD model path not set")
++                return
++            }
++            let silero = sherpaOnnxSileroVadModelConfig(
++                model: modelPath,
++                threshold: vadThreshold,
++                minSilenceDuration: vadMinSilence,
++                minSpeechDuration: vadMinSpeech,
++                windowSize: 512,
++                maxSpeechDuration: 5.0
++            )
++            var vcfg = sherpaOnnxVadModelConfig(
++                sileroVad: silero,
++                sampleRate: Int32(sttSampleRate),
++                numThreads: 1,
++                provider: "cpu",
++                debug: 0
++            )
++            vad = SherpaOnnxVoiceActivityDetectorWrapper(config: &vcfg, buffer_size_in_seconds: vadBufferSeconds)
++        }
++        // Reuse the same audio start as streaming mode
++        startRecognition()
 +    }
 +
 +    private func startRecognitionOnMain() {
@@ -597,10 +1190,28 @@ index 4072cc9..6ede48d 100644
 +            let outFrames = Int(out.frameLength)
 +            guard outFrames > 0, let ch = out.floatChannelData?[0] else { return }
 +            let samples = Array(UnsafeBufferPointer(start: ch, count: outFrames))
-+            rec.acceptWaveform(samples: samples, sampleRate: self.sttSampleRate)
-+
-+            // Offload decoding to worker queue to keep audio callback light
-+            self.processDecoding()
++            if let vad = self.vad {
++                // VAD-driven segmentation
++                vad.acceptWaveform(samples: samples)
++                while !vad.isEmpty() {
++                    let seg = vad.front()
++                    let segSamples = seg.samples
++                    rec.acceptWaveform(samples: segSamples, sampleRate: self.sttSampleRate)
++                    self.processDecoding()
++                    vad.pop()
++                }
++                let speechDetected = vad.isSpeechDetected()
++                if self.wasInSpeech && !speechDetected {
++                    // finalize current utterance and emit
++                    self.finalizeUtteranceAndEmit()
++                    rec.reset()
++                }
++                self.wasInSpeech = speechDetected
++            } else {
++                // Normal streaming push-to-talk
++                rec.acceptWaveform(samples: samples, sampleRate: self.sttSampleRate)
++                self.processDecoding()
++            }
 +        }
 +
 +        engine.prepare()
@@ -609,6 +1220,37 @@ index 4072cc9..6ede48d 100644
 +            print("[SherpaTTS][iOS] audio engine started")
 +        } catch {
 +            print("[SherpaTTS][iOS] Failed to start audio engine: \(error)")
++        }
++    }
++
++    @objc func stopVadRecognition() {
++        print("[SherpaTTS][iOS] stopVadRecognition called")
++        // Stop engine and finalize any pending utterance
++        audioEngine?.inputNode.removeTap(onBus: 0)
++        audioEngine?.stop()
++        audioEngine = nil
++        if wasInSpeech {
++            finalizeUtteranceAndEmit()
++            recognizer?.reset()
++            wasInSpeech = false
++        }
++        vad?.reset()
++        let session = AVAudioSession.sharedInstance()
++        try? session.setActive(false, options: [.notifyOthersOnDeactivation])
++    }
++
++    private func finalizeUtteranceAndEmit() {
++        guard let rec = recognizer else { return }
++        // Tail padding and dual flush, similar to stopRecognition
++        let tail = [Float](repeating: 0, count: max(1, sttSampleRate / 5))
++        rec.acceptWaveform(samples: tail, sampleRate: sttSampleRate)
++        decodeQueue.sync { while rec.isReady() { rec.decode() } }
++        rec.inputFinished()
++        decodeQueue.sync { while rec.isReady() { rec.decode() } }
++        let text = rec.getResult().text
++        if !text.isEmpty {
++            print("[SherpaTTS][iOS] VAD segment: \(text)")
++            sendEvent(withName: "ASRSegment", body: ["text": text])
 +        }
 +    }
 +
@@ -644,11 +1286,14 @@ index 4072cc9..6ede48d 100644
 +            return
 +        }
 +        
++        // Add ~200 ms of tail silence so the model can finalize last phones
++        let tail = [Float](repeating: 0, count: max(1, sttSampleRate / 5))
++        rec.acceptWaveform(samples: tail, sampleRate: sttSampleRate)
++
++        // Flush decode before and after signaling end of input
++        decodeQueue.sync { while rec.isReady() { rec.decode() } }
 +        rec.inputFinished()
-+        // Flush any pending decode work
-+        decodeQueue.sync {
-+            while rec.isReady() { rec.decode() }
-+        }
++        decodeQueue.sync { while rec.isReady() { rec.decode() } }
 +        let result = rec.getResult().text
 +        print("[SherpaTTS][iOS] stopRecognition returning text: \(result)")
 +        resolver(result)
@@ -692,7 +1337,7 @@ index 4072cc9..6ede48d 100644
 +                if !text.isEmpty {
 +                    print("[SherpaTTS][iOS] endpoint: \(text)")
 +                }
-+                rec.reset()
++                // Do not reset mid-stream for push-to-talk; finalization occurs on stop
 +            }
 +            self.isDecoding = false
 +        }
@@ -700,8 +1345,12 @@ index 4072cc9..6ede48d 100644
 +    
      // Specify the events that can be emitted
      override func supportedEvents() -> [String]! {
-         return ["VolumeUpdate"]
-@@ -115,8 +390,17 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+-        return ["VolumeUpdate"]
++        return ["VolumeUpdate", "ASRSegment"]
+     }
+     
+     // Initialize TTS and Audio Player
+@@ -115,8 +493,17 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
      
      // Clean up resources
      @objc func deinitialize() {
@@ -720,7 +1369,7 @@ index 4072cc9..6ede48d 100644
      
      // MARK: - AudioPlayerDelegate Method
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js b/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js
-index cb69b16..4ee6adc 100644
+index cb69b16..adbd7ba 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js
 @@ -7,9 +7,18 @@ exports.default = void 0;
@@ -760,7 +1409,7 @@ index cb69b16..4ee6adc 100644
  const addVolumeListener = callback => {
    const subscription = ttsManagerEmitter.addListener('VolumeUpdate', event => {
      const {
-@@ -34,10 +53,53 @@ const addVolumeListener = callback => {
+@@ -34,10 +53,67 @@ const addVolumeListener = callback => {
    });
    return subscription;
  };
@@ -801,6 +1450,18 @@ index cb69b16..4ee6adc 100644
 +  console.log('[SherpaJS] deinitializeSTT invoked');
 +  (_TTSManager$deinitial = TTSManager.deinitializeSTT) === null || _TTSManager$deinitial === void 0 ? void 0 : _TTSManager$deinitial.call(TTSManager);
 +};
++const startVadRecognition = () => {
++  var _TTSManager$startVadR;
++
++  console.log('[SherpaJS] startVadRecognition invoked');
++  (_TTSManager$startVadR = TTSManager.startVadRecognition) === null || _TTSManager$startVadR === void 0 ? void 0 : _TTSManager$startVadR.call(TTSManager);
++};
++const stopVadRecognition = () => {
++  var _TTSManager$stopVadRe;
++
++  console.log('[SherpaJS] stopVadRecognition invoked');
++  (_TTSManager$stopVadRe = TTSManager.stopVadRecognition) === null || _TTSManager$stopVadRe === void 0 ? void 0 : _TTSManager$stopVadRe.call(TTSManager);
++};
  var _default = exports.default = {
    initialize,
    generateAndPlay,
@@ -812,12 +1473,14 @@ index cb69b16..4ee6adc 100644
 +  initializeSTT,
 +  startRecognition,
 +  stopRecognition,
-+  deinitializeSTT
++  deinitializeSTT,
++  startVadRecognition,
++  stopVadRecognition
  };
  //# sourceMappingURL=index.js.map
 \ No newline at end of file
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/lib/module/index.js b/node_modules/react-native-sherpa-onnx-offline-tts/lib/module/index.js
-index 02cc578..3cc1e0d 100644
+index 02cc578..7dab42f 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/lib/module/index.js
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/lib/module/index.js
 @@ -3,9 +3,16 @@
@@ -851,7 +1514,7 @@ index 02cc578..3cc1e0d 100644
  const addVolumeListener = callback => {
    const subscription = ttsManagerEmitter.addListener('VolumeUpdate', event => {
      const {
-@@ -30,10 +43,47 @@ const addVolumeListener = callback => {
+@@ -30,10 +43,57 @@ const addVolumeListener = callback => {
    });
    return subscription;
  };
@@ -886,6 +1549,14 @@ index 02cc578..3cc1e0d 100644
 +  console.log('[SherpaJS] deinitializeSTT invoked');
 +  TTSManager.deinitializeSTT?.();
 +};
++const startVadRecognition = () => {
++  console.log('[SherpaJS] startVadRecognition invoked');
++  TTSManager.startVadRecognition?.();
++};
++const stopVadRecognition = () => {
++  console.log('[SherpaJS] stopVadRecognition invoked');
++  TTSManager.stopVadRecognition?.();
++};
  export default {
    initialize,
    generateAndPlay,
@@ -897,7 +1568,9 @@ index 02cc578..3cc1e0d 100644
 +  initializeSTT,
 +  startRecognition,
 +  stopRecognition,
-+  deinitializeSTT
++  deinitializeSTT,
++  startVadRecognition,
++  stopVadRecognition
  };
  //# sourceMappingURL=index.js.map
 \ No newline at end of file
@@ -918,7 +1591,7 @@ index 98297ed..3a52370 100644
    s.xcconfig = {
      'HEADER_SEARCH_PATHS' => '$(PODS_TARGET_SRCROOT)/build-ios/sherpa-onnx.xcframework/Headers'
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
-index ee4f666..cc66d4f 100644
+index ee4f666..e9ddb75 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/src/index.tsx
 @@ -2,7 +2,16 @@
@@ -954,7 +1627,7 @@ index ee4f666..cc66d4f 100644
  const addVolumeListener = (callback: any) => {
    const subscription = ttsManagerEmitter.addListener(
      'VolumeUpdate',
-@@ -33,9 +50,50 @@ const addVolumeListener = (callback: any) => {
+@@ -33,9 +50,62 @@ const addVolumeListener = (callback: any) => {
    return subscription;
  };
  
@@ -993,6 +1666,16 @@ index ee4f666..cc66d4f 100644
 +  TTSManager.deinitializeSTT?.();
 +};
 +
++const startVadRecognition = () => {
++  console.log('[SherpaJS] startVadRecognition invoked');
++  TTSManager.startVadRecognition?.();
++};
++
++const stopVadRecognition = () => {
++  console.log('[SherpaJS] stopVadRecognition invoked');
++  TTSManager.stopVadRecognition?.();
++};
++
  export default {
    initialize,
    generateAndPlay,
@@ -1004,4 +1687,6 @@ index ee4f666..cc66d4f 100644
 +  startRecognition,
 +  stopRecognition,
 +  deinitializeSTT,
++  startVadRecognition,
++  stopVadRecognition,
  };

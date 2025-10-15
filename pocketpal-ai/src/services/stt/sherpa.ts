@@ -25,6 +25,7 @@ export type SherpaConfig = {
   decoder: string;
   joiner: string;
   tokens: string;
+  vadModel?: string;
   sampleRate: number;
 };
 
@@ -60,12 +61,18 @@ async function ensureIosFiles(): Promise<SherpaConfig> {
   const decoder = await resolveModelFile(MODEL_FILES.decoder);
   const joiner = await resolveModelFile(MODEL_FILES.joiner);
   const tokens = await resolveModelFile(MODEL_FILES.tokens);
+  // VAD model is optional; attempt to resolve silero_vad.onnx next to other files
+  let vadModel: string | undefined;
+  try {
+    vadModel = await resolveModelFile('silero_vad.onnx');
+  } catch {}
 
   const config: SherpaConfig = {
     encoder,
     decoder,
     joiner,
     tokens,
+    vadModel,
     sampleRate: 16000,
   };
 

@@ -1,7 +1,9 @@
-apply plugin: "com.android.application"
-apply plugin: "org.jetbrains.kotlin.android"
-apply plugin: "com.facebook.react"
-apply plugin: "kotlin-kapt"
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "com.facebook.react"
+    id "kotlin-kapt"
+}
 
 // Add the Google Services plugin dependency
 // This is used exclusively for sending benchmarks (with user consent) to Hugging Face Spaces via Firebase.
@@ -39,8 +41,9 @@ react {
 
     /* Bundling */
     //   A list containing the node command and its flags. Default is just 'node'.
-    //   Android Studio may not inherit your shell's PATH; use absolute path to Node.
-    nodeExecutableAndArgs = ["/usr/local/bin/node"]
+    //   Android Studio may not inherit your shell's PATH.
+    //   Use NODE_BINARY from gradle.properties when available, otherwise fall back to 'node'.
+    nodeExecutableAndArgs = [project.findProperty("NODE_BINARY") ?: "node"]
     //
     //   The command to run when bundling. By default is 'bundle'
     // bundleCommand = "ram-bundle"
@@ -111,10 +114,15 @@ android {
             keyPassword 'android'
         }
         release {
-            storeFile file("pocketpal-release-key.keystore")
-            storePassword project.env.get("APP_RELEASE_STORE_PASSWORD")
-            keyAlias "pocketpal_key_alias"
-            keyPassword project.env.get("APP_RELEASE_KEY_PASSWORD")
+            def ksFile = file("pocketpal-release-key.keystore")
+            if (ksFile.exists()) {
+                storeFile ksFile
+                storePassword (project.findProperty('RELEASE_STORE_PASSWORD') ?: project.env.get("APP_RELEASE_STORE_PASSWORD"))
+                keyAlias (project.findProperty('RELEASE_KEY_ALIAS') ?: "pocketpal_key_alias")
+                keyPassword (project.findProperty('RELEASE_KEY_PASSWORD') ?: project.env.get("APP_RELEASE_KEY_PASSWORD"))
+            } else {
+                println "[Gradle] Release keystore not found; building unsigned release."
+            }
         }
     }
     buildTypes {
@@ -157,8 +165,8 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     implementation "com.squareup.okhttp3:okhttp:4.12.0"
 
-    // Include Sherpa-ONNX native libs for TTS
-    implementation files("${rootProject.projectDir}/../node_modules/react-native-sherpa-onnx-offline-tts/android/libs/sherpa-onnx-1.10.35.aar")
+    // Use local-maven published Sherpa-ONNX AAR instead of file-based to satisfy AGP
+    implementation "com.k2fsa.sherpa-onnx:sherpa-onnx:${rootProject.ext.sherpaOnnxVersion}"
  
  }
  

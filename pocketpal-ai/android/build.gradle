@@ -13,15 +13,61 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle")
-        classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
-
-        // Add the Google Services plugin dependency
-        // This is used exclusively for sending benchmarks (with user consent) to Hugging Face Spaces via Firebase.
-        // Firebase is used for App Check functionality, allowing unauthenticated users to submit their benchmark data securely.
+        // RN/AGP/Kotlin versions are managed via settings.gradle pluginManagement
         classpath 'com.google.gms:google-services:4.4.2'
     }
 }
 
-apply plugin: "com.facebook.react.rootproject"
+// RN rootproject plugin is included via settings; not applied here
+
+allprojects {
+    repositories {
+        maven { url uri("${rootDir}/local-maven") }
+        mavenCentral()
+        google()
+    }
+}
+
+// Task to publish the sherpa-onnx AAR to local maven for AGP 8 compatibility
+task publishSherpaAarToLocalMaven(type: Copy) {
+    def groupId = 'com.k2fsa.sherpa-onnx'
+    def artifactId = 'sherpa-onnx'
+    def version = rootProject.ext.sherpaOnnxVersion
+    def aarSrc = file("../node_modules/react-native-sherpa-onnx-offline-tts/android/libs/${artifactId}-${version}.aar")
+    def mavenBase = file("${rootDir}/local-maven/${groupId.replace('.', '/')}/${artifactId}/${version}")
+
+    // Copy AAR
+    from(aarSrc)
+    into(mavenBase)
+    rename { String fileName -> "${artifactId}-${version}.aar" }
+
+    doLast {
+        // Write minimal POM
+        def pom = new File(mavenBase, "${artifactId}-${version}.pom")
+        pom.text = """
+<project xmlns=\"http://maven.apache.org/POM/4.0.0\"
+         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd\">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>${groupId}</groupId>
+  <artifactId>${artifactId}</artifactId>
+  <version>${version}</version>
+  <packaging>aar</packaging>
+</project>
+"""
+        // Write maven-metadata.xml
+        def metaDir = new File(mavenBase.parentFile, "maven-metadata.xml")
+        metaDir.text = """
+<metadata>
+  <groupId>${groupId}</groupId>
+  <artifactId>${artifactId}</artifactId>
+  <versioning>
+    <release>${version}</release>
+    <versions><version>${version}</version></versions>
+    <lastUpdated>${new Date().format('yyyyMMddHHmmss')}</lastUpdated>
+  </versioning>
+</metadata>
+"""
+        println "Published ${artifactId}-${version}.aar to local-maven"
+    }
+}
