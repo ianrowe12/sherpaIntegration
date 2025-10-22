@@ -29,6 +29,93 @@ export type TTSAssets = {
 let ttsReady = false;
 export const isTTSReady = () => ttsReady;
 
+type Segment = {text: string; sid: number; speed: number};
+
+let segmentQueue: Segment[] = [];
+let draining = false;
+let speakingActive = false;
+
+// Subscribe once to volume events to infer speaking state.
+// Negative volume (-1) is emitted by native when playback drains.
+function ensurePlaybackEvents() {
+  try {
+    const anyMod = SherpaTTS as any;
+    if ((anyMod as any).__volSub) return;
+    (anyMod as any).__volSub = anyMod.addVolumeListener?.((vol: number) => {
+      if (typeof vol === 'number') {
+        if (vol < 0) speakingActive = false;
+        else if (vol > 0) speakingActive = true;
+      }
+    });
+  } catch {}
+}
+
+/** Returns whether TTS is currently speaking (based on recent volume events). */
+export const isSpeaking = (): boolean => {
+  ensurePlaybackEvents();
+  return speakingActive;
+};
+
+/** Subscribe to speaking state changes inferred from volume events. */
+export const addSpeakingListener = (listener: (speaking: boolean) => void) => {
+  try {
+    const anyMod = SherpaTTS as any;
+    if (!(anyMod as any).__speakListeners) {
+      (anyMod as any).__speakListeners = new Set<Function>();
+    }
+    const set = (anyMod as any).__speakListeners as Set<Function>;
+
+    // Ensure we receive volume updates
+    ensurePlaybackEvents();
+    // Wrap native volume listener to fan-out to speaking listeners
+    if (!(anyMod as any).__volFanout) {
+      (anyMod as any).__volFanout = anyMod.addVolumeListener?.((vol: number) => {
+        if (typeof vol === 'number') {
+          const prev = speakingActive;
+          if (vol < 0) speakingActive = false;
+          else if (vol > 0) speakingActive = true;
+          if (prev !== speakingActive) {
+            for (const fn of Array.from(set)) {
+              try { (fn as any)(speakingActive); } catch {}
+            }
+          }
+        }
+      });
+    }
+
+    set.add(listener as any);
+    return {
+      remove: () => {
+        try { set.delete(listener as any); } catch {}
+      },
+    };
+  } catch {
+    return { remove: () => {} } as any;
+  }
+};
+
+async function drainSegments() {
+  if (draining) return;
+  draining = true;
+  ensurePlaybackEvents();
+  try {
+    // Assert playback once at burst start; avoid reconfiguring between segments
+    if (!speakingActive) {
+      try {
+        (SherpaTTS as any).enforcePlayback?.();
+      } catch {}
+    }
+
+    while (segmentQueue.length > 0) {
+      const seg = segmentQueue.shift()!;
+      // generateAndPlay resolves after enqueue; native schedules and plays sequentially
+      await (SherpaTTS as any).generateAndPlay(seg.text, seg.sid, seg.speed);
+    }
+  } finally {
+    draining = false;
+  }
+}
+
 const ensureDir = async (path: string) => {
   try {
     await RNFS.mkdir(path);
@@ -267,11 +354,9 @@ export const speakText = async (
         return;
       }
     }
-    // Re-assert playback session in case recording left the app in record mode
-    try {
-      (SherpaTTS as any).enforcePlayback?.();
-    } catch {}
-    await (SherpaTTS as any).generateAndPlay(trimmed, sid, speed);
+    // Queue the segment; drain in the background
+    segmentQueue.push({text: trimmed, sid, speed});
+    drainSegments().catch(() => {});
   } catch (err) {
     console.warn('TTS speakText failed:', err);
   }
@@ -279,6 +364,8 @@ export const speakText = async (
 
 /** Stop any ongoing speech playback gracefully (Android adds a native stop; noop if missing) */
 export const stopSpeaking = (): void => {
+  // Clear queued segments first to prevent new playback
+  segmentQueue = [];
   try {
     (SherpaTTS as any).stop?.();
   } catch {}
