@@ -19,6 +19,7 @@ import {user, assistant} from '../../utils/chat';
 
 import {VideoPalScreen} from './VideoPalScreen';
 import {PalType} from '../../components/PalsSheets/types';
+import {useAutoVadBargeIn} from '../../hooks/useAutoVadBargeIn';
 
 const renderBubble = ({
   child,
@@ -76,6 +77,9 @@ export const ChatScreen: React.FC = observer(() => {
 
   // Show loading bubble only during the thinking phase (inferencing but not streaming)
   const isThinking = modelStore.inferencing && !modelStore.isStreaming;
+
+  // Enable barge-in automatically during assistant replies/speaking
+  useAutoVadBargeIn(true);
 
   const handleThinkingToggle = async (enabled: boolean) => {
     const currentSession = chatSessionStore.sessions.find(

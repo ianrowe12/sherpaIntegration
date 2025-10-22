@@ -4,6 +4,25 @@ import {ensureSherpaModelConfig} from '../stt/sherpa';
 
 const TAG = '[SherpaRecorder]';
 
+// Lightweight heuristic to improve readability of ASR output from uppercase/no-punct models.
+// - Lowercases most text
+// - Fixes common first-person pronoun contractions
+// - Capitalizes first character
+// - Ensures a sentence-final punctuation mark
+const simplePunctAndCase = (text: string): string => {
+  const s = (text || '').trim();
+  if (!s) return '';
+  const lower = s.toLowerCase();
+  const fixedI = lower
+    .replace(/\bi\b/g, 'I')
+    .replace(/\bi'm\b/g, "I'm")
+    .replace(/\bi'll\b/g, "I'll")
+    .replace(/\bi've\b/g, "I've")
+    .replace(/\bi'd\b/g, "I'd");
+  const cased = fixedI.charAt(0).toUpperCase() + fixedI.slice(1);
+  return /[.!?…]$/.test(cased) ? cased : cased + '.';
+};
+
 export type StreamingSession = {
   stop: () => Promise<string>;
   cancel: () => void;
@@ -25,7 +44,7 @@ const ensureNativeApi = () => {
     throw new Error('Sherpa native module not available');
   }
   console.log(`${TAG} native module keys`, Object.keys(SherpaSTT));
-  const requiredFns: Array<keyof typeof SherpaSTT> = [
+  const requiredFns: string[] = [
     'initializeSTT',
     'startRecognition',
     'stopRecognition',
@@ -65,12 +84,12 @@ export async function startRecording(maxMs?: number): Promise<StreamingSession> 
 
   try {
     console.log(`${TAG} calling initializeSTT`);
-    SherpaSTT.initializeSTT?.(config);
+    (SherpaSTT as any).initializeSTT?.(config);
     console.log(`${TAG} calling startRecognition`);
-    SherpaSTT.startRecognition?.();
+    (SherpaSTT as any).startRecognition?.();
   } catch (error) {
     console.warn(`${TAG} initialize/start failed`, error);
-    SherpaSTT.deinitializeSTT?.();
+    (SherpaSTT as any).deinitializeSTT?.();
     throw error;
   }
 
@@ -89,9 +108,9 @@ export async function startRecording(maxMs?: number): Promise<StreamingSession> 
       console.log(`${TAG} stop requested`);
       stopCurrent();
       try {
-        const text = await SherpaSTT.stopRecognition?.();
+        const text = await (SherpaSTT as any).stopRecognition?.();
         console.log(`${TAG} stopRecognition resolved`, text);
-        return text ?? '';
+        return simplePunctAndCase(text ?? '');
       } finally {
         // Keep recognizer warm between sessions; do not deinitialize here
         inFlightSession = null;
@@ -129,6 +148,7 @@ export async function stopRecording(): Promise<string> {
 
 // Continuous VAD-driven ASR
 let vadSubscription: { remove?: () => void } | null = null;
+let vadSpeechStartSubscription: { remove?: () => void } | null = null;
 let asrSegmentHandler: ((text: string) => void) | null = null;
 
 export function setAsrSegmentHandler(handler: (text: string) => void) {
@@ -154,16 +174,35 @@ export async function startVadContinuous(): Promise<void> {
     const emitter = new NativeEventEmitter(NativeModules.TTSManager);
     vadSubscription?.remove?.();
     vadSubscription = emitter.addListener('ASRSegment', (e: { text?: string }) => {
-      const text = e?.text?.trim?.() ?? '';
-      if (text) {
-        console.log(`${TAG} VAD segment`, text);
+      const raw = e?.text?.trim?.() ?? '';
+      if (raw) {
+        const formatted = simplePunctAndCase(raw);
+        console.log(`${TAG} VAD segment`, formatted);
         try {
-          asrSegmentHandler?.(text);
+          asrSegmentHandler?.(formatted);
         } catch (err) {
           console.warn(`${TAG} segment handler error`, err);
         }
       }
     });
+    // Listen for speech start to interrupt TTS/LLM
+    try {
+      // Lazy import to avoid cycle at module load
+      const { stopSpeaking } = require('../tts');
+      const { modelStore } = require('../../store/ModelStore');
+      vadSpeechStartSubscription?.remove?.();
+      vadSpeechStartSubscription = emitter.addListener('SpeechStart', () => {
+        console.log(`${TAG} SpeechStart -> interrupt TTS + LLM`);
+        try { stopSpeaking(); } catch {}
+        try { modelStore.context?.stopCompletion?.(); } catch {}
+        try {
+          modelStore.setInferencing(false);
+          modelStore.setIsStreaming(false);
+        } catch {}
+      });
+    } catch (e) {
+      console.warn(`${TAG} failed to attach SpeechStart listener`, e);
+    }
   } catch (err) {
     console.warn(`${TAG} failed to attach ASRSegment listener`, err);
   }
@@ -176,8 +215,10 @@ export async function stopVadContinuous(): Promise<void> {
   (SherpaSTT as any)?.stopVadRecognition?.();
   try {
     vadSubscription?.remove?.();
+    vadSpeechStartSubscription?.remove?.();
   } catch {}
   vadSubscription = null;
+  vadSpeechStartSubscription = null;
 }
 
 

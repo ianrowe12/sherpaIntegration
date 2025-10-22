@@ -921,11 +921,96 @@ index f5bdfca..ec8e960 100644
      }
  
      // Helper: split text into manageable chunks similar to iOS logic
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
+index 11e60e8..a1b939a 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
+@@ -41,7 +41,7 @@ class AudioPlayer: NSObject {
+             commonFormat: .pcmFormatFloat32,
+             sampleRate: sampleRate,
+             channels: channels,
+-            interleaved: true
++            interleaved: false
+         )!
+ 
+         super.init()
+@@ -73,12 +73,13 @@ class AudioPlayer: NSObject {
+         do {
+             let session = AVAudioSession.sharedInstance()
+             try session.setCategory(
+-                .playback,
+-                mode: .default,
+-                options: [.mixWithOthers, .allowBluetooth, .allowBluetoothA2DP] // ← no .defaultToSpeaker
++                .playAndRecord,
++                mode: .voiceChat,
++                options: [.defaultToSpeaker, .allowBluetooth]
+             )
+             try session.setActive(true, options: [])
+-            print("Audio session set up for Bluetooth or speaker")
++            try session.overrideOutputAudioPort(.speaker)
++            print("Audio session set up for duplex (playAndRecord + voiceChat -> speaker)")
+         } catch {
+             print("Failed to set up AVAudioSession: \(error)")
+         }
+@@ -106,6 +107,27 @@ class AudioPlayer: NSObject {
+         }
+     }
+ 
++    private func makeSilenceBuffer(durationSeconds: Double = 0.02) -> AVAudioPCMBuffer? {
++        let frames = AVAudioFrameCount(durationSeconds * audioFormat.sampleRate)
++        guard frames > 0, let buf = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: frames) else { return nil }
++        buf.frameLength = frames
++        if let ch = buf.floatChannelData {
++            let count = Int(frames)
++            for c in 0..<Int(buf.format.channelCount) {
++                memset(ch[c], 0, count * MemoryLayout<Float>.size)
++            }
++        }
++        return buf
++    }
++
++    func ensureEngineRunning() {
++        if !audioEngine.isRunning {
++            do { try audioEngine.start() } catch {
++                print("Failed to start AVAudioEngine: \(error)")
++            }
++        }
++    }
++
+     // MARK: - Public play API
+ 
+     func playAudioData(from audio: SherpaOnnxGeneratedAudioWrapper) {
+@@ -150,7 +172,11 @@ class AudioPlayer: NSObject {
+                     self.checkForPlaybackEnd()
+                 }
+ 
+-                if !audioPlayerNode.isPlaying { audioPlayerNode.play() }
++                self.ensureEngineRunning()
++                if !audioPlayerNode.isPlaying {
++                    if let prime = makeSilenceBuffer() { audioPlayerNode.scheduleBuffer(prime, at: nil, options: []) { } }
++                    audioPlayerNode.play()
++                }
+             } else {
+                 queueLock.unlock()
+                 usleep(10_000)
+@@ -218,9 +244,9 @@ class AudioPlayer: NSObject {
+             do {
+                 let session = AVAudioSession.sharedInstance()
+                 try session.setCategory(
+-                    .playback,
+-                    mode: .default,
+-                    options: [.mixWithOthers, .allowBluetooth, .allowBluetoothA2DP]
++                    .playAndRecord,
++                    mode: .voiceChat,
++                    options: [.defaultToSpeaker, .allowBluetooth]
+                 )
+                 try session.setActive(true, options: [])
+                 if !audioEngine.isRunning { try audioEngine.start() }
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
-index ae8e644..d744aed 100644
+index ae8e644..b91f859 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
-@@ -12,6 +12,19 @@ @interface RCT_EXTERN_MODULE(TTSManager, NSObject)
+@@ -12,7 +12,24 @@ @interface RCT_EXTERN_MODULE(TTSManager, NSObject)
                    resolver:(RCTPromiseResolveBlock)resolver 
                    rejecter:(RCTPromiseRejectBlock)rejecter)
  
@@ -945,8 +1030,13 @@ index ae8e644..d744aed 100644
  // Deinitialize method exposed to React Native
  RCT_EXTERN_METHOD(deinitialize)
  
++// Playback control helpers
++RCT_EXTERN_METHOD(enforcePlayback)
++RCT_EXTERN_METHOD(stop)
++
+ @end
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-index 4072cc9..7650189 100644
+index 4072cc9..d3887ff 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 @@ -13,10 +13,37 @@ protocol AudioPlayerDelegate: AnyObject {
@@ -1350,7 +1440,18 @@ index 4072cc9..7650189 100644
      }
      
      // Initialize TTS and Audio Player
-@@ -115,8 +493,17 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -46,6 +424,10 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+             rejecter("EMPTY_TEXT", "Input text is empty", nil)
+             return
+         }
++        guard tts != nil else {
++            rejecter("NOT_INITIALIZED", "TTS not initialized", nil)
++            return
++        }
+         
+         // Split the text into manageable sentences
+         let sentences = splitText(trimmedText, maxWords: 15)
+@@ -115,8 +497,46 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
      
      // Clean up resources
      @objc func deinitialize() {
@@ -1365,6 +1466,35 @@ index 4072cc9..7650189 100644
          self.realTimeAudioPlayer = nil
 +        self.tts = nil
 +        deinitializeSTT()
++    }
++    
++    // Ensure playback session is active before TTS output
++    @objc func enforcePlayback() {
++        DispatchQueue.main.async {
++            let session = AVAudioSession.sharedInstance()
++            do {
++                try? session.setPreferredInput(nil)
++                try session.setCategory(
++                    .playAndRecord,
++                    mode: .voiceChat,
++                    options: [.defaultToSpeaker, .allowBluetooth]
++                )
++                try session.setActive(true, options: [])
++                try session.overrideOutputAudioPort(.speaker)
++                self.realTimeAudioPlayer?.ensureEngineRunning()
++                let route = session.currentRoute
++                print("[SherpaTTS][iOS] route: inputs=\(route.inputs.map { $0.portType.rawValue }), outputs=\(route.outputs.map { $0.portType.rawValue })")
++            } catch {
++                print("[SherpaTTS][iOS] enforcePlayback failed: \(error)")
++            }
++        }
++    }
++
++    // Stop playback and notify JS via delegate path
++    @objc func stop() {
++        DispatchQueue.main.async {
++            self.realTimeAudioPlayer?.stop()
++        }
      }
      
      // MARK: - AudioPlayerDelegate Method
