@@ -1036,7 +1036,7 @@ index ae8e644..b91f859 100644
 +
  @end
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-index 4072cc9..d3887ff 100644
+index 4072cc9..cc8902d 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 @@ -13,10 +13,37 @@ protocol AudioPlayerDelegate: AnyObject {
@@ -1078,7 +1078,7 @@ index 4072cc9..d3887ff 100644
      }
      
      // Required for RCTEventEmitter
-@@ -24,9 +51,360 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -24,9 +51,365 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
          return true
      }
      
@@ -1291,6 +1291,11 @@ index 4072cc9..d3887ff 100644
 +                    vad.pop()
 +                }
 +                let speechDetected = vad.isSpeechDetected()
++                if !self.wasInSpeech && speechDetected {
++                    // Rising edge: user started speaking → barge-in
++                    self.realTimeAudioPlayer?.stop()
++                    self.sendEvent(withName: "SpeechStart", body: [:])
++                }
 +                if self.wasInSpeech && !speechDetected {
 +                    // finalize current utterance and emit
 +                    self.finalizeUtteranceAndEmit()
@@ -1436,11 +1441,11 @@ index 4072cc9..d3887ff 100644
      // Specify the events that can be emitted
      override func supportedEvents() -> [String]! {
 -        return ["VolumeUpdate"]
-+        return ["VolumeUpdate", "ASRSegment"]
++        return ["VolumeUpdate", "ASRSegment", "SpeechStart"]
      }
      
      // Initialize TTS and Audio Player
-@@ -46,6 +424,10 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -46,6 +429,10 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
              rejecter("EMPTY_TEXT", "Input text is empty", nil)
              return
          }
@@ -1451,7 +1456,7 @@ index 4072cc9..d3887ff 100644
          
          // Split the text into manageable sentences
          let sentences = splitText(trimmedText, maxWords: 15)
-@@ -115,8 +497,46 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -115,8 +502,46 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
      
      // Clean up resources
      @objc func deinitialize() {
