@@ -1036,7 +1036,7 @@ index ae8e644..b91f859 100644
 +
  @end
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-index 4072cc9..cc8902d 100644
+index 4072cc9..0ac2457 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 @@ -13,10 +13,37 @@ protocol AudioPlayerDelegate: AnyObject {
@@ -1292,8 +1292,8 @@ index 4072cc9..cc8902d 100644
 +                }
 +                let speechDetected = vad.isSpeechDetected()
 +                if !self.wasInSpeech && speechDetected {
-+                    // Rising edge: user started speaking → barge-in
-+                    self.realTimeAudioPlayer?.stop()
++                    // Rising edge: user started speaking → barge-in (main-dispatched stop)
++                    self.stop()
 +                    self.sendEvent(withName: "SpeechStart", body: [:])
 +                }
 +                if self.wasInSpeech && !speechDetected {
