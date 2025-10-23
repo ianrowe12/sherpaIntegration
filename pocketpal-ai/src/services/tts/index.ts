@@ -296,9 +296,6 @@ export const initializeTTSFromAssets = async (
   // Sample rate and channels are currently fixed (22050, 1) inside the module’s initialize
   // interface; this call just forwards the JSON string to native.
   SherpaTTS.initialize(JSON.stringify(cfg));
-  try {
-    (SherpaTTS as any).enforcePlayback?.();
-  } catch {}
   console.log('TTS initialize() invoked');
   ttsReady = true;
 };
@@ -424,9 +421,6 @@ export const importTTSFromZipUri = async (
     espeakDataDir,
   };
   await initializeTTSFromAssets(assets);
-  try {
-    (SherpaTTS as any).enforcePlayback?.();
-  } catch {}
   return assets;
 };
 
