@@ -174,6 +174,14 @@ export async function startVadContinuous(): Promise<void> {
     const emitter = new NativeEventEmitter(NativeModules.TTSManager);
     vadSubscription?.remove?.();
     vadSubscription = emitter.addListener('ASRSegment', (e: { text?: string }) => {
+      // If our own TTS is currently speaking, drop finalized segments to avoid echo loops.
+      try {
+        const { isSpeaking } = require('../tts');
+        if (typeof isSpeaking === 'function' && isSpeaking()) {
+          return;
+        }
+      } catch {}
+
       const raw = e?.text?.trim?.() ?? '';
       if (raw) {
         const formatted = simplePunctAndCase(raw);
