@@ -11,7 +11,7 @@ if (!RNFS || !RNFS.DocumentDirectoryPath) {
   throw new Error('RNFS module not available');
 }
 
-const ANDROID_ASSET_PREFIX = 'asset:/sherpa-stt';
+const ANDROID_ASSET_PREFIX = 'sherpa-stt';
 
 const MODEL_FILES = {
   encoder: 'encoder-epoch-99-avg-1.int8.onnx',
@@ -87,6 +87,7 @@ function ensureAndroidFiles(): SherpaConfig {
     decoder: `${prefix}/${MODEL_FILES.decoder}`,
     joiner: `${prefix}/${MODEL_FILES.joiner}`,
     tokens: `${prefix}/${MODEL_FILES.tokens}`,
+    vadModel: `${prefix}/silero_vad.onnx`,
     sampleRate: 16000,
   };
   console.log(`${TAG} using Android asset paths`, config);
