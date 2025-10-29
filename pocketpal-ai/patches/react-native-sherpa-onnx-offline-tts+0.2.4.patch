@@ -24,64 +24,64 @@ index f2fd70a..b74c897 100644
    // compileOnly files('libs/sherpa-onnx-1.10.35.aar')
    // implementation "com.k2fsa:sherpa-onnx:+"
    // implementation(name:'sherpa-onnx-1.10.35.aar', ext:'aar')
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/results.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/results.bin
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/1dce2527d0e4eaa00c549d1a88a2339c/results.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/1dce2527d0e4eaa00c549d1a88a2339c/results.bin
 new file mode 100644
 index 0000000..0d259dd
 --- /dev/null
-+++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/results.bin
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/1dce2527d0e4eaa00c549d1a88a2339c/results.bin
 @@ -0,0 +1 @@
 +o/classes
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/transformed/classes/classes_dex/classes.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/transformed/classes/classes_dex/classes.dex
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/1dce2527d0e4eaa00c549d1a88a2339c/transformed/classes/classes_dex/classes.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/1dce2527d0e4eaa00c549d1a88a2339c/transformed/classes/classes_dex/classes.dex
 new file mode 100644
-index 0000000..cb3e43e
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/0a8417842eb22371a2c903ed4c74a08c/transformed/classes/classes_dex/classes.dex differ
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/results.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/results.bin
+index 0000000..5638ca2
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/1dce2527d0e4eaa00c549d1a88a2339c/transformed/classes/classes_dex/classes.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/results.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/results.bin
 new file mode 100644
 index 0000000..7ed749e
 --- /dev/null
-+++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/results.bin
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/results.bin
 @@ -0,0 +1 @@
 +o/bundleLibRuntimeToDirDebug
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.dex
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.dex
 new file mode 100644
-index 0000000..fbe0cfe
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.dex differ
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex
+index 0000000..f957bdc
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex
 new file mode 100644
-index 0000000..62c06a1
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex differ
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex
+index 0000000..ad923bd
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex
 new file mode 100644
-index 0000000..9ac5c32
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex differ
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/BuildConfig.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/BuildConfig.dex
+index 0000000..6f249f2
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/BuildConfig.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/BuildConfig.dex
 new file mode 100644
-index 0000000..595929e
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/BuildConfig.dex differ
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex
+index 0000000..9ab2c24
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/BuildConfig.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex
 new file mode 100644
-index 0000000..bc71158
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex differ
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex
+index 0000000..60a5c92
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex
 new file mode 100644
-index 0000000..6a17ec1
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex differ
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex
+index 0000000..3716cfc
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex
 new file mode 100644
-index 0000000..ac1ebd8
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex differ
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex
+index 0000000..da3f803
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex
 new file mode 100644
-index 0000000..daf7109
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex differ
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex
+index 0000000..8337678
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex
 new file mode 100644
-index 0000000..6545195
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex differ
-diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin
+index 0000000..10550df
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin
 new file mode 100644
 index 0000000..601f245
-Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/f4515d49c473433f7eb8db5b36758bc7/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin differ
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/desugar_graph.bin differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/generated/source/buildConfig/debug/com/sherpaonnxofflinetts/BuildConfig.java b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/generated/source/buildConfig/debug/com/sherpaonnxofflinetts/BuildConfig.java
 new file mode 100644
 index 0000000..97de03c
@@ -181,11 +181,11 @@ index 0000000..d659f9c
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug-mergeJavaRes/merge-state differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
 new file mode 100644
-index 0000000..dcf6f41
+index 0000000..c187666
 --- /dev/null
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
 @@ -0,0 +1 @@
-+#Tue Oct 14 18:17:53 EDT 2025
++#Tue Oct 28 18:32:36 EDT 2025
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
 new file mode 100644
 index 0000000..0eec429
@@ -655,7 +655,7 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin
 new file mode 100644
-index 0000000..276e344
+index 0000000..3c124b2
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin
 new file mode 100644
@@ -663,7 +663,7 @@ index 0000000..bb5bb87
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin
 new file mode 100644
-index 0000000..f432e60
+index 0000000..7031383
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/aar/react-native-sherpa-onnx-offline-tts-debug.aar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/aar/react-native-sherpa-onnx-offline-tts-debug.aar
 new file mode 100644
@@ -671,26 +671,26 @@ index 0000000..89f23ec
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/aar/react-native-sherpa-onnx-offline-tts-debug.aar differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/logs/manifest-merger-debug-report.txt b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/logs/manifest-merger-debug-report.txt
 new file mode 100644
-index 0000000..345c8ca
+index 0000000..efc154c
 --- /dev/null
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/logs/manifest-merger-debug-report.txt
 @@ -0,0 +1,16 @@
 +-- Merging decision tree log ---
 +manifest
-+ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml:2:13-83
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml:2:13-83
++ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml:2:13-83
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml:2:13-83
 +	package
-+		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml
++		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml
 +	xmlns:android
-+		ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml:2:23-81
++		ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml:2:23-81
 +uses-sdk
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml reason: use-sdk injection requested
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml reason: use-sdk injection requested
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml
 +	android:targetSdkVersion
-+		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml
++		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml
 +	android:minSdkVersion
-+		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest15510693951347185351.xml
++		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin
 new file mode 100644
 index 0000000..701c381
@@ -922,10 +922,19 @@ index f5bdfca..ec8e960 100644
  
      // Helper: split text into manageable chunks similar to iOS logic
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
-index 11e60e8..2b0440a 100644
+index 11e60e8..8e058f3 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
-@@ -41,7 +41,7 @@ class AudioPlayer: NSObject {
+@@ -22,6 +22,8 @@ class AudioPlayer: NSObject {
+     private var audioQueue: [Data] = []
+     private let queueLock = NSLock()
+     private var isProcessing = false
++    private let stateQueue = DispatchQueue(label: "com.pocketpal.tts.state")
++    private var interrupted = false
+ 
+     // Volume Monitoring
+     private var volumeTimer: Timer?
+@@ -41,7 +43,7 @@ class AudioPlayer: NSObject {
              commonFormat: .pcmFormatFloat32,
              sampleRate: sampleRate,
              channels: channels,
@@ -934,7 +943,7 @@ index 11e60e8..2b0440a 100644
          )!
  
          super.init()
-@@ -73,12 +73,13 @@ class AudioPlayer: NSObject {
+@@ -73,12 +75,13 @@ class AudioPlayer: NSObject {
          do {
              let session = AVAudioSession.sharedInstance()
              try session.setCategory(
@@ -952,7 +961,7 @@ index 11e60e8..2b0440a 100644
          } catch {
              print("Failed to set up AVAudioSession: \(error)")
          }
-@@ -106,6 +107,27 @@ class AudioPlayer: NSObject {
+@@ -106,6 +109,27 @@ class AudioPlayer: NSObject {
          }
      }
  
@@ -980,7 +989,22 @@ index 11e60e8..2b0440a 100644
      // MARK: - Public play API
  
      func playAudioData(from audio: SherpaOnnxGeneratedAudioWrapper) {
-@@ -150,7 +172,11 @@ class AudioPlayer: NSObject {
+@@ -123,6 +147,14 @@ class AudioPlayer: NSObject {
+     private func processAudioQueue() {
+         isProcessing = true
+         while isProcessing {
++            // Handle non-blocking interrupt signaled from main
++            if stateQueue.sync(execute: { interrupted }) {
++                audioPlayerNode.stop()
++                queueLock.lock(); audioQueue.removeAll(); queueLock.unlock()
++                ensureEngineRunning()
++                stateQueue.sync { interrupted = false }
++            }
++
+             queueLock.lock()
+             if !audioQueue.isEmpty {
+                 let data = audioQueue.removeFirst()
+@@ -150,7 +182,11 @@ class AudioPlayer: NSObject {
                      self.checkForPlaybackEnd()
                  }
  
@@ -993,7 +1017,7 @@ index 11e60e8..2b0440a 100644
              } else {
                  queueLock.unlock()
                  usleep(10_000)
-@@ -218,9 +244,9 @@ class AudioPlayer: NSObject {
+@@ -218,9 +254,9 @@ class AudioPlayer: NSObject {
              do {
                  let session = AVAudioSession.sharedInstance()
                  try session.setCategory(
@@ -1006,20 +1030,14 @@ index 11e60e8..2b0440a 100644
                  )
                  try session.setActive(true, options: [])
                  if !audioEngine.isRunning { try audioEngine.start() }
-@@ -235,6 +261,21 @@ class AudioPlayer: NSObject {
+@@ -235,6 +271,15 @@ class AudioPlayer: NSObject {
  
      // MARK: - Stop
  
 +    // Soft interrupt used for barge-in: clear queue and stop current playback,
 +    // but keep the processing loop and engine running for future TTS.
 +    func interrupt() {
-+        queueLock.lock()
-+        audioQueue.removeAll()
-+        queueLock.unlock()
-+
-+        audioPlayerNode.stop()
-+        ensureEngineRunning()
-+
++        stateQueue.sync { interrupted = true }
 +        DispatchQueue.main.async {
 +            self.delegate?.didUpdateVolume(-1.0)
 +        }
@@ -1028,6 +1046,13 @@ index 11e60e8..2b0440a 100644
      func stop() {
          isProcessing = false
          volumeTimer?.invalidate()
+@@ -243,3 +288,6 @@ class AudioPlayer: NSObject {
+         delegate?.didUpdateVolume(-1.0)        // also inform on manual stop
+     }
+ }
++
++
++
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
 index ae8e644..1ff8081 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
@@ -1071,10 +1096,10 @@ index ae8e644..1ff8081 100644
 +
  @end
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-index 4072cc9..30b09e0 100644
+index 4072cc9..223d8f8 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-@@ -13,10 +13,40 @@ protocol AudioPlayerDelegate: AnyObject {
+@@ -13,10 +13,53 @@ protocol AudioPlayerDelegate: AnyObject {
  class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
      private var tts: SherpaOnnxOfflineTtsWrapper?
      private var realTimeAudioPlayer: AudioPlayer?
@@ -1099,6 +1124,8 @@ index 4072cc9..30b09e0 100644
 +    private var vadMinSpeech: Float = 0.5
 +    private var vadBufferSeconds: Float = 5.0
 +    private var wasInSpeech: Bool = false
++    private var bargeInPending: Bool = false
++    private let audioSessionQueue = DispatchQueue(label: "com.pocketpal.audio.session")
      
      override init() {
          super.init()
@@ -1113,10 +1140,21 @@ index 4072cc9..30b09e0 100644
 +            "deinitializeSTT"
 +        ]
 +        print("[SherpaTTS][iOS] Module loaded. Methods exposed: \(exposedMethods)")
++    }
++    
++    private func withAudioSession(_ work: @escaping (AVAudioSession) throws -> Void) {
++        audioSessionQueue.async {
++            let session = AVAudioSession.sharedInstance()
++            do {
++                try work(session)
++            } catch {
++                print("[SherpaTTS][iOS] AVAudioSession error: \(error)")
++            }
++        }
      }
      
      // Required for RCTEventEmitter
-@@ -24,9 +54,363 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -24,9 +67,367 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
          return true
      }
      
@@ -1177,16 +1215,13 @@ index 4072cc9..30b09e0 100644
 +        }
 +
 +        // Pre-warm audio session to reduce cold-start latency
-+        let session = AVAudioSession.sharedInstance()
-+        do {
++        withAudioSession { session in
 +            try session.setCategory(.playAndRecord, mode: .voiceChat, options: [.defaultToSpeaker, .allowBluetooth])
-+            try session.setPreferredSampleRate(Double(sttSampleRate))
++            try session.setPreferredSampleRate(Double(self.sttSampleRate))
 +            try session.setPreferredInputNumberOfChannels(1)
 +            try session.setPreferredIOBufferDuration(0.01)
 +            try session.setActive(true, options: .notifyOthersOnDeactivation)
 +            try session.overrideOutputAudioPort(.speaker)
-+        } catch {
-+            print("[SherpaTTS][iOS] Pre-warm session failed: \(error)")
 +        }
 +    }
 +
@@ -1195,7 +1230,7 @@ index 4072cc9..30b09e0 100644
 +        if Thread.isMainThread {
 +            startRecognitionOnMain()
 +        } else {
-+            DispatchQueue.main.sync {
++            DispatchQueue.main.async { [self] in
 +                startRecognitionOnMain()
 +            }
 +        }
@@ -1241,10 +1276,9 @@ index 4072cc9..30b09e0 100644
 +            return
 +        }
 +        
-+        do {
-+            let session = AVAudioSession.sharedInstance()
++        withAudioSession { session in
 +            try session.setCategory(.playAndRecord, mode: .voiceChat, options: [.defaultToSpeaker, .allowBluetooth])
-+            try session.setPreferredSampleRate(Double(sttSampleRate))
++            try session.setPreferredSampleRate(Double(self.sttSampleRate))
 +            try session.setPreferredInputNumberOfChannels(1)
 +            try session.setPreferredIOBufferDuration(0.01)
 +            if let builtIn = session.availableInputs?.first(where: { $0.portType == .builtInMic }) {
@@ -1253,8 +1287,6 @@ index 4072cc9..30b09e0 100644
 +            try session.setActive(true, options: .notifyOthersOnDeactivation)
 +            try session.overrideOutputAudioPort(.speaker)
 +            print("[SherpaTTS][iOS] AVAudioSession configured. sampleRate=\(session.sampleRate), ioBuffer=\(session.ioBufferDuration)")
-+        } catch {
-+            print("[SherpaTTS][iOS] Failed to set up AVAudioSession: \(error)")
 +        }
 +        
 +        let input = engine.inputNode
@@ -1331,14 +1363,20 @@ index 4072cc9..30b09e0 100644
 +                }
 +                let speechDetected = vad.isSpeechDetected()
 +                if !self.wasInSpeech && speechDetected {
-+                    // Rising edge: user started speaking → barge-in (main-dispatched stop)
-+                    self.stop()
-+                    self.sendEvent(withName: "SpeechStart", body: [:])
++                    // Rising edge: schedule barge-in off the render callback and debounce
++                    if !self.bargeInPending {
++                        self.bargeInPending = true
++                        DispatchQueue.main.async {
++                            self.sendEvent(withName: "SpeechStart", body: [:])
++                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
++                                self.bargeInPending = false
++                            }
++                        }
++                    }
 +                }
 +                if self.wasInSpeech && !speechDetected {
-+                    // finalize current utterance and emit
++                    // finalize current utterance and emit (async)
 +                    self.finalizeUtteranceAndEmit()
-+                    rec.reset()
 +                }
 +                self.wasInSpeech = speechDetected
 +            } else {
@@ -1365,7 +1403,6 @@ index 4072cc9..30b09e0 100644
 +        audioEngine = nil
 +        if wasInSpeech {
 +            finalizeUtteranceAndEmit()
-+            recognizer?.reset()
 +            wasInSpeech = false
 +        }
 +        vad?.reset()
@@ -1373,17 +1410,22 @@ index 4072cc9..30b09e0 100644
 +    }
 +
 +    private func finalizeUtteranceAndEmit() {
-+        guard let rec = recognizer else { return }
-+        // Tail padding and dual flush, similar to stopRecognition
-+        let tail = [Float](repeating: 0, count: max(1, sttSampleRate / 5))
-+        rec.acceptWaveform(samples: tail, sampleRate: sttSampleRate)
-+        decodeQueue.sync { while rec.isReady() { rec.decode() } }
-+        rec.inputFinished()
-+        decodeQueue.sync { while rec.isReady() { rec.decode() } }
-+        let text = rec.getResult().text
-+        if !text.isEmpty {
-+            print("[SherpaTTS][iOS] VAD segment: \(text)")
-+            sendEvent(withName: "ASRSegment", body: ["text": text])
++        decodeQueue.async { [weak self] in
++            guard let self = self, let rec = self.recognizer else { return }
++            // Tail padding and dual flush, similar to stopRecognition
++            let tail = [Float](repeating: 0, count: max(1, self.sttSampleRate / 5))
++            rec.acceptWaveform(samples: tail, sampleRate: self.sttSampleRate)
++            while rec.isReady() { rec.decode() }
++            rec.inputFinished()
++            while rec.isReady() { rec.decode() }
++            let text = rec.getResult().text
++            if !text.isEmpty {
++                print("[SherpaTTS][iOS] VAD segment: \(text)")
++                DispatchQueue.main.async {
++                    self.sendEvent(withName: "ASRSegment", body: ["text": text])
++                }
++            }
++            rec.reset()
 +        }
 +    }
 +
@@ -1395,8 +1437,8 @@ index 4072cc9..30b09e0 100644
 +        if Thread.isMainThread {
 +            stopRecognitionOnMain(resolver: resolver, rejecter: rejecter)
 +        } else {
-+            DispatchQueue.main.sync {
-+                stopRecognitionOnMain(resolver: resolver, rejecter: rejecter)
++            DispatchQueue.main.async {
++                self.stopRecognitionOnMain(resolver: resolver, rejecter: rejecter)
 +            }
 +        }
 +    }
@@ -1436,8 +1478,8 @@ index 4072cc9..30b09e0 100644
 +        if Thread.isMainThread {
 +            deinitializeSTTOnMain()
 +        } else {
-+            DispatchQueue.main.sync {
-+                deinitializeSTTOnMain()
++            DispatchQueue.main.async {
++                self.deinitializeSTTOnMain()
 +            }
 +        }
 +    }
@@ -1481,7 +1523,7 @@ index 4072cc9..30b09e0 100644
      }
      
      // Initialize TTS and Audio Player
-@@ -46,16 +430,25 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -46,16 +447,25 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
              rejecter("EMPTY_TEXT", "Input text is empty", nil)
              return
          }
@@ -1513,7 +1555,7 @@ index 4072cc9..30b09e0 100644
      }
  
      /// Splits the input text into sentences with a maximum of `maxWords` words.
-@@ -115,8 +508,47 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -115,8 +525,46 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
      
      // Clean up resources
      @objc func deinitialize() {
@@ -1533,8 +1575,7 @@ index 4072cc9..30b09e0 100644
 +    // Ensure playback session is active before TTS output
 +    @objc func enforcePlayback() {
 +        DispatchQueue.main.async {
-+            let session = AVAudioSession.sharedInstance()
-+            do {
++            self.withAudioSession { session in
 +                try? session.setPreferredInput(nil)
 +                try session.setCategory(
 +                    .playAndRecord,
@@ -1543,11 +1584,11 @@ index 4072cc9..30b09e0 100644
 +                )
 +                try session.setActive(true, options: [])
 +                try session.overrideOutputAudioPort(.speaker)
-+                self.realTimeAudioPlayer?.ensureEngineRunning()
-+                let route = session.currentRoute
-+                print("[SherpaTTS][iOS] route: inputs=\(route.inputs.map { $0.portType.rawValue }), outputs=\(route.outputs.map { $0.portType.rawValue })")
-+            } catch {
-+                print("[SherpaTTS][iOS] enforcePlayback failed: \(error)")
++                DispatchQueue.main.async {
++                    self.realTimeAudioPlayer?.ensureEngineRunning()
++                    let route = session.currentRoute
++                    print("[SherpaTTS][iOS] route: inputs=\(route.inputs.map { $0.portType.rawValue }), outputs=\(route.outputs.map { $0.portType.rawValue })")
++                }
 +            }
 +        }
 +    }
