@@ -922,7 +922,7 @@ index f5bdfca..ec8e960 100644
  
      // Helper: split text into manageable chunks similar to iOS logic
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
-index 11e60e8..2b0440a 100644
+index 11e60e8..7d48a95 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
 @@ -41,7 +41,7 @@ class AudioPlayer: NSObject {
@@ -1028,6 +1028,13 @@ index 11e60e8..2b0440a 100644
      func stop() {
          isProcessing = false
          volumeTimer?.invalidate()
+@@ -243,3 +284,6 @@ class AudioPlayer: NSObject {
+         delegate?.didUpdateVolume(-1.0)        // also inform on manual stop
+     }
+ }
++
++
++
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
 index ae8e644..1ff8081 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.mm
@@ -1071,10 +1078,10 @@ index ae8e644..1ff8081 100644
 +
  @end
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-index 4072cc9..30b09e0 100644
+index 4072cc9..a6c351f 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-@@ -13,10 +13,40 @@ protocol AudioPlayerDelegate: AnyObject {
+@@ -13,10 +13,41 @@ protocol AudioPlayerDelegate: AnyObject {
  class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
      private var tts: SherpaOnnxOfflineTtsWrapper?
      private var realTimeAudioPlayer: AudioPlayer?
@@ -1099,6 +1106,7 @@ index 4072cc9..30b09e0 100644
 +    private var vadMinSpeech: Float = 0.5
 +    private var vadBufferSeconds: Float = 5.0
 +    private var wasInSpeech: Bool = false
++    private var bargeInPending: Bool = false
      
      override init() {
          super.init()
@@ -1116,7 +1124,7 @@ index 4072cc9..30b09e0 100644
      }
      
      // Required for RCTEventEmitter
-@@ -24,9 +54,363 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -24,9 +55,373 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
          return true
      }
      
@@ -1195,7 +1203,7 @@ index 4072cc9..30b09e0 100644
 +        if Thread.isMainThread {
 +            startRecognitionOnMain()
 +        } else {
-+            DispatchQueue.main.sync {
++            DispatchQueue.main.async {
 +                startRecognitionOnMain()
 +            }
 +        }
@@ -1331,9 +1339,17 @@ index 4072cc9..30b09e0 100644
 +                }
 +                let speechDetected = vad.isSpeechDetected()
 +                if !self.wasInSpeech && speechDetected {
-+                    // Rising edge: user started speaking → barge-in (main-dispatched stop)
-+                    self.stop()
-+                    self.sendEvent(withName: "SpeechStart", body: [:])
++                    // Rising edge: schedule barge-in off the render callback and debounce
++                    if !self.bargeInPending {
++                        self.bargeInPending = true
++                        DispatchQueue.main.async {
++                            self.stop()
++                            self.sendEvent(withName: "SpeechStart", body: [:])
++                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
++                                self.bargeInPending = false
++                            }
++                        }
++                    }
 +                }
 +                if self.wasInSpeech && !speechDetected {
 +                    // finalize current utterance and emit
@@ -1383,7 +1399,9 @@ index 4072cc9..30b09e0 100644
 +        let text = rec.getResult().text
 +        if !text.isEmpty {
 +            print("[SherpaTTS][iOS] VAD segment: \(text)")
-+            sendEvent(withName: "ASRSegment", body: ["text": text])
++            DispatchQueue.main.async {
++                self.sendEvent(withName: "ASRSegment", body: ["text": text])
++            }
 +        }
 +    }
 +
@@ -1395,7 +1413,7 @@ index 4072cc9..30b09e0 100644
 +        if Thread.isMainThread {
 +            stopRecognitionOnMain(resolver: resolver, rejecter: rejecter)
 +        } else {
-+            DispatchQueue.main.sync {
++            DispatchQueue.main.async {
 +                stopRecognitionOnMain(resolver: resolver, rejecter: rejecter)
 +            }
 +        }
@@ -1436,7 +1454,7 @@ index 4072cc9..30b09e0 100644
 +        if Thread.isMainThread {
 +            deinitializeSTTOnMain()
 +        } else {
-+            DispatchQueue.main.sync {
++            DispatchQueue.main.async {
 +                deinitializeSTTOnMain()
 +            }
 +        }
@@ -1481,7 +1499,7 @@ index 4072cc9..30b09e0 100644
      }
      
      // Initialize TTS and Audio Player
-@@ -46,16 +430,25 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -46,16 +441,25 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
              rejecter("EMPTY_TEXT", "Input text is empty", nil)
              return
          }
@@ -1513,7 +1531,7 @@ index 4072cc9..30b09e0 100644
      }
  
      /// Splits the input text into sentences with a maximum of `maxWords` words.
-@@ -115,8 +508,47 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -115,8 +519,47 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
      
      // Clean up resources
      @objc func deinitialize() {

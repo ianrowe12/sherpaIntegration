@@ -17,6 +17,11 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
     private var sttSampleRate: Int = 16000
     private var audioEngine: AVAudioEngine?
     private var capturedSamples: [Float] = []
+    // Dedicated queues for background work
+    private let ttsQueue = DispatchQueue(label: "com.pocketpal.tts.generate", qos: .userInitiated)
+    private let methodBgQueue = DispatchQueue(label: "com.pocketpal.tts.method", qos: .userInitiated)
+    // Cooperative cancellation
+    private var ttsCancelled: Bool = false
     
     override init() {
         super.init()
@@ -25,7 +30,13 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
     
     // Required for RCTEventEmitter
     override static func requiresMainQueueSetup() -> Bool {
-        return true
+        // Do not force module initialization onto main; dispatch UI-sensitive work explicitly
+        return false
+    }
+
+    // Execute exported methods on a background queue by default
+    override func methodQueue() -> DispatchQueue! {
+        return methodBgQueue
     }
     
     // Specify the events that can be emitted
@@ -36,9 +47,33 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
     // Initialize TTS and Audio Player
     @objc(initializeTTS:channels:modelId:)
     func initializeTTS(_ sampleRate: Double, channels: Int, modelId: String) {
-        self.realTimeAudioPlayer = AudioPlayer(sampleRate: sampleRate, channels: AVAudioChannelCount(channels))
-        self.realTimeAudioPlayer?.delegate = self // Set delegate to receive volume updates
+        // Player/UI objects must be created on main
+        DispatchQueue.main.async {
+            self.realTimeAudioPlayer = AudioPlayer(sampleRate: sampleRate, channels: AVAudioChannelCount(channels))
+            self.realTimeAudioPlayer?.delegate = self // Set delegate to receive volume updates
+        }
+        // TTS creation is CPU-light; keep off main
         self.tts = createOfflineTts(modelId: modelId)
+    }
+
+    // Ensure playback session is active before TTS output (duplex voiceChat route)
+    @objc func enforcePlayback() {
+        DispatchQueue.main.async {
+            let session = AVAudioSession.sharedInstance()
+            do {
+                try? session.setPreferredInput(nil)
+                try session.setCategory(
+                    .playAndRecord,
+                    mode: .voiceChat,
+                    options: [.defaultToSpeaker, .allowBluetooth]
+                )
+                try session.setActive(true, options: [])
+                try session.overrideOutputAudioPort(.speaker)
+                self.realTimeAudioPlayer?.ensureEngineRunning()
+            } catch {
+                print("[SherpaTTS][iOS] enforcePlayback failed: \(error)")
+            }
+        }
     }
 
     // Initialize streaming STT
@@ -74,21 +109,23 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
     }
 
     @objc func startRecognition() {
-        audioEngine = AVAudioEngine()
-        capturedSamples.removeAll()
-        guard let engine = audioEngine else { return }
-        guard recognizer != nil else { return }
-        let input = engine.inputNode
-        let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: Double(sttSampleRate), channels: 1, interleaved: false)
-        input.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _ in
-            let count = Int(buffer.frameLength)
-            if let data = buffer.floatChannelData?[0] {
-                let samples = Array(UnsafeBufferPointer(start: data, count: count))
-                self.capturedSamples.append(contentsOf: samples)
+        DispatchQueue.main.async {
+            self.audioEngine = AVAudioEngine()
+            self.capturedSamples.removeAll()
+            guard let engine = self.audioEngine else { return }
+            guard self.recognizer != nil else { return }
+            let input = engine.inputNode
+            let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: Double(self.sttSampleRate), channels: 1, interleaved: false)
+            input.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _ in
+                let count = Int(buffer.frameLength)
+                if let data = buffer.floatChannelData?[0] {
+                    let samples = Array(UnsafeBufferPointer(start: data, count: count))
+                    self.capturedSamples.append(contentsOf: samples)
+                }
             }
+            engine.prepare()
+            try? engine.start()
         }
-        engine.prepare()
-        try? engine.start()
     }
 
     @objc func feedAudio(_ data: String) {
@@ -106,16 +143,20 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
     }
 
     @objc func stopRecognition(_ resolver: RCTPromiseResolveBlock, rejecter: RCTPromiseRejectBlock) {
-        audioEngine?.inputNode.removeTap(onBus: 0)
-        audioEngine?.stop()
-        audioEngine = nil
+        // Tear-down audio input on main to avoid mutating graph from arbitrary threads
+        DispatchQueue.main.async {
+            self.audioEngine?.inputNode.removeTap(onBus: 0)
+            self.audioEngine?.stop()
+            self.audioEngine = nil
+        }
         guard let rec = recognizer else {
             rejecter("NOT_READY", "Recognizer not ready", nil)
             return
         }
-        let result = rec.decode(samples: capturedSamples, sampleRate: sttSampleRate)
+        // Perform decode off main
+        let text = rec.decode(samples: capturedSamples, sampleRate: sttSampleRate).text
         capturedSamples.removeAll()
-        resolver(result.text)
+        resolver(text)
     }
 
     @objc func deinitializeSTT() {
@@ -129,21 +170,28 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
     @objc(generateAndPlay:sid:speed:resolver:rejecter:)
     func generateAndPlay(_ text: String, sid: Int, speed: Double, resolver: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
         let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        
         guard !trimmedText.isEmpty else {
             rejecter("EMPTY_TEXT", "Input text is empty", nil)
             return
         }
-        
-        // Split the text into manageable sentences
-        let sentences = splitText(trimmedText, maxWords: 15)
-        
-        for sentence in sentences {
-            let processedSentence = sentence.hasSuffix(".") ? sentence : "\(sentence)."
-            generateAudio(for: processedSentence, sid: sid, speed: speed)
+        guard tts != nil else {
+            rejecter("NOT_INITIALIZED", "TTS not initialized", nil)
+            return
         }
-        
-        resolver("Audio generated and played successfully")
+
+        let sentences = splitText(trimmedText, maxWords: 15)
+        // Reset cancellation and dispatch generation to background serial queue
+        ttsCancelled = false
+        ttsQueue.async { [weak self] in
+            guard let self = self else { return }
+            for sentence in sentences {
+                if self.ttsCancelled { break }
+                let processed = sentence.hasSuffix(".") ? sentence : "\(sentence)."
+                self.generateAudio(for: processed, sid: sid, speed: speed)
+                if self.ttsCancelled { break }
+            }
+            resolver("Audio generated and played successfully")
+        }
     }
 
     /// Splits the input text into sentences with a maximum of `maxWords` words.
@@ -188,23 +236,43 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
     
     // Helper function to generate and play audio
     private func generateAudio(for text: String, sid: Int, speed: Double) {
-        print("Generating audio for \(text)")
+        // This runs on ttsQueue; avoid main-thread blocking
+        print("[SherpaTTS][iOS] Generating audio for: \(text)")
         let startTime = Date()
         guard let audio = tts?.generate(text: text, sid: sid, speed: Float(speed)) else {
-            print("Error: TTS was never initialised")
+            print("[SherpaTTS][iOS] Error: TTS was never initialised")
             return
         }
-        let endTime = Date()
-        let generationTime = endTime.timeIntervalSince(startTime)
-        print("Time taken for TTS generation: \(generationTime) seconds")
-        
-        realTimeAudioPlayer?.playAudioData(from: audio)
+        let generationTime = Date().timeIntervalSince(startTime)
+        print("[SherpaTTS][iOS] TTS generation took: \(generationTime)s")
+        // Playback scheduling must occur on main
+        DispatchQueue.main.async {
+            self.realTimeAudioPlayer?.playAudioData(from: audio)
+        }
     }
     
+    // Non-blocking, idempotent stop for barge-in
+    @objc func stop() {
+        // Set cancellation flag and interrupt playback quickly
+        ttsCancelled = true
+        DispatchQueue.main.async {
+            if let player = self.realTimeAudioPlayer {
+                // Prefer soft interrupt if available; otherwise stop
+                if player.responds(to: Selector(("interrupt"))) {
+                    player.perform(Selector(("interrupt")))
+                } else {
+                    player.stop()
+                }
+            }
+        }
+    }
+
     // Clean up resources
     @objc func deinitialize() {
-        self.realTimeAudioPlayer?.stop()
-        self.realTimeAudioPlayer = nil
+        DispatchQueue.main.async {
+            self.realTimeAudioPlayer?.stop()
+            self.realTimeAudioPlayer = nil
+        }
         self.tts = nil
         deinitializeSTT()
     }

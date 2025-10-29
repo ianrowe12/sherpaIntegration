@@ -295,7 +295,13 @@ export const initializeTTSFromAssets = async (
   // Library expects a JSON string for modelId in initialize()
   // Sample rate and channels are currently fixed (22050, 1) inside the module’s initialize
   // interface; this call just forwards the JSON string to native.
-  SherpaTTS.initialize(JSON.stringify(cfg));
+  const nativeInit = (SherpaTTS as any)?.initialize;
+  if (typeof nativeInit !== 'function') {
+    console.warn('TTS initialize skipped: native module not available on this platform');
+    ttsReady = false;
+    return;
+  }
+  nativeInit(JSON.stringify(cfg));
   console.log('TTS initialize() invoked');
   ttsReady = true;
 };

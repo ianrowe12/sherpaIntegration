@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet, Platform} from 'react-native';
 
 import {observer} from 'mobx-react';
 import {NavigationContainer} from '@react-navigation/native';
@@ -69,41 +69,53 @@ const App = observer(() => {
   React.useEffect(() => {
     initLocale(uiStore.language);
     initializeLookiePal();
-    // Whisper disabled: STT now handled by Sherpa
-    // Initialize Sherpa-ONNX TTS. If assets are missing, download and initialize.
-    const subRef: {current: any} = {current: null};
-    tryInitializeTTSFromFolder('vits-piper-en_US-ryan-medium')
-      .then(async initialized => {
-        if (initialized) {
-          console.log('TTS initialized successfully');
+    // Only attempt TTS bootstrap if native module is available on this platform
+    const canUseTTS =
+      Platform.OS === 'ios' || typeof (SherpaTTS as any)?.initialize === 'function';
+    if (canUseTTS) {
+      // Whisper disabled: STT now handled by Sherpa
+      // Initialize Sherpa-ONNX TTS. If assets are missing, download and initialize.
+      const subRef: {current: any} = {current: null};
+      tryInitializeTTSFromFolder('vits-piper-en_US-ryan-medium')
+        .then(async initialized => {
+          if (initialized) {
+            console.log('TTS initialized successfully');
+            // Debug: monitor volume updates
+            try {
+              subRef.current = SherpaTTS.addVolumeListener((v: number) =>
+                console.log('TTS volume:', v),
+              );
+            } catch {}
+            return;
+          }
+          console.log('TTS assets not found. Downloading voice model...');
+          const assets = await ensureTTSAssets({
+            id: 'vits-piper-en_US-ryan-medium',
+            zipUrl:
+              'https://github.com/ianrowe12/KitchenAssistant/releases/download/v1/vits-piper-en_US-ryan-medium.zip',
+            folderName: 'vits-piper-en_US-ryan-medium',
+            sizeBytes: 120 * 1024 * 1024,
+          }, { authToken: null });
+          await initializeTTSFromAssets(assets);
+          console.log('TTS downloaded and initialize() called');
           // Debug: monitor volume updates
           try {
             subRef.current = SherpaTTS.addVolumeListener((v: number) =>
               console.log('TTS volume:', v),
             );
           } catch {}
-          return;
-        }
-        console.log('TTS assets not found. Downloading voice model...');
-        const assets = await ensureTTSAssets({
-          id: 'vits-piper-en_US-ryan-medium',
-          zipUrl:
-            'https://github.com/ianrowe12/KitchenAssistant/releases/download/v1/vits-piper-en_US-ryan-medium.zip',
-          folderName: 'vits-piper-en_US-ryan-medium',
-          sizeBytes: 120 * 1024 * 1024,
-        }, { authToken: null });
-        await initializeTTSFromAssets(assets);
-        console.log('TTS downloaded and initialize() called');
-        // Debug: monitor volume updates
+        })
+        .catch(err => {
+          console.warn('TTS initialization failed:', err);
+        });
+
+      // Cleanup TTS volume subscription
+      return () => {
         try {
-          subRef.current = SherpaTTS.addVolumeListener((v: number) =>
-            console.log('TTS volume:', v),
-          );
+          subRef.current?.remove?.();
         } catch {}
-      })
-      .catch(err => {
-        console.warn('TTS initialization failed:', err);
-      });
+      };
+    }
 
     // Preload Sherpa STT at app startup to avoid first-press latency
     (async () => {
@@ -126,11 +138,8 @@ const App = observer(() => {
       }
     })();
 
-    return () => {
-      try {
-        subRef.current?.remove?.();
-      } catch {}
-    };
+    // No cleanup needed if TTS bootstrap was skipped
+    return () => {};
   }, []);
 
   return (

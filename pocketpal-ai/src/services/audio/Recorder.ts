@@ -49,9 +49,6 @@ const ensureNativeApi = () => {
     'startRecognition',
     'stopRecognition',
     'deinitializeSTT',
-    // VAD continuous
-    'startVadRecognition',
-    'stopVadRecognition',
   ];
   const missing = requiredFns.filter(
     fnName => typeof (SherpaSTT as any)[fnName] !== 'function',
@@ -161,7 +158,11 @@ export function clearAsrSegmentHandler() {
 
 export async function startVadContinuous(): Promise<void> {
   console.log(`${TAG} startVadContinuous`);
-  ensureNativeApi();
+  try { ensureNativeApi(); } catch (e) { /* ensure core STT present only */ }
+  if (typeof (SherpaSTT as any)?.startVadRecognition !== 'function') {
+    console.warn(`${TAG} VAD not available on this platform; ignoring start`);
+    return;
+  }
   // Ensure initialized (preload should have done this). If not, build config and init.
   try {
     const cfg = await ensureSherpaModelConfig();
@@ -220,7 +221,7 @@ export async function startVadContinuous(): Promise<void> {
 
 export async function stopVadContinuous(): Promise<void> {
   console.log(`${TAG} stopVadContinuous`);
-  (SherpaSTT as any)?.stopVadRecognition?.();
+  try { (SherpaSTT as any)?.stopVadRecognition?.(); } catch {}
   try {
     vadSubscription?.remove?.();
     vadSpeechStartSubscription?.remove?.();
