@@ -922,19 +922,27 @@ index f5bdfca..ec8e960 100644
  
      // Helper: split text into manageable chunks similar to iOS logic
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
-index 11e60e8..8e058f3 100644
+index 11e60e8..844bf3d 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
-@@ -22,6 +22,8 @@ class AudioPlayer: NSObject {
+@@ -17,11 +17,15 @@ class AudioPlayer: NSObject {
+     // MARK: - Properties
+ 
+     private let audioEngine = AVAudioEngine()
+-    private let audioPlayerNode = AVAudioPlayerNode()
++    private var audioPlayerNode = AVAudioPlayerNode()
+     private let audioFormat: AVAudioFormat
      private var audioQueue: [Data] = []
      private let queueLock = NSLock()
      private var isProcessing = false
 +    private let stateQueue = DispatchQueue(label: "com.pocketpal.tts.state")
++    private let playerQueue = DispatchQueue(label: "com.pocketpal.tts.player", qos: .userInitiated)
 +    private var interrupted = false
++    private var needRebuild = false
  
      // Volume Monitoring
      private var volumeTimer: Timer?
-@@ -41,7 +43,7 @@ class AudioPlayer: NSObject {
+@@ -41,7 +45,7 @@ class AudioPlayer: NSObject {
              commonFormat: .pcmFormatFloat32,
              sampleRate: sampleRate,
              channels: channels,
@@ -943,7 +951,23 @@ index 11e60e8..8e058f3 100644
          )!
  
          super.init()
-@@ -73,12 +75,13 @@ class AudioPlayer: NSObject {
+@@ -56,7 +60,14 @@ class AudioPlayer: NSObject {
+             object: AVAudioSession.sharedInstance()
+         )
+ 
+-        DispatchQueue.global(qos: .background).async { self.processAudioQueue() }
++        NotificationCenter.default.addObserver(
++            self,
++            selector: #selector(handleEngineConfigChange),
++            name: .AVAudioEngineConfigurationChange,
++            object: audioEngine
++        )
++
++        playerQueue.async { self.processAudioQueue() }
+         DispatchQueue.main.async { self.startVolumeTimer() }
+     }
+ 
+@@ -73,12 +84,19 @@ class AudioPlayer: NSObject {
          do {
              let session = AVAudioSession.sharedInstance()
              try session.setCategory(
@@ -952,19 +976,50 @@ index 11e60e8..8e058f3 100644
 -                options: [.mixWithOthers, .allowBluetooth, .allowBluetoothA2DP] // ← no .defaultToSpeaker
 +                .playAndRecord,
 +                mode: .voiceChat,
-+                options: [.defaultToSpeaker, .allowBluetooth]
++                options: [.allowBluetooth]
              )
              try session.setActive(true, options: [])
 -            print("Audio session set up for Bluetooth or speaker")
-+            try session.overrideOutputAudioPort(.speaker)
-+            print("Audio session set up for duplex (playAndRecord + voiceChat -> speaker)")
++            let outputs = session.currentRoute.outputs
++            let hasBT = outputs.contains {
++                $0.portType == .bluetoothA2DP || $0.portType == .bluetoothHFP || $0.portType == .bluetoothLE
++            }
++            if !hasBT && outputs.first?.portType != .builtInSpeaker {
++                try? session.overrideOutputAudioPort(.speaker)
++            }
++            print("Audio session set up for duplex (playAndRecord + voiceChat)")
          } catch {
              print("Failed to set up AVAudioSession: \(error)")
          }
-@@ -106,6 +109,27 @@ class AudioPlayer: NSObject {
+@@ -100,12 +118,56 @@ class AudioPlayer: NSObject {
+         addAudioTap()
+ 
+         do {
++            audioEngine.prepare()
+             try audioEngine.start()
++            print("[AudioPlayer] AVAudioEngine started")
+         } catch {
+             print("Failed to start AVAudioEngine: \(error)")
          }
      }
  
++    private func rebuildPlayerNode() {
++        audioEngine.pause()
++        audioEngine.stop()
++        audioPlayerNode.stop()
++        audioPlayerNode.reset()
++        audioEngine.detach(audioPlayerNode)
++        audioPlayerNode = AVAudioPlayerNode()
++        audioEngine.attach(audioPlayerNode)
++        audioEngine.connect(audioPlayerNode, to: audioEngine.mainMixerNode, format: audioFormat)
++        audioEngine.prepare()
++        do {
++            try audioEngine.start()
++        } catch {
++            print("Failed to restart AVAudioEngine after rebuild: \(error)")
++        }
++    }
++
 +    private func makeSilenceBuffer(durationSeconds: Double = 0.02) -> AVAudioPCMBuffer? {
 +        let frames = AVAudioFrameCount(durationSeconds * audioFormat.sampleRate)
 +        guard frames > 0, let buf = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: frames) else { return nil }
@@ -980,7 +1035,11 @@ index 11e60e8..8e058f3 100644
 +
 +    func ensureEngineRunning() {
 +        if !audioEngine.isRunning {
-+            do { try audioEngine.start() } catch {
++            do {
++                audioEngine.prepare()
++                try audioEngine.start()
++                print("[AudioPlayer] ensureEngineRunning: started")
++            } catch {
 +                print("Failed to start AVAudioEngine: \(error)")
 +            }
 +        }
@@ -989,35 +1048,77 @@ index 11e60e8..8e058f3 100644
      // MARK: - Public play API
  
      func playAudioData(from audio: SherpaOnnxGeneratedAudioWrapper) {
-@@ -123,6 +147,14 @@ class AudioPlayer: NSObject {
+@@ -123,6 +185,18 @@ class AudioPlayer: NSObject {
      private func processAudioQueue() {
          isProcessing = true
          while isProcessing {
 +            // Handle non-blocking interrupt signaled from main
 +            if stateQueue.sync(execute: { interrupted }) {
++                print("[AudioPlayer] interrupt received: clearing queue and rebuilding node")
 +                audioPlayerNode.stop()
++                audioPlayerNode.reset()
 +                queueLock.lock(); audioQueue.removeAll(); queueLock.unlock()
-+                ensureEngineRunning()
++                needRebuild = true
++                rebuildPlayerNode()
++                needRebuild = false
 +                stateQueue.sync { interrupted = false }
 +            }
 +
              queueLock.lock()
              if !audioQueue.isEmpty {
                  let data = audioQueue.removeFirst()
-@@ -150,7 +182,11 @@ class AudioPlayer: NSObject {
-                     self.checkForPlaybackEnd()
+@@ -143,14 +217,22 @@ class AudioPlayer: NSObject {
+                         count: Int(pcmBuf.frameLength)
+                     )
                  }
- 
--                if !audioPlayerNode.isPlaying { audioPlayerNode.play() }
++                print("[AudioPlayer] dequeued buffer frames=\(pcmBuf.frameLength)")
++
++                // Ensure engine is running and prime before scheduling real audio to avoid wedges
 +                self.ensureEngineRunning()
 +                if !audioPlayerNode.isPlaying {
 +                    if let prime = makeSilenceBuffer() { audioPlayerNode.scheduleBuffer(prime, at: nil, options: []) { } }
++                    print("[AudioPlayer] starting playback")
 +                    audioPlayerNode.play()
 +                }
+ 
+                 // schedule with completion handler
++                print("[AudioPlayer] scheduling buffer frames=\(pcmBuf.frameLength)")
+                 audioPlayerNode.scheduleBuffer(pcmBuf, at: nil, options: []) { [weak self] in
+                     guard let self = self else { return }
+                     self.checkForPlaybackEnd()
+                 }
+-
+-                if !audioPlayerNode.isPlaying { audioPlayerNode.play() }
              } else {
                  queueLock.unlock()
                  usleep(10_000)
-@@ -218,9 +254,9 @@ class AudioPlayer: NSObject {
+@@ -176,7 +258,7 @@ class AudioPlayer: NSObject {
+ 
+     private func addAudioTap() {
+         let mixer = audioEngine.mainMixerNode
+-        mixer.installTap(onBus: 0, bufferSize: 1024, format: mixer.outputFormat(forBus: 0)) { [weak self] buf, _ in
++        mixer.installTap(onBus: 0, bufferSize: 1024, format: nil) { [weak self] buf, _ in
+             guard let self else { return }
+             let channels = Int(buf.format.channelCount)
+             var rms: Float = 0
+@@ -192,6 +274,16 @@ class AudioPlayer: NSObject {
+         }
+     }
+ 
++    @objc private func handleEngineConfigChange(_ note: Notification) {
++        // Reconnect player after configuration changes and restart engine
++        playerQueue.async {
++            print("[AudioPlayer] AVAudioEngineConfigurationChange observed; reconnecting player node (no stop)")
++            self.audioEngine.disconnectNodeOutput(self.audioPlayerNode)
++            self.audioEngine.connect(self.audioPlayerNode, to: self.audioEngine.mainMixerNode, format: self.audioFormat)
++            self.ensureEngineRunning()
++        }
++    }
++
+     private func startVolumeTimer() {
+         volumeTimer = Timer.scheduledTimer(withTimeInterval: volumeUpdateInterval, repeats: true) { [weak self] _ in
+             guard let self else { return }
+@@ -218,11 +310,14 @@ class AudioPlayer: NSObject {
              do {
                  let session = AVAudioSession.sharedInstance()
                  try session.setCategory(
@@ -1026,18 +1127,23 @@ index 11e60e8..8e058f3 100644
 -                    options: [.mixWithOthers, .allowBluetooth, .allowBluetoothA2DP]
 +                    .playAndRecord,
 +                    mode: .voiceChat,
-+                    options: [.defaultToSpeaker, .allowBluetooth]
++                    options: [.allowBluetooth]
                  )
                  try session.setActive(true, options: [])
++                let outputs = session.currentRoute.outputs
++                let hasBT = outputs.contains { $0.portType == .bluetoothA2DP || $0.portType == .bluetoothHFP || $0.portType == .bluetoothLE }
++                if !hasBT && outputs.first?.portType != .builtInSpeaker { try? session.overrideOutputAudioPort(.speaker) }
                  if !audioEngine.isRunning { try audioEngine.start() }
-@@ -235,6 +271,15 @@ class AudioPlayer: NSObject {
+                 if !audioPlayerNode.isPlaying && !audioQueue.isEmpty { audioPlayerNode.play() }
+             } catch {
+@@ -235,6 +330,15 @@ class AudioPlayer: NSObject {
  
      // MARK: - Stop
  
 +    // Soft interrupt used for barge-in: clear queue and stop current playback,
 +    // but keep the processing loop and engine running for future TTS.
 +    func interrupt() {
-+        stateQueue.sync { interrupted = true }
++        stateQueue.async { self.interrupted = true }
 +        DispatchQueue.main.async {
 +            self.delegate?.didUpdateVolume(-1.0)
 +        }
@@ -1046,7 +1152,7 @@ index 11e60e8..8e058f3 100644
      func stop() {
          isProcessing = false
          volumeTimer?.invalidate()
-@@ -243,3 +288,6 @@ class AudioPlayer: NSObject {
+@@ -243,3 +347,6 @@ class AudioPlayer: NSObject {
          delegate?.didUpdateVolume(-1.0)        // also inform on manual stop
      }
  }
@@ -1096,7 +1202,7 @@ index ae8e644..1ff8081 100644
 +
  @end
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-index 4072cc9..223d8f8 100644
+index 4072cc9..d88619b 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 @@ -13,10 +13,53 @@ protocol AudioPlayerDelegate: AnyObject {
@@ -1555,7 +1661,7 @@ index 4072cc9..223d8f8 100644
      }
  
      /// Splits the input text into sentences with a maximum of `maxWords` words.
-@@ -115,8 +525,46 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -115,8 +525,50 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
      
      // Clean up resources
      @objc func deinitialize() {
@@ -1580,10 +1686,14 @@ index 4072cc9..223d8f8 100644
 +                try session.setCategory(
 +                    .playAndRecord,
 +                    mode: .voiceChat,
-+                    options: [.defaultToSpeaker, .allowBluetooth]
++                    options: [.allowBluetooth]
 +                )
 +                try session.setActive(true, options: [])
-+                try session.overrideOutputAudioPort(.speaker)
++                let outputs = session.currentRoute.outputs
++                let hasBT = outputs.contains { $0.portType == .bluetoothA2DP || $0.portType == .bluetoothHFP || $0.portType == .bluetoothLE }
++                if !hasBT && outputs.first?.portType != .builtInSpeaker {
++                    try? session.overrideOutputAudioPort(.speaker)
++                }
 +                DispatchQueue.main.async {
 +                    self.realTimeAudioPlayer?.ensureEngineRunning()
 +                    let route = session.currentRoute
