@@ -33,7 +33,7 @@ index 0000000..0d259dd
 +o/classes
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/1dce2527d0e4eaa00c549d1a88a2339c/transformed/classes/classes_dex/classes.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/1dce2527d0e4eaa00c549d1a88a2339c/transformed/classes/classes_dex/classes.dex
 new file mode 100644
-index 0000000..5638ca2
+index 0000000..8d4c786
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/1dce2527d0e4eaa00c549d1a88a2339c/transformed/classes/classes_dex/classes.dex differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/results.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/results.bin
 new file mode 100644
@@ -48,7 +48,7 @@ index 0000000..f957bdc
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.dex differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex
 new file mode 100644
-index 0000000..ad923bd
+index 0000000..7ffa16f
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayer.dex differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/AudioPlayerDelegate.dex
 new file mode 100644
@@ -60,19 +60,23 @@ index 0000000..9ab2c24
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/BuildConfig.dex differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex
 new file mode 100644
-index 0000000..60a5c92
+index 0000000..9bfac54
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/ModelLoader.dex differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex
 new file mode 100644
-index 0000000..3716cfc
+index 0000000..8aaeb93
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.dex differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex
 new file mode 100644
-index 0000000..da3f803
+index 0000000..2bd082d
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.dex differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startVadRecognition$1.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startVadRecognition$1.dex
+new file mode 100644
+index 0000000..5026843
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule$startVadRecognition$1.dex differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex
 new file mode 100644
-index 0000000..8337678
+index 0000000..3bb7113
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerModule.dex differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/.transforms/3811e7c4b7289b5d9cacee960142aaf4/transformed/bundleLibRuntimeToDirDebug/bundleLibRuntimeToDirDebug_dex/com/sherpaonnxofflinetts/TTSManagerPackage.dex
 new file mode 100644
@@ -139,7 +143,7 @@ index 0000000..095075b
 \ No newline at end of file
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/aar_main_jar/debug/syncDebugLibJars/classes.jar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/aar_main_jar/debug/syncDebugLibJars/classes.jar
 new file mode 100644
-index 0000000..eed66ce
+index 0000000..2c22c31
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/aar_main_jar/debug/syncDebugLibJars/classes.jar differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/aar_metadata/debug/writeDebugAarMetadata/aar-metadata.properties
 new file mode 100644
@@ -166,7 +170,7 @@ new file mode 100644
 index 0000000..e69de29
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar
 new file mode 100644
-index 0000000..e5ea7de
+index 0000000..2c4cb41
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_library_classes_jar/debug/bundleLibCompileToJarDebug/classes.jar differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/compile_r_class_jar/debug/generateDebugRFile/R.jar
 new file mode 100644
@@ -181,11 +185,11 @@ index 0000000..d659f9c
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug-mergeJavaRes/merge-state differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
 new file mode 100644
-index 0000000..c187666
+index 0000000..09a4131
 --- /dev/null
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/compile-file-map.properties
 @@ -0,0 +1 @@
-+#Tue Oct 28 18:32:36 EDT 2025
++#Wed Oct 29 12:46:22 EDT 2025
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/incremental/debug/packageDebugResources/merger.xml
 new file mode 100644
 index 0000000..0eec429
@@ -295,7 +299,7 @@ index 0000000..5538059
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayer.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayer.class
 new file mode 100644
-index 0000000..0636bb9
+index 0000000..e20f291
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayer.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class
 new file mode 100644
@@ -307,19 +311,23 @@ index 0000000..17c4a44
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/BuildConfig.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/ModelLoader.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/ModelLoader.class
 new file mode 100644
-index 0000000..a221cbd
+index 0000000..83da9b3
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/ModelLoader.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class
 new file mode 100644
-index 0000000..7d57273
+index 0000000..29b01b4
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class
 new file mode 100644
-index 0000000..9b88abd
+index 0000000..f586ffe
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$startVadRecognition$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$startVadRecognition$1.class
+new file mode 100644
+index 0000000..7e167e3
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule$startVadRecognition$1.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule.class
 new file mode 100644
-index 0000000..ad60b79
+index 0000000..63b7189
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerModule.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerPackage.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerPackage.class
 new file mode 100644
@@ -327,7 +335,7 @@ index 0000000..64e6044
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_dir/debug/bundleLibRuntimeToDirDebug/com/sherpaonnxofflinetts/TTSManagerPackage.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar
 new file mode 100644
-index 0000000..edcd78a
+index 0000000..decca17
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/runtime_library_classes_jar/debug/bundleLibRuntimeToJarDebug/classes.jar differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/symbol_list_with_package_name/debug/generateDebugRFile/package-aware-r.txt
 new file mode 100644
@@ -338,7 +346,7 @@ index 0000000..42caf81
 +com.sherpaonnxofflinetts
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab
 new file mode 100644
-index 0000000..76a8222
+index 0000000..80c7b90
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream
 new file mode 100644
@@ -354,7 +362,7 @@ index 0000000..93a595b
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at
 new file mode 100644
-index 0000000..7171be9
+index 0000000..5b7aba0
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i
 new file mode 100644
@@ -366,7 +374,7 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab
 new file mode 100644
-index 0000000..4fc96c1
+index 0000000..fc0f566
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream
 new file mode 100644
@@ -382,7 +390,7 @@ index 0000000..ec8f944
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at
 new file mode 100644
-index 0000000..3737e13
+index 0000000..92b2b7d
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i
 new file mode 100644
@@ -394,7 +402,7 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab
 new file mode 100644
-index 0000000..d814dd2
+index 0000000..7170dd8
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream
 new file mode 100644
@@ -410,7 +418,7 @@ index 0000000..ec8f944
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at
 new file mode 100644
-index 0000000..baf9964
+index 0000000..ac4517f
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i
 new file mode 100644
@@ -422,27 +430,27 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab
 new file mode 100644
-index 0000000..5fadcce
+index 0000000..51bfe50
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream
 new file mode 100644
-index 0000000..f80363d
+index 0000000..5a58d5f
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len
 new file mode 100644
-index 0000000..a11dcdc
+index 0000000..21d9b74
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len
 new file mode 100644
-index 0000000..fa606b6
+index 0000000..eb0b8a0
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at
 new file mode 100644
-index 0000000..87423e8
+index 0000000..d73c471
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i
 new file mode 100644
-index 0000000..aec691d
+index 0000000..2a85f94
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len
 new file mode 100644
@@ -450,7 +458,7 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab
 new file mode 100644
-index 0000000..d57690d
+index 0000000..2ea5c46
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream
 new file mode 100644
@@ -466,7 +474,7 @@ index 0000000..9e27f73
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at
 new file mode 100644
-index 0000000..ec4c705
+index 0000000..b4e80a5
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i
 new file mode 100644
@@ -478,7 +486,7 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab
 new file mode 100644
-index 0000000..56afee2
+index 0000000..900a65d
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream
 new file mode 100644
@@ -494,7 +502,7 @@ index 0000000..93a595b
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at
 new file mode 100644
-index 0000000..c65ae85
+index 0000000..01a91a7
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i
 new file mode 100644
@@ -506,7 +514,7 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab
 new file mode 100644
-index 0000000..8cf7f84
+index 0000000..44d0597
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.keystream
 new file mode 100644
@@ -522,7 +530,7 @@ index 0000000..01bdaa1
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at
 new file mode 100644
-index 0000000..87c5a13
+index 0000000..47cc95d
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i
 new file mode 100644
@@ -534,7 +542,7 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab
 new file mode 100644
-index 0000000..e5e7544
+index 0000000..7144aca
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.keystream
 new file mode 100644
@@ -550,7 +558,7 @@ index 0000000..01bdaa1
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at
 new file mode 100644
-index 0000000..fdc18fe
+index 0000000..f100717
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i
 new file mode 100644
@@ -562,16 +570,16 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab
 new file mode 100644
-index 0000000..26d3b09
+index 0000000..4a12dea
 --- /dev/null
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/counters.tab
 @@ -0,0 +1,2 @@
-+4
++5
 +0
 \ No newline at end of file
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab
 new file mode 100644
-index 0000000..eaf35eb
+index 0000000..b9f829b
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream
 new file mode 100644
@@ -587,7 +595,7 @@ index 0000000..93a595b
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at
 new file mode 100644
-index 0000000..3e23c2a
+index 0000000..f6a4f17
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i
 new file mode 100644
@@ -599,27 +607,27 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab
 new file mode 100644
-index 0000000..0b20771
+index 0000000..9b975aa
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream
 new file mode 100644
-index 0000000..6e7a926
+index 0000000..1dd772c
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len
 new file mode 100644
-index 0000000..eb52963
+index 0000000..62f3e6f
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len
 new file mode 100644
-index 0000000..93a595b
+index 0000000..ec8f944
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at
 new file mode 100644
-index 0000000..67c6add
+index 0000000..742c09c
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i
 new file mode 100644
-index 0000000..6936967
+index 0000000..e6ff6ac
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len
 new file mode 100644
@@ -627,27 +635,27 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab
 new file mode 100644
-index 0000000..26266a1
+index 0000000..e0813eb
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream
 new file mode 100644
-index 0000000..e49a57c
+index 0000000..8bfac4d
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len
 new file mode 100644
-index 0000000..95a0f45
+index 0000000..c8b11b0
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len
 new file mode 100644
-index 0000000..4f62c3c
+index 0000000..75412d9
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at
 new file mode 100644
-index 0000000..bc3322a
+index 0000000..f4f6aba
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i
 new file mode 100644
-index 0000000..f88a444
+index 0000000..98598a9
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len
 new file mode 100644
@@ -655,42 +663,42 @@ index 0000000..131e265
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin
 new file mode 100644
-index 0000000..3c124b2
+index 0000000..0ee54dd
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/cacheable/last-build.bin differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin
 new file mode 100644
-index 0000000..bb5bb87
+index 0000000..6ce12dd
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin
 new file mode 100644
-index 0000000..7031383
+index 0000000..5bd6363
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/kotlin/compileDebugKotlin/local-state/build-history.bin differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/aar/react-native-sherpa-onnx-offline-tts-debug.aar b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/aar/react-native-sherpa-onnx-offline-tts-debug.aar
 new file mode 100644
-index 0000000..89f23ec
+index 0000000..df42bb3
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/aar/react-native-sherpa-onnx-offline-tts-debug.aar differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/logs/manifest-merger-debug-report.txt b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/logs/manifest-merger-debug-report.txt
 new file mode 100644
-index 0000000..efc154c
+index 0000000..6bb92b9
 --- /dev/null
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/outputs/logs/manifest-merger-debug-report.txt
 @@ -0,0 +1,16 @@
 +-- Merging decision tree log ---
 +manifest
-+ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml:2:13-83
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml:2:13-83
++ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9310653876930461492.xml:2:13-83
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9310653876930461492.xml:2:13-83
 +	package
-+		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml
++		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9310653876930461492.xml
 +	xmlns:android
-+		ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml:2:23-81
++		ADDED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9310653876930461492.xml:2:23-81
 +uses-sdk
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml reason: use-sdk injection requested
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml
-+INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9310653876930461492.xml reason: use-sdk injection requested
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9310653876930461492.xml
++INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9310653876930461492.xml
 +	android:targetSdkVersion
-+		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml
++		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9310653876930461492.xml
 +	android:minSdkVersion
-+		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5503615780947197492.xml
++		INJECTED from /Users/ianrowe/git/sherpaUky/pocketpal-ai/node_modules/react-native-sherpa-onnx-offline-tts/android/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9310653876930461492.xml
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/compileDebugJavaWithJavac/previous-compilation-data.bin
 new file mode 100644
 index 0000000..701c381
@@ -705,7 +713,7 @@ index 0000000..5538059
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayer$volumeUpdateRunnable$1.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayer.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayer.class
 new file mode 100644
-index 0000000..0636bb9
+index 0000000..e20f291
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayer.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class
 new file mode 100644
@@ -713,29 +721,63 @@ index 0000000..f8ba8f1
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/AudioPlayerDelegate.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/ModelLoader.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/ModelLoader.class
 new file mode 100644
-index 0000000..a221cbd
+index 0000000..83da9b3
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/ModelLoader.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class
 new file mode 100644
-index 0000000..7d57273
+index 0000000..29b01b4
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$initializeTTS$1.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class
 new file mode 100644
-index 0000000..9b88abd
+index 0000000..f586ffe
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$startRecognition$1.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$startVadRecognition$1.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$startVadRecognition$1.class
+new file mode 100644
+index 0000000..7e167e3
+Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule$startVadRecognition$1.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule.class
 new file mode 100644
-index 0000000..ad60b79
+index 0000000..63b7189
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerModule.class differ
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerPackage.class b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerPackage.class
 new file mode 100644
 index 0000000..64e6044
 Binary files /dev/null and b/node_modules/react-native-sherpa-onnx-offline-tts/android/build/tmp/kotlin-classes/debug/com/sherpaonnxofflinetts/TTSManagerPackage.class differ
+diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt
+index 273813c..b2583c4 100644
+--- a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt
++++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/AudioPlayer.kt
+@@ -70,8 +70,8 @@ class AudioPlayer(
+         audioTrack = AudioTrack.Builder()
+             .setAudioAttributes(
+                 AudioAttributes.Builder()
+-                    .setUsage(AudioAttributes.USAGE_MEDIA)
+-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC) // ← CHANGED
++                    .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION)
++                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                     .build()
+             )
+             .setAudioFormat(
+@@ -161,4 +161,14 @@ class AudioPlayer(
+ 
+         mainHandler.post { delegate?.didUpdateVolume(-1f) } // ← now sends -1
+     }
++
++    // Soft interrupt used for barge-in: clear buffers but keep player running
++    fun interrupt() {
++        synchronized(this) {
++            audioQueue.clear()
++            accumulationBuffer.clear()
++        }
++        sentCompletion = true
++        mainHandler.post { delegate?.didUpdateVolume(-1f) }
++    }
+ }
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
-index f5bdfca..ec8e960 100644
+index f5bdfca..69ec57f 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/android/src/main/java/com/sherpaonnxofflinetts/TTSManagerModule.kt
-@@ -1,8 +1,26 @@
+@@ -1,15 +1,44 @@
  package com.sherpaonnxofflinetts
  
 -import com.facebook.react.bridge.*
@@ -749,22 +791,31 @@ index f5bdfca..ec8e960 100644
 +import com.facebook.react.bridge.ReactApplicationContext
 +import com.facebook.react.bridge.ReactContextBaseJavaModule
 +import com.facebook.react.bridge.ReactMethod
++import com.facebook.react.bridge.WritableMap
  import com.facebook.react.modules.core.DeviceEventManagerModule
 -import com.k2fsa.sherpa.onnx.*
 +import com.k2fsa.sherpa.onnx.FeatureConfig
-+import com.k2fsa.sherpa.onnx.OfflineModelConfig
-+import com.k2fsa.sherpa.onnx.OfflineRecognizer
-+import com.k2fsa.sherpa.onnx.OfflineRecognizerConfig
-+import com.k2fsa.sherpa.onnx.OfflineStream
-+import com.k2fsa.sherpa.onnx.OfflineTransducerModelConfig
++import com.k2fsa.sherpa.onnx.OnlineModelConfig
++import com.k2fsa.sherpa.onnx.OnlineRecognizer
++import com.k2fsa.sherpa.onnx.OnlineRecognizerConfig
++import com.k2fsa.sherpa.onnx.OnlineStream
++import com.k2fsa.sherpa.onnx.OnlineTransducerModelConfig
++import com.k2fsa.sherpa.onnx.getEndpointConfig
 +import com.k2fsa.sherpa.onnx.OfflineTts
 +import com.k2fsa.sherpa.onnx.OfflineTtsConfig
 +import com.k2fsa.sherpa.onnx.OfflineTtsModelConfig
 +import com.k2fsa.sherpa.onnx.OfflineTtsVitsModelConfig
++import com.k2fsa.sherpa.onnx.Vad
++import com.k2fsa.sherpa.onnx.getVadModelConfig
  import android.content.res.AssetManager
  import kotlin.concurrent.thread
  import android.content.Context
-@@ -10,6 +28,8 @@ import java.io.File
++import android.media.AudioAttributes
++import android.media.AudioFocusRequest
++import android.media.AudioManager
++import android.os.Build
++import android.os.Looper
+ import java.io.File
  import java.io.FileOutputStream
  import java.io.IOException
  import org.json.JSONObject
@@ -773,23 +824,39 @@ index f5bdfca..ec8e960 100644
  
  class ModelLoader(private val context: Context) {
  
-@@ -81,8 +101,15 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
+@@ -81,11 +110,31 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
      private var tts: OfflineTts? = null
      private var realTimeAudioPlayer: AudioPlayer? = null
      private val modelLoader = ModelLoader(reactContext)
-+    private var recognizer: OfflineRecognizer? = null
-+    private var sttStream: OfflineStream? = null
++    private var recognizer: OnlineRecognizer? = null
++    private var sttStream: OnlineStream? = null
 +    private var sttSampleRate: Int = 16000
 +    private var audioRecorder: AudioRecord? = null
 +    private var recordingThread: Thread? = null
 +    @Volatile private var isRecording: Boolean = false
++    private var audioFocusRequest: AudioFocusRequest? = null
++
++    // VAD state
++    private var vad: Vad? = null
++    @Volatile private var wasInSpeech: Boolean = false
++    @Volatile private var bargeInPending: Boolean = false
  
      override fun getName(): String {
 +        Log.i("SherpaTTS", "TTSManagerModule initialized")
          return "TTSManager"
      }
  
-@@ -130,6 +157,123 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
++    // RN listener stubs to silence NativeEventEmitter warnings
++    @ReactMethod
++    fun addListener(eventName: String) {}
++
++    @ReactMethod
++    fun removeListeners(count: Int) {}
++
+     // Initialize TTS and Audio Player
+     @ReactMethod
+     fun initializeTTS(sampleRate: Double, channels: Int, modelId: String) {
+@@ -130,6 +179,290 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
          realTimeAudioPlayer?.start()
      }
  
@@ -804,8 +871,8 @@ index f5bdfca..ec8e960 100644
 +        sttSampleRate = jsonObject.optInt("sampleRate", 16000)
 +        Log.i("SherpaTTS", "Config -> encoder: $encoder, decoder: $decoder, joiner: $joiner, tokens: $tokens, sampleRate: $sttSampleRate")
 +
-+        val modelConfig = OfflineModelConfig(
-+            transducer = OfflineTransducerModelConfig(
++        val modelConfig = OnlineModelConfig(
++            transducer = OnlineTransducerModelConfig(
 +                encoder = encoder,
 +                decoder = decoder,
 +                joiner = joiner,
@@ -814,26 +881,34 @@ index f5bdfca..ec8e960 100644
 +            numThreads = 1,
 +            debug = true,
 +            provider = "cpu",
++            modelType = "zipformer",
 +        )
 +        val feat = FeatureConfig(sttSampleRate, 80)
-+        val cfg = OfflineRecognizerConfig(
++        val cfg = OnlineRecognizerConfig(
 +            featConfig = feat,
 +            modelConfig = modelConfig,
-+            decodingMethod = "greedy_search",
-+            maxActivePaths = 4,
-+            hotwordsFile = "",
-+            hotwordsScore = 1.5f,
-+            ruleFsts = "",
-+            ruleFars = "",
-+            blankPenalty = 0.0f,
++            endpointConfig = getEndpointConfig(),
++            enableEndpoint = true,
 +        )
-+        recognizer = OfflineRecognizer(reactContext.assets, cfg)
++        recognizer = OnlineRecognizer(reactContext.assets, cfg)
 +        Log.i("SherpaTTS", "initializeSTT completed")
++
++        // Warm-up ~100ms of silence so ONNX runtime builds caches before first press
++        try {
++            val warm = FloatArray((sttSampleRate / 10).coerceAtLeast(1)) { 0f }
++            val s = recognizer!!.createStream()
++            s.acceptWaveform(warm, sttSampleRate)
++            while (recognizer!!.isReady(s)) {
++                recognizer!!.decode(s)
++            }
++            s.release()
++        } catch (_: Throwable) {}
 +    }
 +
 +    @ReactMethod
 +    fun startRecognition() {
 +        Log.i("SherpaTTS", "startRecognition called")
++        requestVoiceCommFocus()
 +        sttStream = recognizer?.createStream()
 +        val minBuf = AudioRecord.getMinBufferSize(
 +            sttSampleRate,
@@ -859,7 +934,11 @@ index f5bdfca..ec8e960 100644
 +                    for (i in 0 until read) {
 +                        floatSamples[i] = buffer[i] / 32768.0f
 +                    }
-+                    sttStream?.acceptWaveform(floatSamples, sttSampleRate)
++                    val s = sttStream ?: continue
++                    s.acceptWaveform(floatSamples, sttSampleRate)
++                    while (recognizer?.isReady(s) == true) {
++                        recognizer?.decode(s)
++                    }
 +                }
 +            }
 +            Log.i("SherpaTTS", "recording thread exiting")
@@ -884,7 +963,12 @@ index f5bdfca..ec8e960 100644
 +            return
 +        }
 +        try {
-+            rec.decode(stream)
++            // ~200ms tail padding so the model can finalize
++            val tail = FloatArray(sttSampleRate / 5) { 0f }
++            stream.acceptWaveform(tail, sttSampleRate)
++            while (rec.isReady(stream)) {
++                rec.decode(stream)
++            }
 +            val result = rec.getResult(stream)
 +            stream.release()
 +            sttStream = null
@@ -893,6 +977,8 @@ index f5bdfca..ec8e960 100644
 +        } catch (error: Throwable) {
 +            Log.e("SherpaTTS", "Error during stopRecognition", error)
 +            promise.reject("STOP_ERROR", error)
++        } finally {
++            abandonVoiceCommFocus()
 +        }
 +    }
 +
@@ -908,24 +994,242 @@ index f5bdfca..ec8e960 100644
 +        recognizer?.release()
 +        recognizer = null
 +        sttStream = null
++        abandonVoiceCommFocus()
++    }
++
++    @ReactMethod
++    fun startVadRecognition() {
++        Log.i("SherpaTTS", "startVadRecognition called")
++        if (recognizer == null) {
++            Log.w("SherpaTTS", "Recognizer not initialized")
++            return
++        }
++        // Initialize VAD with silero model from assets if needed
++        if (vad == null) {
++            val cfg = getVadModelConfig(0)
++            vad = Vad(reactContext.assets, cfg!!)
++        }
++
++        requestVoiceCommFocus()
++
++        val minBuf = AudioRecord.getMinBufferSize(
++            sttSampleRate,
++            AudioFormat.CHANNEL_IN_MONO,
++            AudioFormat.ENCODING_PCM_16BIT
++        )
++        audioRecorder = AudioRecord(
++            MediaRecorder.AudioSource.MIC,
++            sttSampleRate,
++            AudioFormat.CHANNEL_IN_MONO,
++            AudioFormat.ENCODING_PCM_16BIT,
++            minBuf
++        )
++        audioRecorder?.startRecording()
++        isRecording = true
++        wasInSpeech = false
++        bargeInPending = false
++
++        recordingThread = thread(start = true, name = "Sherpa-VAD") {
++            Log.i("SherpaTTS", "VAD recording thread started on ${Thread.currentThread().name}")
++            val buffer = ShortArray(1024)
++            while (isRecording) {
++                val read = audioRecorder?.read(buffer, 0, buffer.size) ?: 0
++                if (read <= 0) continue
++
++                val floatSamples = FloatArray(read) { i -> buffer[i] / 32768.0f }
++                vad?.acceptWaveform(floatSamples)
++
++                // Drain segments
++                while (isRecording && (vad?.empty() == false)) {
++                    val seg = vad!!.front()
++                    val segSamples = seg.samples
++                    vad!!.pop()
++                    if (segSamples.isNotEmpty()) {
++                        val stream = recognizer!!.createStream()
++                        stream.acceptWaveform(segSamples, sttSampleRate)
++                        // Optional tail padding
++                        val tail = FloatArray(sttSampleRate / 5) { 0f }
++                        stream.acceptWaveform(tail, sttSampleRate)
++                        while (recognizer!!.isReady(stream)) {
++                            recognizer!!.decode(stream)
++                        }
++                        val text = recognizer!!.getResult(stream).text
++                        stream.release()
++                        if (text.isNotEmpty()) {
++                            val map = Arguments.createMap()
++                            map.putString("text", text)
++                            sendEvent("ASRSegment", map)
++                        }
++                    }
++                }
++
++                val speechDetected = (vad?.isSpeechDetected() == true)
++                if (!wasInSpeech && speechDetected) {
++                    if (!bargeInPending) {
++                        bargeInPending = true
++                        sendEvent("SpeechStart", Arguments.createMap())
++                        android.os.Handler(Looper.getMainLooper()).postDelayed({
++                            bargeInPending = false
++                        }, 100L)
++                    }
++                }
++                if (wasInSpeech && !speechDetected) {
++                    // finalize current utterance
++                    vad?.flush()
++                    while (vad?.empty() == false) {
++                        val seg = vad!!.front()
++                        val segSamples = seg.samples
++                        vad!!.pop()
++                        if (segSamples.isNotEmpty()) {
++                            val stream = recognizer!!.createStream()
++                            stream.acceptWaveform(segSamples, sttSampleRate)
++                            val tail = FloatArray(sttSampleRate / 5) { 0f }
++                            stream.acceptWaveform(tail, sttSampleRate)
++                            while (recognizer!!.isReady(stream)) {
++                                recognizer!!.decode(stream)
++                            }
++                            val text = recognizer!!.getResult(stream).text
++                            stream.release()
++                            if (text.isNotEmpty()) {
++                                val map = Arguments.createMap()
++                                map.putString("text", text)
++                                sendEvent("ASRSegment", map)
++                            }
++                        }
++                    }
++                }
++                wasInSpeech = speechDetected
++            }
++            Log.i("SherpaTTS", "VAD recording thread exiting")
++        }
++    }
++
++    @ReactMethod
++    fun stopVadRecognition() {
++        Log.i("SherpaTTS", "stopVadRecognition called")
++        isRecording = false
++        recordingThread?.join()
++        recordingThread = null
++        audioRecorder?.stop()
++        audioRecorder?.release()
++        audioRecorder = null
++
++        // finalize any pending
++        if (wasInSpeech) {
++            vad?.flush()
++            while (vad?.empty() == false && recognizer != null) {
++                val seg = vad!!.front()
++                val segSamples = seg.samples
++                vad!!.pop()
++                if (segSamples.isNotEmpty()) {
++                    val stream = recognizer!!.createStream()
++                    stream.acceptWaveform(segSamples, sttSampleRate)
++                    val tail = FloatArray(sttSampleRate / 5) { 0f }
++                    stream.acceptWaveform(tail, sttSampleRate)
++                    while (recognizer!!.isReady(stream)) {
++                        recognizer!!.decode(stream)
++                    }
++                    val text = recognizer!!.getResult(stream).text
++                    stream.release()
++                    if (text.isNotEmpty()) {
++                        val map = Arguments.createMap()
++                        map.putString("text", text)
++                        sendEvent("ASRSegment", map)
++                    }
++                }
++            }
++            wasInSpeech = false
++        }
++        vad?.reset()
++        abandonVoiceCommFocus()
 +    }
 +
      // Generate and Play method exposed to React Native
      @ReactMethod
      fun generateAndPlay(text: String, sid: Int, speed: Double, promise: Promise) {
-@@ -159,6 +303,7 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
+@@ -159,6 +492,20 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
          realTimeAudioPlayer = null
          tts?.release()
          tts = null
 +        deinitializeSTT()
++    }
++
++    // Ensure playback route/focus similar to iOS enforcePlayback
++    @ReactMethod
++    fun enforcePlayback() {
++        requestVoiceCommFocus()
++        realTimeAudioPlayer?.start()
++    }
++
++    // Soft stop for barge-in parity: interrupt playback and send -1 volume
++    @ReactMethod
++    fun stop() {
++        realTimeAudioPlayer?.interrupt()
      }
  
      // Helper: split text into manageable chunks similar to iOS logic
+@@ -222,4 +569,45 @@ class TTSManagerModule(private val reactContext: ReactApplicationContext) : Reac
+                 .emit("VolumeUpdate", params)
+         }
+     }
++
++    private fun sendEvent(name: String, params: WritableMap) {
++        if (reactContext.hasActiveCatalystInstance()) {
++            reactContext
++                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
++                .emit(name, params)
++        }
++    }
++
++    private fun requestVoiceCommFocus() {
++        val am = reactContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
++        val attrs = AudioAttributes.Builder()
++            .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION)
++            .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
++            .build()
++        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
++            val req = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
++                .setAudioAttributes(attrs)
++                .setOnAudioFocusChangeListener { }
++                .build()
++            audioFocusRequest = req
++            am.requestAudioFocus(req)
++        } else {
++            @Suppress("DEPRECATION")
++            am.requestAudioFocus(null, AudioManager.STREAM_VOICE_CALL, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
++        }
++        @Suppress("DEPRECATION")
++        am.mode = AudioManager.MODE_IN_COMMUNICATION
++        // Prefer speaker if BT not active
++        if (!am.isBluetoothScoOn) am.isSpeakerphoneOn = true
++    }
++
++    private fun abandonVoiceCommFocus() {
++        val am = reactContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
++        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
++            audioFocusRequest?.let { am.abandonAudioFocusRequest(it) }
++        } else {
++            @Suppress("DEPRECATION")
++            am.abandonAudioFocus(null)
++        }
++    }
+ }
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
-index 11e60e8..844bf3d 100644
+index 11e60e8..5feb61a 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/AudioPlayer.swift
-@@ -17,11 +17,15 @@ class AudioPlayer: NSObject {
+@@ -13,15 +13,35 @@ import Foundation
+ import AVFoundation
+ import Accelerate
+ 
++private func _qLabel() -> String { String(cString: __dispatch_queue_get_label(nil)) }
++private func _qTime() -> String { String(format: "%.3f", CFAbsoluteTimeGetCurrent()) }
++private func _qLog(_ tag: String, _ msg: String) {
++    let thr = Thread.isMainThread ? "main" : "bg"
++    print("[\(tag)][\(_qTime())][\(thr)][\(_qLabel())] \(msg)")
++}
++
+ class AudioPlayer: NSObject {
      // MARK: - Properties
  
      private let audioEngine = AVAudioEngine()
@@ -939,10 +1243,19 @@ index 11e60e8..844bf3d 100644
 +    private let playerQueue = DispatchQueue(label: "com.pocketpal.tts.player", qos: .userInitiated)
 +    private var interrupted = false
 +    private var needRebuild = false
++    private var bufferSeq: Int = 0
++    private var lastIdleLog: CFAbsoluteTime = 0
++    private let engineStartLock = NSLock()
++    private var engineStarting = false
++    #if DEBUG
++    private let useAsyncEnqueue = true
++    #else
++    private let useAsyncEnqueue = false
++    #endif
  
      // Volume Monitoring
      private var volumeTimer: Timer?
-@@ -41,7 +45,7 @@ class AudioPlayer: NSObject {
+@@ -41,7 +61,7 @@ class AudioPlayer: NSObject {
              commonFormat: .pcmFormatFloat32,
              sampleRate: sampleRate,
              channels: channels,
@@ -951,7 +1264,7 @@ index 11e60e8..844bf3d 100644
          )!
  
          super.init()
-@@ -56,7 +60,14 @@ class AudioPlayer: NSObject {
+@@ -56,7 +76,35 @@ class AudioPlayer: NSObject {
              object: AVAudioSession.sharedInstance()
          )
  
@@ -963,11 +1276,32 @@ index 11e60e8..844bf3d 100644
 +            object: audioEngine
 +        )
 +
-+        playerQueue.async { self.processAudioQueue() }
++        NotificationCenter.default.addObserver(
++            self,
++            selector: #selector(handleRouteChange),
++            name: AVAudioSession.routeChangeNotification,
++            object: AVAudioSession.sharedInstance()
++        )
++
++        NotificationCenter.default.addObserver(
++            self,
++            selector: #selector(handleMediaServicesLost),
++            name: AVAudioSession.mediaServicesWereLostNotification,
++            object: AVAudioSession.sharedInstance()
++        )
++
++        NotificationCenter.default.addObserver(
++            self,
++            selector: #selector(handleMediaServicesReset),
++            name: AVAudioSession.mediaServicesWereResetNotification,
++            object: AVAudioSession.sharedInstance()
++        )
++
++        playerQueue.async { _qLog("PLQ", "process loop start"); self.processAudioQueue() }
          DispatchQueue.main.async { self.startVolumeTimer() }
      }
  
-@@ -73,12 +84,19 @@ class AudioPlayer: NSObject {
+@@ -73,12 +121,21 @@ class AudioPlayer: NSObject {
          do {
              let session = AVAudioSession.sharedInstance()
              try session.setCategory(
@@ -987,11 +1321,13 @@ index 11e60e8..844bf3d 100644
 +            if !hasBT && outputs.first?.portType != .builtInSpeaker {
 +                try? session.overrideOutputAudioPort(.speaker)
 +            }
++            let route = session.currentRoute
++            _qLog("AS", "session route: inputs=\(route.inputs.map { $0.portType.rawValue }), outputs=\(route.outputs.map { $0.portType.rawValue })")
 +            print("Audio session set up for duplex (playAndRecord + voiceChat)")
          } catch {
              print("Failed to set up AVAudioSession: \(error)")
          }
-@@ -100,12 +118,56 @@ class AudioPlayer: NSObject {
+@@ -100,22 +157,102 @@ class AudioPlayer: NSObject {
          addAudioTap()
  
          do {
@@ -1003,6 +1339,29 @@ index 11e60e8..844bf3d 100644
          }
      }
  
++    // MARK: - Diagnostics helpers
++
++    private func routeString(_ route: AVAudioSessionRouteDescription) -> String {
++        let ins = route.inputs.map { "\($0.portType.rawValue):\($0.uid)" }.joined(separator: ",")
++        let outs = route.outputs.map { "\($0.portType.rawValue):\($0.uid)" }.joined(separator: ",")
++        return "inputs=[\(ins)] outputs=[\(outs)]"
++    }
++
++    private func dumpAudioState(_ tag: String) {
++        let s = AVAudioSession.sharedInstance()
++        let r = s.currentRoute
++        _qLog("STATE", "\(tag) session: cat=\(s.category.rawValue) mode=\(s.mode.rawValue) opts=\(s.categoryOptions.rawValue)")
++        _qLog("STATE", "\(tag) session: sr=\(s.sampleRate) prefSr=\(s.preferredSampleRate) io=\(s.ioBufferDuration) prefIo=\(s.preferredIOBufferDuration)")
++        _qLog("STATE", "\(tag) session: inAvail=\(s.isInputAvailable) inCh=\(s.inputNumberOfChannels) prefInCh=\(s.preferredInputNumberOfChannels) outCh=\(s.outputNumberOfChannels)")
++        _qLog("STATE", "\(tag) route: \(routeString(r))")
++        _qLog("STATE", "\(tag) engine: running=\(audioEngine.isRunning) manual=\(audioEngine.isInManualRenderingMode)")
++        let mixFmt = audioEngine.mainMixerNode.outputFormat(forBus: 0)
++        let outFmt = audioEngine.outputNode.outputFormat(forBus: 0)
++        _qLog("STATE", "\(tag) mixerFmt: sr=\(mixFmt.sampleRate) ch=\(mixFmt.channelCount)")
++        _qLog("STATE", "\(tag) outFmt:   sr=\(outFmt.sampleRate) ch=\(outFmt.channelCount)")
++        _qLog("STATE", "\(tag) player: isPlaying=\(audioPlayerNode.isPlaying) attached=\(audioPlayerNode.engine != nil) fmtSr=\(audioFormat.sampleRate) fmtCh=\(audioFormat.channelCount)")
++    }
++
 +    private func rebuildPlayerNode() {
 +        audioEngine.pause()
 +        audioEngine.stop()
@@ -1034,65 +1393,112 @@ index 11e60e8..844bf3d 100644
 +    }
 +
 +    func ensureEngineRunning() {
-+        if !audioEngine.isRunning {
-+            do {
-+                audioEngine.prepare()
-+                try audioEngine.start()
-+                print("[AudioPlayer] ensureEngineRunning: started")
-+            } catch {
-+                print("Failed to start AVAudioEngine: \(error)")
-+            }
++        engineStartLock.lock()
++        if audioEngine.isRunning || engineStarting {
++            engineStartLock.unlock()
++            return
 +        }
++        engineStarting = true
++        engineStartLock.unlock()
++
++        do {
++            audioEngine.prepare()
++            try audioEngine.start()
++            print("[AudioPlayer] ensureEngineRunning: started")
++            dumpAudioState("engine started")
++        } catch {
++            print("Failed to start AVAudioEngine: \(error)")
++        }
++
++        engineStartLock.lock()
++        engineStarting = false
++        engineStartLock.unlock()
 +    }
 +
      // MARK: - Public play API
  
      func playAudioData(from audio: SherpaOnnxGeneratedAudioWrapper) {
-@@ -123,6 +185,18 @@ class AudioPlayer: NSObject {
+         let sampleCount = Int(audio.n)
++        _qLog("PLAYQ", "enqueue request frames=\(sampleCount)")
+         let data = Data(bytes: audio.samples, count: sampleCount * MemoryLayout<Float>.size)
+-
+         queueLock.lock()
++        _qLog("PLAYQ", "locked")
+         audioQueue.append(data)
+-        sentCompletion = false                 // reset “finished” flag for this run
++        sentCompletion = false
+         queueLock.unlock()
++        _qLog("PLAYQ", "appended + unlocked frames=\(sampleCount) qlen=\(audioQueue.count)")
+     }
+ 
+     // MARK: - Processing loop
+@@ -123,6 +260,19 @@ class AudioPlayer: NSObject {
      private func processAudioQueue() {
          isProcessing = true
          while isProcessing {
 +            // Handle non-blocking interrupt signaled from main
 +            if stateQueue.sync(execute: { interrupted }) {
-+                print("[AudioPlayer] interrupt received: clearing queue and rebuilding node")
++                _qLog("PLQ", "interrupt received: clearing queue and resetting node (no rebuild)")
 +                audioPlayerNode.stop()
 +                audioPlayerNode.reset()
 +                queueLock.lock(); audioQueue.removeAll(); queueLock.unlock()
-+                needRebuild = true
-+                rebuildPlayerNode()
-+                needRebuild = false
++                // Re-assert connection after reset so the node is wired to current mixer
++                audioEngine.disconnectNodeOutput(audioPlayerNode)
++                audioEngine.connect(audioPlayerNode, to: audioEngine.mainMixerNode, format: audioFormat)
 +                stateQueue.sync { interrupted = false }
++                _qLog("PLQ", "interrupt handled: node reset + reconnected")
 +            }
 +
              queueLock.lock()
              if !audioQueue.isEmpty {
                  let data = audioQueue.removeFirst()
-@@ -143,14 +217,22 @@ class AudioPlayer: NSObject {
+@@ -143,16 +293,35 @@ class AudioPlayer: NSObject {
                          count: Int(pcmBuf.frameLength)
                      )
                  }
-+                print("[AudioPlayer] dequeued buffer frames=\(pcmBuf.frameLength)")
++                _qLog("BUF", "dequeued frames=\(pcmBuf.frameLength)")
 +
 +                // Ensure engine is running and prime before scheduling real audio to avoid wedges
 +                self.ensureEngineRunning()
 +                if !audioPlayerNode.isPlaying {
 +                    if let prime = makeSilenceBuffer() { audioPlayerNode.scheduleBuffer(prime, at: nil, options: []) { } }
-+                    print("[AudioPlayer] starting playback")
++                    let route = AVAudioSession.sharedInstance().currentRoute
++                    _qLog("PLAY", "BEFORE play: inputs=\(route.inputs.map { $0.portType.rawValue }), outputs=\(route.outputs.map { $0.portType.rawValue })")
++                    _qLog("PLAY", "starting playback")
 +                    audioPlayerNode.play()
++                    _qLog("PLAY", "AFTER play: isPlaying=\(self.audioPlayerNode.isPlaying)")
 +                }
  
                  // schedule with completion handler
-+                print("[AudioPlayer] scheduling buffer frames=\(pcmBuf.frameLength)")
++                self.bufferSeq += 1
++                let bid = self.bufferSeq
++                _qLog("BUF", "scheduling id=\(bid) frames=\(pcmBuf.frameLength)")
                  audioPlayerNode.scheduleBuffer(pcmBuf, at: nil, options: []) { [weak self] in
                      guard let self = self else { return }
++                    _qLog("BUF", "completion id=\(bid)")
                      self.checkForPlaybackEnd()
                  }
 -
 -                if !audioPlayerNode.isPlaying { audioPlayerNode.play() }
              } else {
                  queueLock.unlock()
++                let now = CFAbsoluteTimeGetCurrent()
++                if now - lastIdleLog > 0.5 {
++                    lastIdleLog = now
++                    _qLog("PLQ", "idle: qlen=0 nodePlaying=\(audioPlayerNode.isPlaying)")
++                }
                  usleep(10_000)
-@@ -176,7 +258,7 @@ class AudioPlayer: NSObject {
+             }
+         }
+@@ -166,6 +335,7 @@ class AudioPlayer: NSObject {
+ 
+         if finished && !sentCompletion {
+             sentCompletion = true
++            _qLog("BUF", "playback completed; notifying JS with -1 volume sentinel")
+             DispatchQueue.main.async {
+                 self.delegate?.didUpdateVolume(-1.0)  // ← notify JS side
+             }
+@@ -176,7 +346,7 @@ class AudioPlayer: NSObject {
  
      private func addAudioTap() {
          let mixer = audioEngine.mainMixerNode
@@ -1101,24 +1507,115 @@ index 11e60e8..844bf3d 100644
              guard let self else { return }
              let channels = Int(buf.format.channelCount)
              var rms: Float = 0
-@@ -192,6 +274,16 @@ class AudioPlayer: NSObject {
+@@ -192,6 +362,100 @@ class AudioPlayer: NSObject {
          }
      }
  
 +    @objc private func handleEngineConfigChange(_ note: Notification) {
-+        // Reconnect player after configuration changes and restart engine
++        // Reconnect player after configuration changes, ensure engine, and kick if needed
 +        playerQueue.async {
++            if self.audioPlayerNode.isPlaying {
++                _qLog("ECONFIG", "skip reconnect; node is playing")
++                return
++            }
 +            print("[AudioPlayer] AVAudioEngineConfigurationChange observed; reconnecting player node (no stop)")
 +            self.audioEngine.disconnectNodeOutput(self.audioPlayerNode)
 +            self.audioEngine.connect(self.audioPlayerNode, to: self.audioEngine.mainMixerNode, format: self.audioFormat)
 +            self.ensureEngineRunning()
++
++            // Kick playback if we have pending buffers but node isn't playing
++            var qlen = 0
++            self.queueLock.lock(); qlen = self.audioQueue.count; self.queueLock.unlock()
++            if !self.audioPlayerNode.isPlaying && qlen > 0 {
++                if let prime = self.makeSilenceBuffer() { self.audioPlayerNode.scheduleBuffer(prime, at: nil, options: []) { } }
++                let r = AVAudioSession.sharedInstance().currentRoute
++                _qLog("PLAY", "KICK after engine config change: inputs=\(r.inputs.map { $0.portType.rawValue }), outputs=\(r.outputs.map { $0.portType.rawValue }) qlen=\(qlen)")
++                self.audioPlayerNode.play()
++            }
 +        }
++    }
++
++    @objc private func handleRouteChange(_ note: Notification) {
++        guard let info = note.userInfo,
++              let reasonRaw = info[AVAudioSessionRouteChangeReasonKey] as? UInt,
++              let reason = AVAudioSession.RouteChangeReason(rawValue: reasonRaw) else { return }
++
++        let route = AVAudioSession.sharedInstance().currentRoute
++        _qLog("ROUTE", "change reason=\(reason.rawValue) inputs=\(route.inputs.map { $0.portType.rawValue }), outputs=\(route.outputs.map { $0.portType.rawValue })")
++
++        // Reconnect when idle; watchdog reconnect if playing but silent
++        playerQueue.async {
++            let wasPlaying = self.audioPlayerNode.isPlaying
++            if !wasPlaying {
++                // route changed while idle: reconnect graph and kick if needed
++                self.audioEngine.disconnectNodeOutput(self.audioPlayerNode)
++                self.audioEngine.connect(self.audioPlayerNode, to: self.audioEngine.mainMixerNode, format: self.audioFormat)
++                self.ensureEngineRunning()
++                var qlen = 0
++                self.queueLock.lock(); qlen = self.audioQueue.count; self.queueLock.unlock()
++                if qlen > 0 {
++                    if let prime = self.makeSilenceBuffer() { self.audioPlayerNode.scheduleBuffer(prime, at: nil, options: []) { } }
++                    self.audioPlayerNode.play()
++                    _qLog("PLAY", "KICK after route change (reconnected) qlen=\(qlen)")
++                }
++            } else {
++                // node is playing: if still silent shortly after, reconnect node
++                self.playerQueue.asyncAfter(deadline: .now() + 0.15) {
++                    let stillPlaying = self.audioPlayerNode.isPlaying
++                    let vol = self.currentVolume
++                    if stillPlaying && vol == 0 {
++                        _qLog("ROUTE", "silent while playing → reconnecting node")
++                        self.audioEngine.disconnectNodeOutput(self.audioPlayerNode)
++                        self.audioEngine.connect(self.audioPlayerNode, to: self.audioEngine.mainMixerNode, format: self.audioFormat)
++                        self.ensureEngineRunning()
++                        var q2 = 0
++                        self.queueLock.lock(); q2 = self.audioQueue.count; self.queueLock.unlock()
++                        if q2 > 0 && !self.audioPlayerNode.isPlaying {
++                            if let prime = self.makeSilenceBuffer() { self.audioPlayerNode.scheduleBuffer(prime, at: nil, options: []) { } }
++                            self.audioPlayerNode.play()
++                            _qLog("PLAY", "KICK after reconnect (silent watchdog) qlen=\(q2)")
++                        }
++                    }
++                }
++            }
++            self.dumpAudioState("ROUTE change \(reason.rawValue) (post)")
++        }
++    }
++
++    // MARK: - Safe kick
++    func kickIfNeeded() {
++        playerQueue.async {
++            self.ensureEngineRunning()
++            var qlen = 0
++            self.queueLock.lock(); qlen = self.audioQueue.count; self.queueLock.unlock()
++            if !self.audioPlayerNode.isPlaying && qlen > 0 {
++                if let prime = self.makeSilenceBuffer() { self.audioPlayerNode.scheduleBuffer(prime, at: nil, options: []) { } }
++                self.audioPlayerNode.play()
++                _qLog("PLAY", "kickIfNeeded: kicked node")
++            }
++        }
++    }
++
++    @objc private func handleMediaServicesLost(_ note: Notification) {
++        _qLog("MEDIA", "services lost")
++    }
++
++    @objc private func handleMediaServicesReset(_ note: Notification) {
++        _qLog("MEDIA", "services reset; restarting engine if needed")
++        ensureEngineRunning()
 +    }
 +
      private func startVolumeTimer() {
          volumeTimer = Timer.scheduledTimer(withTimeInterval: volumeUpdateInterval, repeats: true) { [weak self] _ in
              guard let self else { return }
-@@ -218,11 +310,14 @@ class AudioPlayer: NSObject {
+@@ -213,18 +477,32 @@ class AudioPlayer: NSObject {
+         switch type {
+         case .began:
+             audioPlayerNode.pause()
++            _qLog("INT", "interruption began (paused), not via ASQ")
++            dumpAudioState("INT began")
+ 
+         case .ended:
              do {
                  let session = AVAudioSession.sharedInstance()
                  try session.setCategory(
@@ -1134,9 +1631,21 @@ index 11e60e8..844bf3d 100644
 +                let hasBT = outputs.contains { $0.portType == .bluetoothA2DP || $0.portType == .bluetoothHFP || $0.portType == .bluetoothLE }
 +                if !hasBT && outputs.first?.portType != .builtInSpeaker { try? session.overrideOutputAudioPort(.speaker) }
                  if !audioEngine.isRunning { try audioEngine.start() }
-                 if !audioPlayerNode.isPlaying && !audioQueue.isEmpty { audioPlayerNode.play() }
+-                if !audioPlayerNode.isPlaying && !audioQueue.isEmpty { audioPlayerNode.play() }
++                var qlen = 0
++                queueLock.lock(); qlen = audioQueue.count; queueLock.unlock()
++                if !audioPlayerNode.isPlaying && qlen > 0 {
++                    if let prime = makeSilenceBuffer() { audioPlayerNode.scheduleBuffer(prime, at: nil, options: []) { } }
++                    let r = AVAudioSession.sharedInstance().currentRoute
++                    _qLog("PLAY", "KICK after interruption end: inputs=\(r.inputs.map { $0.portType.rawValue }), outputs=\(r.outputs.map { $0.portType.rawValue }) qlen=\(qlen)")
++                    audioPlayerNode.play()
++                }
++                _qLog("INT", "interruption ended: engineRunning=\(audioEngine.isRunning), nodePlaying=\(audioPlayerNode.isPlaying), queue=\(qlen)")
++                dumpAudioState("INT ended")
              } catch {
-@@ -235,6 +330,15 @@ class AudioPlayer: NSObject {
+                 print("Could not resume after interruption: \(error)")
+             }
+@@ -235,11 +513,26 @@ class AudioPlayer: NSObject {
  
      // MARK: - Stop
  
@@ -1144,6 +1653,8 @@ index 11e60e8..844bf3d 100644
 +    // but keep the processing loop and engine running for future TTS.
 +    func interrupt() {
 +        stateQueue.async { self.interrupted = true }
++        _qLog("TTS", "interrupt() called by TTSManager")
++        dumpAudioState("TTS interrupt()")
 +        DispatchQueue.main.async {
 +            self.delegate?.didUpdateVolume(-1.0)
 +        }
@@ -1152,8 +1663,10 @@ index 11e60e8..844bf3d 100644
      func stop() {
          isProcessing = false
          volumeTimer?.invalidate()
-@@ -243,3 +347,6 @@ class AudioPlayer: NSObject {
+         audioEngine.stop()
+         audioPlayerNode.stop()
          delegate?.didUpdateVolume(-1.0)        // also inform on manual stop
++        _qLog("PLAY", "stop(): engine stopped and sentinel sent")
      }
  }
 +
@@ -1202,10 +1715,24 @@ index ae8e644..1ff8081 100644
 +
  @end
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-index 4072cc9..d88619b 100644
+index 4072cc9..32503b1 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
 +++ b/node_modules/react-native-sherpa-onnx-offline-tts/ios/SherpaOnnxOfflineTts.swift
-@@ -13,10 +13,53 @@ protocol AudioPlayerDelegate: AnyObject {
+@@ -4,6 +4,13 @@ import Foundation
+ import AVFoundation
+ import React
+ 
++private func _qLabel() -> String { String(cString: __dispatch_queue_get_label(nil)) }
++private func _qTime() -> String { String(format: "%.3f", CFAbsoluteTimeGetCurrent()) }
++private func _qLog(_ tag: String, _ msg: String) {
++    let thr = Thread.isMainThread ? "main" : "bg"
++    print("[\(tag)][\(_qTime())][\(thr)][\(_qLabel())] \(msg)")
++}
++
+ // Define a protocol for volume updates
+ protocol AudioPlayerDelegate: AnyObject {
+     func didUpdateVolume(_ volume: Float)
+@@ -13,10 +20,57 @@ protocol AudioPlayerDelegate: AnyObject {
  class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
      private var tts: SherpaOnnxOfflineTtsWrapper?
      private var realTimeAudioPlayer: AudioPlayer?
@@ -1249,10 +1776,14 @@ index 4072cc9..d88619b 100644
 +    }
 +    
 +    private func withAudioSession(_ work: @escaping (AVAudioSession) throws -> Void) {
++        let token = String(UUID().uuidString.prefix(8))
++        _qLog("ASQ", "enqueue id=\(token)")
 +        audioSessionQueue.async {
 +            let session = AVAudioSession.sharedInstance()
 +            do {
++                _qLog("ASQ", "begin   id=\(token)")
 +                try work(session)
++                _qLog("ASQ", "end     id=\(token)")
 +            } catch {
 +                print("[SherpaTTS][iOS] AVAudioSession error: \(error)")
 +            }
@@ -1260,7 +1791,7 @@ index 4072cc9..d88619b 100644
      }
      
      // Required for RCTEventEmitter
-@@ -24,9 +67,367 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -24,17 +78,386 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
          return true
      }
      
@@ -1321,6 +1852,7 @@ index 4072cc9..d88619b 100644
 +        }
 +
 +        // Pre-warm audio session to reduce cold-start latency
++        _qLog("ASQ", "request from initializeSTT()")
 +        withAudioSession { session in
 +            try session.setCategory(.playAndRecord, mode: .voiceChat, options: [.defaultToSpeaker, .allowBluetooth])
 +            try session.setPreferredSampleRate(Double(self.sttSampleRate))
@@ -1382,6 +1914,7 @@ index 4072cc9..d88619b 100644
 +            return
 +        }
 +        
++        _qLog("ASQ", "request from startRecognitionOnMain()")
 +        withAudioSession { session in
 +            try session.setCategory(.playAndRecord, mode: .voiceChat, options: [.defaultToSpeaker, .allowBluetooth])
 +            try session.setPreferredSampleRate(Double(self.sttSampleRate))
@@ -1517,6 +2050,8 @@ index 4072cc9..d88619b 100644
 +
 +    private func finalizeUtteranceAndEmit() {
 +        decodeQueue.async { [weak self] in
++            let token = String(UUID().uuidString.prefix(8))
++            _qLog("DECQ", "finalize begin id=\(token)")
 +            guard let self = self, let rec = self.recognizer else { return }
 +            // Tail padding and dual flush, similar to stopRecognition
 +            let tail = [Float](repeating: 0, count: max(1, self.sttSampleRate / 5))
@@ -1532,6 +2067,7 @@ index 4072cc9..d88619b 100644
 +                }
 +            }
 +            rec.reset()
++            _qLog("DECQ", "finalize end   id=\(token)")
 +        }
 +    }
 +
@@ -1602,6 +2138,8 @@ index 4072cc9..d88619b 100644
 +        if isDecoding { return }
 +        isDecoding = true
 +        decodeQueue.async { [weak self] in
++            let token = String(UUID().uuidString.prefix(8))
++            _qLog("DECQ", "begin id=\(token)")
 +            guard let self = self, let rec = self.recognizer else { return }
 +            while rec.isReady() { rec.decode() }
 +            let text = rec.getResult().text
@@ -1619,6 +2157,7 @@ index 4072cc9..d88619b 100644
 +                // Do not reset mid-stream for push-to-talk; finalization occurs on stop
 +            }
 +            self.isDecoding = false
++            _qLog("DECQ", "end   id=\(token)")
 +        }
 +    }
 +    
@@ -1629,7 +2168,18 @@ index 4072cc9..d88619b 100644
      }
      
      // Initialize TTS and Audio Player
-@@ -46,16 +447,25 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+     @objc(initializeTTS:channels:modelId:)
+     func initializeTTS(_ sampleRate: Double, channels: Int, modelId: String) {
++        print("[SherpaTTS][iOS] initializeTTS(sampleRate=\(sampleRate), channels=\(channels))")
+         self.realTimeAudioPlayer = AudioPlayer(sampleRate: sampleRate, channels: AVAudioChannelCount(channels))
+         self.realTimeAudioPlayer?.delegate = self // Set delegate to receive volume updates
+         self.tts = createOfflineTts(modelId: modelId)
++        let route = AVAudioSession.sharedInstance().currentRoute
++        print("[SherpaTTS][iOS] initializeTTS route: inputs=\(route.inputs.map { $0.portType.rawValue }), outputs=\(route.outputs.map { $0.portType.rawValue })")
+     }
+ 
+     // Generate audio and play in real-time
+@@ -46,16 +469,28 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
              rejecter("EMPTY_TEXT", "Input text is empty", nil)
              return
          }
@@ -1647,13 +2197,16 @@ index 4072cc9..d88619b 100644
 -            let processedSentence = sentence.hasSuffix(".") ? sentence : "\(sentence)."
 -            generateAudio(for: processedSentence, sid: sid, speed: speed)
 +        ttsQueue.async { [weak self] in
++            let job = String(UUID().uuidString.prefix(8))
++            _qLog("TTSQ", "begin job=\(job) sentences=\(sentences.count)")
 +            guard let self = self else { return }
 +            for sentence in sentences {
-+                if self.ttsCancelled { break }
++                if self.ttsCancelled { _qLog("TTSQ", "cancel job=\(job)"); break }
 +                let processedSentence = sentence.hasSuffix(".") ? sentence : "\(sentence)."
 +                self.generateAudio(for: processedSentence, sid: sid, speed: speed)
-+                if self.ttsCancelled { break }
++                if self.ttsCancelled { _qLog("TTSQ", "cancel after gen job=\(job)"); break }
 +            }
++            _qLog("TTSQ", "end   job=\(job)")
 +            resolver("Audio generated and played successfully")
          }
 -        
@@ -1661,7 +2214,12 @@ index 4072cc9..d88619b 100644
      }
  
      /// Splits the input text into sentences with a maximum of `maxWords` words.
-@@ -115,8 +525,50 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+@@ -111,18 +546,67 @@ class TTSManager: RCTEventEmitter, AudioPlayerDelegate {
+         print("Time taken for TTS generation: \(generationTime) seconds")
+         
+         realTimeAudioPlayer?.playAudioData(from: audio)
++        print("[SherpaTTS][iOS] enqueued \(audio.n) frames to AudioPlayer")
+     }
      
      // Clean up resources
      @objc func deinitialize() {
@@ -1681,6 +2239,7 @@ index 4072cc9..d88619b 100644
 +    // Ensure playback session is active before TTS output
 +    @objc func enforcePlayback() {
 +        DispatchQueue.main.async {
++            _qLog("ASQ", "request from enforcePlayback()")
 +            self.withAudioSession { session in
 +                try? session.setPreferredInput(nil)
 +                try session.setCategory(
@@ -1695,7 +2254,7 @@ index 4072cc9..d88619b 100644
 +                    try? session.overrideOutputAudioPort(.speaker)
 +                }
 +                DispatchQueue.main.async {
-+                    self.realTimeAudioPlayer?.ensureEngineRunning()
++                    self.realTimeAudioPlayer?.kickIfNeeded()
 +                    let route = session.currentRoute
 +                    print("[SherpaTTS][iOS] route: inputs=\(route.inputs.map { $0.portType.rawValue }), outputs=\(route.outputs.map { $0.portType.rawValue })")
 +                }
@@ -1706,12 +2265,23 @@ index 4072cc9..d88619b 100644
 +    // Stop playback and notify JS via delegate path
 +    @objc func stop() {
 +        DispatchQueue.main.async {
++            _qLog("TTS", "barge-in requested; interrupting AudioPlayer")
 +            self.ttsCancelled = true
 +            self.realTimeAudioPlayer?.interrupt()
++            _qLog("TTS", "barge-in signal sent to player")
 +        }
      }
      
      // MARK: - AudioPlayerDelegate Method
+     
+     func didUpdateVolume(_ volume: Float) {
+         // Emit the volume to JavaScript
++        if volume < 0 {
++            print("[SherpaTTS][iOS] playback drained (finished or interrupted)")
++        }
+         sendEvent(withName: "VolumeUpdate", body: ["volume": volume])
+     }
+ }
 diff --git a/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js b/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js
 index cb69b16..adbd7ba 100644
 --- a/node_modules/react-native-sherpa-onnx-offline-tts/lib/commonjs/index.js

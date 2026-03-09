@@ -29,7 +29,8 @@ export type TTSAssets = {
 let ttsReady = false;
 export const isTTSReady = () => ttsReady;
 
-type Segment = {text: string; sid: number; speed: number};
+let ttsJobSeq = 0;
+type Segment = {text: string; sid: number; speed: number; jobId?: number; enqueuedAt?: number};
 
 let segmentQueue: Segment[] = [];
 let draining = false;
@@ -43,8 +44,8 @@ function ensurePlaybackEvents() {
     if ((anyMod as any).__volSub) return;
     (anyMod as any).__volSub = anyMod.addVolumeListener?.((vol: number) => {
       if (typeof vol === 'number') {
-        if (vol < 0) speakingActive = false;
-        else if (vol > 0) speakingActive = true;
+        if (vol < 0) { speakingActive = false; console.log('[TTS][JS] playback drained (-1)'); }
+        else if (vol > 0) { speakingActive = true; }
       }
     });
   } catch {}
@@ -75,6 +76,7 @@ export const addSpeakingListener = (listener: (speaking: boolean) => void) => {
           if (vol < 0) speakingActive = false;
           else if (vol > 0) speakingActive = true;
           if (prev !== speakingActive) {
+            console.log(`[TTS][JS] speaking ${speakingActive ? 'STARTED' : 'ENDED'}`);
             for (const fn of Array.from(set)) {
               try { (fn as any)(speakingActive); } catch {}
             }
@@ -108,6 +110,8 @@ async function drainSegments() {
 
     while (segmentQueue.length > 0) {
       const seg = segmentQueue.shift()!;
+      const dt = Date.now() - (seg.enqueuedAt || Date.now());
+      console.log(`[TTS][JS][QUEUE] dequeue job=${seg.jobId} delayMs=${dt} len=${seg.text.length}`);
       // generateAndPlay resolves after enqueue; native schedules and plays sequentially
       await (SherpaTTS as any).generateAndPlay(seg.text, seg.sid, seg.speed);
     }
@@ -352,7 +356,9 @@ export const speakText = async (
       }
     }
     // Queue the segment; drain in the background
-    segmentQueue.push({text: trimmed, sid, speed});
+    const jobId = ++ttsJobSeq;
+    segmentQueue.push({text: trimmed, sid, speed, jobId, enqueuedAt: Date.now()});
+    console.log(`[TTS][JS][QUEUE] enqueue job=${jobId} qlen=${segmentQueue.length}`);
     drainSegments().catch(() => {});
   } catch (err) {
     console.warn('TTS speakText failed:', err);
@@ -363,6 +369,7 @@ export const speakText = async (
 export const stopSpeaking = (): void => {
   // Clear queued segments first to prevent new playback
   segmentQueue = [];
+  console.log('[TTS][JS] barge-in: stopSpeaking() requested (clearing queue + interrupt native)');
   try {
     (SherpaTTS as any).stop?.();
   } catch {}

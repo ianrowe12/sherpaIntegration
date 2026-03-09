@@ -27,6 +27,7 @@ import {
   ensureTTSAssets,
   initializeTTSFromAssets,
   speakText,
+  addSpeakingListener,
 } from './src/services/tts';
 import SherpaTTS from 'react-native-sherpa-onnx-offline-tts';
 import {ensureSherpaModelConfig} from './src/services/stt/sherpa';
@@ -69,9 +70,11 @@ const App = observer(() => {
   React.useEffect(() => {
     initLocale(uiStore.language);
     initializeLookiePal();
+    console.log('[App] startup: mounting and initializing TTS/STT');
     // Whisper disabled: STT now handled by Sherpa
     // Initialize Sherpa-ONNX TTS. If assets are missing, download and initialize.
     const subRef: {current: any} = {current: null};
+    const speakRef: {current: any} = {current: null};
     tryInitializeTTSFromFolder('vits-piper-en_US-ryan-medium')
       .then(async initialized => {
         if (initialized) {
@@ -81,6 +84,7 @@ const App = observer(() => {
             subRef.current = SherpaTTS.addVolumeListener((v: number) =>
               console.log('TTS volume:', v),
             );
+            speakRef.current = addSpeakingListener(s => console.log('[TTS][JS] speaking state ->', s));
           } catch {}
           return;
         }
@@ -99,6 +103,7 @@ const App = observer(() => {
           subRef.current = SherpaTTS.addVolumeListener((v: number) =>
             console.log('TTS volume:', v),
           );
+          speakRef.current = addSpeakingListener(s => console.log('[TTS][JS] speaking state ->', s));
         } catch {}
       })
       .catch(err => {
@@ -129,6 +134,7 @@ const App = observer(() => {
     return () => {
       try {
         subRef.current?.remove?.();
+        speakRef.current?.remove?.();
       } catch {}
     };
   }, []);
